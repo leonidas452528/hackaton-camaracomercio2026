@@ -61,7 +61,7 @@ Controles: vistas General, Campo de hockey, Coliseo, Punto de registro y Acopio;
 
 ## Centro de acopio · paso 4
 
-En la pestaña **Maqueta del sitio piloto**, abrir **Acopio**. Las siete etiquetas 3D y los botones del panel permiten seleccionar sectores y consultar su función. La clasificación tiene cinco categorías; los insumos rechazados siguen un ramal independiente hacia descarte. La bodega contiene estanterías ilustrativas, sin representar cantidades de existencias.
+En la pestaña **Demostración de refugio**, abrir **Acopio**. Las siete etiquetas 3D y los botones del panel permiten seleccionar sectores y consultar su función. La clasificación tiene cinco categorías; los insumos rechazados siguen un ramal independiente hacia descarte. La bodega contiene estanterías ilustrativas, sin representar cantidades de existencias.
 
 La cartelera muestra los requerimientos brutos calculados para el caso de la ficha; no son faltantes, pues se desconoce el inventario. **Pantalla de trazabilidad** abre una vista cercana con los campos lote, tipo, cantidad, origen, destino y hash. Se muestran pendientes de fuente verificada: el prompt sugería un lote simulado, pero AGENTS.md limita la simulación a IoT y ocupación. No se fabricaron datos ni un hash. No hay blockchain conectada.
 
@@ -71,7 +71,7 @@ Las medidas, cámaras, cantidades de mobiliario y posiciones están en `src/data
 
 ## Estados de la maqueta
 
-En **Maqueta del sitio piloto**, usa **Uso cotidiano**, **Emergencia (sismo)** y **Recuperación**. Los ocho kits pasan de stands de feria a refugio y después se compactan y regresan a la bodega ilustrativa. En uso cotidiano hay una conexión de riego superficial de uso no potable; el acopio queda vacío. Puedes cambiar de destino durante una transición.
+En **Demostración de refugio**, usa **Uso cotidiano**, **Emergencia (sismo)** y **Recuperación**. Los ocho kits pasan de stands de feria a refugio y después se compactan y regresan a la bodega ilustrativa. En uso cotidiano hay una conexión de riego superficial de uso no potable; el acopio queda vacío. Puedes cambiar de destino durante una transición.
 
 **Reducir movimiento** elimina la animación y respeta inicialmente la preferencia del sistema. El selector solo cambia la representación; no activa espacios, certifica condiciones ni registra movimientos de inventario. Recuperación requiere revisión, limpieza y acta por los responsables. La exportación GLB y las capturas se describen a continuación.
 
@@ -85,3 +85,15 @@ npm run verify:deliverables  # verifica GLB y dimensiones; actualiza manifiesto 
 ```
 
 Guía completa en [deliverables/renders/LEEME.md](deliverables/renders/LEEME.md). Informe de glTF Validator en `validacion_glb.json`, huellas en `manifest.json`. Ninguno de estos archivos acredita disponibilidad, aforo, evaluación estructural ni autorización de activación.
+
+## Preparar un espacio seleccionado
+
+1. En el mapa, selecciona un registro y pulsa **Preparar este espacio**.
+2. Elige inundación o sismo y un conteo de personas **SIMULADO**. Sequía informa que faltan datos.
+3. Revisa hasta tres candidatos EPOU del sector (comuna/barrio), ordenados por distancia recta tras los descartes territoriales. El número de personas cambia necesidades, no el orden sin aforos confirmados.
+4. Al elegir un candidato se adapta automáticamente su huella, conservando huecos y multipolígonos. Los puntos sin contorno no reciben una geometría inventada. La distribución interior de kits requiere superficie útil/accesos/obstáculos medidos.
+5. Revisa necesidades y brechas: si no se conoce existencia, el faltante queda desconocido. Responsables propuestos por el equipo, sin validación con entidades. Guarda seguimiento local (“Por medir”/“En revisión”) y descarga el borrador JSON.
+
+La pestaña **Demostración de refugio** conserva el ejemplo fijo. El campo dibujado no representa dimensiones reales de Miguel Calero, que sí es un coliseo real de hockey en línea. El aviso y la fuente municipal están en pantalla.
+
+Reglas en `src/planning.ts`, parámetros/referencias en `src/data/site.ts`, vista en `src/Intervention.tsx` y geometría adaptable en `src/SelectedSpaceScene.tsx`. El nuevo cálculo de agua contempla necesidades básicas, no exclusivamente uso no potable. Referencias Esfera contextualizables: no certificados de cumplimiento.

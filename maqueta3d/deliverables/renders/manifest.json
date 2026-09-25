@@ -3,50 +3,50 @@
   "files": [
     {
       "file": "general.png",
-      "bytes": 96461,
-      "sha256": "cbd91a831afca437284ab5de2c5eebba8e1b0e1708b8ebd90ef2faff57f922b5",
+      "bytes": 98451,
+      "sha256": "e1244d2a69cbe8a6cc0eb972bb1cd95559c7d2e587c8f73c6520f13f2e31020a",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "refugio_coliseo.png",
-      "bytes": 174351,
-      "sha256": "9a202e508d02fc1e0c33ed6139aa0fbd85335687b7416f14e2af6f4b5855af18",
+      "bytes": 176157,
+      "sha256": "9eda99dd903b4d072990cfee6f7926cd85c91ccf77465910b217c3d65e8a697a",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "refugio_campo.png",
-      "bytes": 128846,
-      "sha256": "4798cd2b211672026149cd34b684fa19c82b410209cf74dcfdb55fd3c891cce7",
+      "bytes": 130630,
+      "sha256": "62e3e65201ca207d55b799b0f437ef17fad87181663c84e605a314d268395a78",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "acopio.png",
-      "bytes": 128509,
-      "sha256": "e81e00b0286fe6af9004c1ad1622b246c280b9d05e94b29719a22feca9d42fe9",
+      "bytes": 130232,
+      "sha256": "b6dfccb3405e1b21ae3506e36c0e1d9ed68f5d80f8e659835ee3674203d40a5a",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "registro.png",
-      "bytes": 163210,
-      "sha256": "59e85620c34286d02085bef2511bf24174d73340b798f5d7ffcdb9eb8f00bb69",
+      "bytes": 165127,
+      "sha256": "97078feb251f24359bd3d9fb01fb343997553b844e2a7331b533870a443fb727",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "cotidiano.png",
-      "bytes": 92953,
-      "sha256": "f173b245cdc1999596563572f3a0f18ce1f69b3041df5fab234238f3617a75bf",
+      "bytes": 94962,
+      "sha256": "8a9dc11488a3f543336a7001ceb5dc49bf86464c9a536e1d229c29aa492d70e3",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "recuperacion.png",
-      "bytes": 77179,
-      "sha256": "af4565e81ed17944c961c9cc45ffbaa616507090cc8e7d6fa6febc0ddf12a149",
+      "bytes": 79280,
+      "sha256": "574c5392f692dc3416a39162bf6c3d6f0d37e13a26840fcf2ab56ef3c5864824",
       "width": 1920,
       "height": 1080
     },

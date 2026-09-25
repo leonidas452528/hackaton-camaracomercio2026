@@ -7,7 +7,7 @@ test("ciclo completo, interrupciones y regreso a emergencia", async ({
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.goto("/");
   await page
-    .getByRole("button", { name: "02 Maqueta del sitio piloto" })
+    .getByRole("button", { name: "02 Demostración de refugio" })
     .click();
   const status = page.locator(".lifecycle-status");
   const everyday = page.getByRole("button", {
@@ -65,7 +65,7 @@ test("movimiento reducido, teclado y móvil", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await page
-    .getByRole("button", { name: "02 Maqueta del sitio piloto" })
+    .getByRole("button", { name: "02 Demostración de refugio" })
     .click();
   await expect(
     page.getByRole("checkbox", { name: "Reducir movimiento" }),

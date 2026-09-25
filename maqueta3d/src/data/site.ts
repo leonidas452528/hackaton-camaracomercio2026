@@ -111,7 +111,7 @@ export const site = {
   },
   venues: {
     hockey: {
-      name: "Cancha de Hockey Miguel Calero",
+      name: "Campo de referencia · demostración conceptual",
       position: evidence(
         [0, 0, 0] as const,
         "aproximado",
@@ -122,7 +122,7 @@ export const site = {
         { length: 91.4, width: 55 },
         "referencia reglamentaria (verificar)",
         sources.hockey,
-        "Dimensiones tomadas de la propuesta; confirmar las medidas reales del escenario.",
+        "Referencia de campo abierto de la propuesta, no dimensiones de Miguel Calero: la fuente municipal lo identifica como coliseo de hockey en línea.",
       ),
       footprintWithMargins: evidence(
         { length: 97.4, width: 59 },
@@ -765,3 +765,19 @@ export const lifecycle = evidence(
   "PROMPT_CODEX_3D.md — sección 4; docs/propuesta_cali_activa.md — Fase 4 y uso cotidiano",
   "Animación conceptual de reutilización, no movimiento real de inventario ni ruta logística validada.",
 );
+
+export const planningRules = {
+  peoplePerToilet: site.scenario.peoplePerToilet.value,
+  litersPerPersonDay: site.scenario.litersPerPersonDay.value,
+  coveredM2PerPerson: 3.5,
+  sphereSource:
+    "https://spherestandards.org/wp-content/uploads/Sphere-Handbook-2018-EN.pdf",
+  responsibilitySource:
+    "docs/propuesta_cali_activa.md — Matriz de entidades responsables (propuesta sin validar)",
+};
+export const planningView = {
+  maximumPeople: 100000,
+  earthRadiusM: 6371008.8,
+  camera: { position: [0, 100, 100] as const, fov: 45 },
+  boundsMargin: 1.3,
+};

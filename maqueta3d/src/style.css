@@ -1373,3 +1373,95 @@ footer > span {
 .scene-export p {
   margin: 0.65rem 0 0;
 }
+.prepare-space,
+.intervention button {
+  padding: 0.75rem 1rem;
+  border-radius: 0.4rem;
+  border: 1px solid #416e5c;
+  color: #fff;
+  background: #245c4e;
+  font: inherit;
+  cursor: pointer;
+}
+.intervention button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.intervention button[aria-pressed="true"] {
+  outline: 3px solid #bb8525;
+  outline-offset: 2px;
+}
+.intervention .text-button {
+  background: transparent;
+  color: #245c4e;
+  margin: 1rem 0;
+}
+.planning-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.planning-controls label {
+  display: grid;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: min(100%, 220px);
+}
+.planning-controls input,
+.planning-controls select,
+.gap-table select {
+  font: inherit;
+  padding: 0.65rem;
+  border: 1px solid #75968b;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163e36;
+  max-width: 100%;
+}
+.candidate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.candidate-grid article {
+  border: 1px solid #75968b;
+  border-radius: 0.6rem;
+  padding: 1.1rem;
+  background: #eef3e9;
+}
+.planning-target {
+  border-top: 1px solid #75968b;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+.selected-footprint {
+  height: 420px;
+  border: 1px solid #75968b;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+.gap-table td {
+  vertical-align: top;
+}
+.gap-table td p {
+  font-size: 0.8rem;
+  min-width: 160px;
+}
+.intervention :focus-visible {
+  outline: 3px solid #b77816;
+  outline-offset: 3px;
+}
+@media (max-width: 760px) {
+  .candidate-grid {
+    grid-template-columns: 1fr;
+  }
+  .selected-footprint {
+    height: 300px;
+  }
+  .tabs {
+    flex-wrap: wrap;
+  }
+}

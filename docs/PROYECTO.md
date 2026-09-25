@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): mediciones cartográficas preliminares y revisión de identidad del piloto.
+**Última actualización:** 25 de septiembre de 2026 (tarde): preparación por espacio seleccionado, huella adaptable, comparación y brechas.
 
 ---
 
@@ -337,7 +337,24 @@ Por instrucción del usuario se deja **fuera de esta etapa** la validación con 
 - **Verificación:** regeneración del cálculo y revisión visual del SVG; control independiente por fórmula de área plana ≈ 3.069,2 m², consistente con el área esférica al redondear. Se confirmó que las 51 entidades descargadas carecen de atributos. No se modificó el frontend ni el GLB de la maqueta.
 - **Entregables:** `maqueta3d/deliverables/mediciones/LEEME.md`, medidas JSON, distancias rectas entre puntos CSV (incluye alternativas de hockey) y plano SVG. Script reproducible `maqueta3d/scripts/measure-pilot.mjs`. Altura y superficie útil permanecen sin dato. Sin cambios de geometría en el GLB previo.
 
+## 6.10 Preparación por espacio seleccionado — frontend (25 de septiembre)
+
+Se implementó el siguiente flujo solicitado por el usuario, manteniendo fuera del alcance actual la validación con entidades. **Miguel Calero sí existe**: se corrigió la asociación falsa entre ese nombre y las medidas de un campo abierto. La pestaña anterior pasa a “Demostración de refugio”, con aviso de modelo fijo/conceptual y vínculo a la fuente municipal; el nombre del campo modelado deja de ser Miguel Calero. No se elimina ni inventa un registro del inventario público.
+
+- **Flujo:** mapa → seleccionar un registro → “Preparar este espacio” → pestaña “Preparar intervención”. Se muestra el nombre/ID real, ubicación y Google Maps del objetivo.
+- **Adaptación automática:** se dibuja la geometría Polygon/MultiPolygon del registro IDESC, conservando huecos, en coordenadas locales métricas y con encuadre automático. Solo es huella plana, sin altura ni interior inventado. Para puntos deportivos se informa que falta contorno; no se copia el piloto. La distribución de kits no es automática: requiere medidas de superficie útil, accesos y obstáculos.
+- **Comparación explicable:** hasta tres polígonos EPOU del sector filtrado por comuna/barrio, ordenados por distancia recta al registro de referencia; empate por ID. No se mezclan puntos deportivos con polígonos para evitar duplicados entre fuentes; no se afirma resolver duplicados internos distintos del mismo ID. El sector y los criterios están visibles. Búsqueda, fuente y filtro de cruce del mapa no restringen esta comparación.
+- **Amenazas:** inundación descarta cruces de las capas disponibles; sismo excluye de la preselección los cruces de licuación/corrimiento y exige inspección aun sin cruce. No son evaluaciones sísmicas completas. Sequía no produce candidatos porque faltan datos de amenaza/abastecimiento. No se rellenan resultados con descartados.
+- **Población y servicios:** conteo agregado SIMULADO, entero entre 1 y 100.000 como límite de entrada del prototipo, no aforo. Modifica necesidades, no el orden de candidatos: no hay capacidades confirmadas. Calcula baños, agua para necesidades básicas y área habitable cubierta. Existencia desconocida permanece `null` y brecha “No calculable”; nunca se convierte automáticamente en cero. La huella no sustituye área útil cubierta.
+- **Esfera:** referencias 2018 (WASH 2.1, saneamiento a medio plazo y alojamiento/espacio habitable): 15 L/persona/día, 1 baño/20 personas y 3,5 m²/persona, contextualizables. Los 15 L **no son exclusivamente uso no potable**; se corrige esa interpretación en el nuevo módulo. Fuentes: https://spherestandards.org/wp-content/uploads/Sphere-Handbook-2018-EN.pdf y https://handbook.spherestandards.org/en/sphere/. La descarga directa PDF devolvió 403 en la consulta; se contrastaron los extractos indexados y el manual en línea, sin afirmar validación operativa de la dotación.
+- **Responsables y seguimiento:** UAESP, EMCALI y Gestión del Riesgo como asignaciones **propuestas por el equipo** en `docs/propuesta_cali_activa.md`, no como matriz oficial validada. Estados “Por medir”/“En revisión” guardados localmente por espacio/servicio; no permiten certificar cierre de brechas sin evidencias. Si falla almacenamiento, se informa. Descarga JSON con escenario, criterios, candidatos, necesidades, faltantes desconocidos, seguimiento y fuentes.
+- **Privacidad y límites:** datos públicos y conteos simulados, sin identificación individual ni reconocimiento facial. No se envían comunicaciones, no se activa un espacio y no se emiten evaluaciones estructurales o conceptos de Bomberos. Continúa pendiente el motor de aptitud operacional con caracterización real de servicios y aforos.
+- **Archivos:** `Intervention.tsx`, `SelectedSpaceScene.tsx`, `planning.ts`, integración en `App.tsx`; referencias y parámetros en `src/data/site.ts`. Corrección conceptual en `SiteScene.tsx`, estilos y pruebas. Sin datasets nuevos.
+- **Validación:** compilación de producción y TypeScript aprobados; 17 pruebas de lógica/geometría y 11 de navegador aprobadas por bloques. Se comprobaron cambio de huella, puntos sin contorno, escenarios, necesidades, brechas desconocidas, seguimiento local, exportación JSON, móvil y regresiones del mapa y la demostración. Captura `intervencion.png` revisada; siete capturas finales y GLB regenerados, con 0 errores y 0 advertencias del validador glTF. Las pruebas verifican el software, no la disponibilidad física de los espacios.
+
 ## 7. Pendientes
+- [x] Frontend: preparar espacio seleccionado, adaptar huella pública, preseleccionar candidatos con criterios, calcular necesidades y seguir brechas desconocidas; exportar borrador.
+- [ ] Distribuir kits por superficie útil y accesos medidos; completar aforos/servicios para calcular faltantes reales y aptitud operacional.
 - [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
 - [x] Maqueta 3D, paso 2: escena general con controles y mapa de inventarios reales por comuna/barrio, fuentes y cruces verificados.
 - [ ] **Fuera de la etapa actual por decisión del usuario:** validación con entidades de disponibilidad, administración/acceso, evaluaciones y servicios; no se marca como realizada.

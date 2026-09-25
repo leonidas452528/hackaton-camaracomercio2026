@@ -1,0 +1,309 @@
+import { useMemo, useState, useEffect, lazy, Suspense } from "react";
+import type { Space, Territory } from "./types";
+import { formatNumber as fmt } from "./types";
+import {
+  compareCandidates,
+  eligibility,
+  gaps,
+  geometryArea,
+  requirements,
+  planningRules,
+  type ScenarioThreat,
+} from "./planning";
+import { site, planningView } from "./data/site";
+import GoogleMapsLinks from "./GoogleMapsLinks";
+const SelectedSpaceScene = lazy(() => import("./SelectedSpaceScene"));
+type Followup = "Por medir" | "En revisión";
+export default function Intervention({
+  data,
+  origin,
+  scope,
+  scopeLabel,
+  onMap,
+}: {
+  data: Territory;
+  origin: Space | null;
+  scope: Space[];
+  scopeLabel: string;
+  onMap: () => void;
+}) {
+  const [threat, setThreat] = useState<ScenarioThreat>("flood");
+  const [people, setPeople] = useState(String(site.scenario.people.value));
+  const [targetId, setTargetId] = useState(origin?.properties.id ?? "");
+  const [followup, setFollowup] = useState<Record<string, Followup>>(() => {
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem("cali-activa-followup-v1") ?? "{}",
+      );
+      return Object.fromEntries(
+        Object.entries(saved).filter(
+          ([key, value]) =>
+            /^(epou|deporte)-[\w-]+:(toilets|water|shelter)$/.test(key) &&
+            (value === "Por medir" || value === "En revisión"),
+        ),
+      ) as Record<string, Followup>;
+    } catch {
+      return {};
+    }
+  });
+  const [savedLocally, setSavedLocally] = useState(true);
+  useEffect(() => {
+    try {
+      localStorage.setItem("cali-activa-followup-v1", JSON.stringify(followup));
+      setSavedLocally(true);
+    } catch {
+      setSavedLocally(false);
+    }
+  }, [followup]);
+  const target =
+    data.spaces.features.find((s) => s.properties.id === targetId) ?? origin;
+  const count = Number(people);
+  let problem = "";
+  try {
+    requirements(count);
+  } catch (e) {
+    problem = (e as Error).message;
+  }
+  const result = useMemo(
+    () => (origin ? compareCandidates(scope, origin, threat) : null),
+    [scope, origin, threat],
+  );
+  if (!origin || !target || !result)
+    return (
+      <section className="notice">
+        <h2>Preparar una intervención</h2>
+        <p>
+          Selecciona un espacio del mapa para usar su ubicación como referencia
+          y comparar candidatos en el sector.
+        </p>
+        <button onClick={onMap}>Volver al mapa</button>
+      </section>
+    );
+  const p = target.properties,
+    decision = eligibility(target, threat),
+    rows = problem ? [] : gaps(target, count),
+    area = geometryArea(target);
+  const exportPlan = () => {
+    const payload = {
+      kind: "Borrador de preparación; no autorización",
+      scenario: { threat, people: count, status: "SIMULADO" },
+      originId: origin.properties.id,
+      targetId: p.id,
+      scope: scopeLabel,
+      candidates: result.candidates.map((c) => ({
+        id: c.space.properties.id,
+        distanceM: Math.round(c.distanceM),
+        reason: c.reason,
+      })),
+      decision,
+      gaps: rows.map((r) => ({
+        ...r,
+        followup: followup[`${p.id}:${r.id}`] ?? "Por medir",
+      })),
+      sources: data.manifest.sources,
+      planningRules,
+      warning:
+        "No se conoce disponibilidad, aforo, superficie útil ni evaluación estructural. Responsables propuestos, sin validación con entidades.",
+    };
+    const url = URL.createObjectURL(
+      new Blob([JSON.stringify(payload, null, 2)], {
+        type: "application/json",
+      }),
+    );
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `preparacion-${p.id}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+  return (
+    <section className="intervention">
+      <p className="eyebrow">DEL ESPACIO A LA PREPARACIÓN</p>
+      <h2>Preparar una intervención</h2>
+      <p>
+        Referencia de cercanía: <strong>{origin.properties.name}</strong> ·{" "}
+        {origin.properties.id}. Elige un candidato para adaptar su huella y
+        revisar necesidades.
+      </p>
+      <p>
+        <strong>Sector comparado:</strong> {scopeLabel}. La población modifica
+        las necesidades; no cambia el orden porque no hay aforos confirmados.
+      </p>
+      <div className="planning-controls">
+        <label>
+          Amenaza del escenario
+          <select
+            value={threat}
+            onChange={(e) => setThreat(e.target.value as ScenarioThreat)}
+          >
+            <option value="flood">Inundación</option>
+            <option value="earthquake">Sismo</option>
+            <option value="drought">Sequía (sin datos suficientes)</option>
+          </select>
+        </label>
+        <label>
+          Personas del escenario SIMULADO
+          <input
+            type="number"
+            min="1"
+            max={planningView.maximumPeople}
+            step="1"
+            value={people}
+            onChange={(e) => setPeople(e.target.value)}
+          />
+        </label>
+      </div>
+      {problem && <p role="alert">{problem}</p>}
+      <div className="notice">
+        <strong>Preselección para revisión, no espacios habilitados.</strong> Se
+        consideran {result.considered} polígonos EPOU del sector;{" "}
+        {result.excluded} quedan fuera por las reglas de la amenaza. Se ordenan
+        por distancia recta al punto de referencia; empate por ID. No se evalúa
+        capacidad, tránsito, acceso ni disponibilidad. Los filtros de búsqueda,
+        fuente y cruce del mapa no ocultan candidatos de esta comparación.
+      </div>
+      {result.candidates.length ? (
+        <div className="candidate-grid">
+          {result.candidates.map((c, i) => (
+            <article key={c.space.properties.id}>
+              <span>
+                {i + 1} · {fmt(Math.round(c.distanceM))} m en línea recta
+              </span>
+              <h3>{c.space.properties.name}</h3>
+              <p>{c.reason}</p>
+              <p>Capacidad y servicios: sin confirmar.</p>
+              <button
+                aria-pressed={targetId === c.space.properties.id}
+                onClick={() => setTargetId(c.space.properties.id)}
+              >
+                Revisar {c.space.properties.id}
+              </button>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p role="status">
+          No hay candidatos para esta amenaza en el sector. No se sustituyen por
+          espacios descartados. Puedes ampliar el sector en el mapa.
+        </p>
+      )}
+      <button
+        className="text-button"
+        onClick={() => setTargetId(origin.properties.id)}
+      >
+        Revisar el espacio de referencia
+      </button>
+      <section className="planning-target" aria-live="polite">
+        <h2>{p.name}</h2>
+        <p>
+          {p.id} · Comuna {p.commune ?? "sin asignar"} ·{" "}
+          {p.neighborhood ?? "sector sin asignar"}
+        </p>
+        <p className="notice">{decision.reason}</p>
+        <GoogleMapsLinks coordinates={p.coordinates} />
+        <p>
+          Huella cartográfica:{" "}
+          {area === null ? "sin polígono" : `${fmt(Math.round(area))} m²`}. No
+          equivale a área cubierta, libre ni aforo.
+        </p>
+        <Suspense fallback={<p>Cargando la huella seleccionada…</p>}>
+          <SelectedSpaceScene space={target} />
+        </Suspense>
+      </section>
+      <h3>Necesidades y brechas por medir</h3>
+      <p>
+        Conteo SIMULADO. Los servicios desconocidos no se convierten en cero:
+        aún no se pueden calcular faltantes reales. La asignación de
+        responsables es la propuesta del equipo; validación con entidades fuera
+        de esta etapa.
+      </p>
+      {!problem && (
+        <div className="table-scroll">
+          <table className="gap-table">
+            <thead>
+              <tr>
+                <th>Servicio</th>
+                <th>Necesidad de referencia</th>
+                <th>Existencia</th>
+                <th>Brecha</th>
+                <th>Responsable propuesto</th>
+                <th>Seguimiento local</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.id}>
+                  <td>
+                    <strong>{r.label}</strong>
+                    <p>{r.rule}</p>
+                  </td>
+                  <td>
+                    {fmt(r.required)} {r.unit}
+                  </td>
+                  <td>{r.existing === null ? "Sin dato" : fmt(r.existing)}</td>
+                  <td>
+                    {r.missing === null ? "No calculable" : fmt(r.missing)}
+                  </td>
+                  <td>{r.responsible}</td>
+                  <td>
+                    <select
+                      aria-label={`Seguimiento de ${r.label}`}
+                      value={followup[`${p.id}:${r.id}`] ?? "Por medir"}
+                      onChange={(e) =>
+                        setFollowup({
+                          ...followup,
+                          [`${p.id}:${r.id}`]: e.target.value as Followup,
+                        })
+                      }
+                    >
+                      <option>Por medir</option>
+                      <option>En revisión</option>
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <p>
+        Evaluación estructural, accesibilidad y energía: sin evidencia
+        suficiente. No se emiten conceptos ni se activa el espacio.
+      </p>
+      <p>
+        <a href={planningRules.sphereSource} target="_blank" rel="noreferrer">
+          Referencias Esfera 2018 ↗
+        </a>
+        : contextualizar agua, saneamiento y área cubierta; las cifras no
+        certifican cumplimiento. El requisito de agua incluye necesidades
+        básicas y no se interpreta íntegramente como uso no potable.
+      </p>
+      <p className="small-note">
+        {data.manifest.attribution}. Consulta:{" "}
+        <a
+          href={
+            data.manifest.sources.find(
+              (s) =>
+                s.key ===
+                (p.sourceKey === "sports" ? "sports" : "publicSpaces"),
+            )?.page
+          }
+          target="_blank"
+          rel="noreferrer"
+        >
+          fuente primaria del espacio ↗
+        </a>
+        . Datos archivados el {data.manifest.snapshotDate}.
+      </p>
+      <button disabled={!!problem} onClick={exportPlan}>
+        Descargar borrador de preparación
+      </button>
+      <p className="small-note">
+        {savedLocally
+          ? "Seguimiento guardado localmente en este navegador."
+          : "No se pudo guardar localmente: descarga el borrador antes de salir."}{" "}
+        No se guardan personas ni se envían comunicaciones.
+      </p>
+    </section>
+  );
+}

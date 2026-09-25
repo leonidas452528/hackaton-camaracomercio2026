@@ -1,6 +1,6 @@
 # Cali Activa — entrega de la maqueta 3D
 
-Escena **ilustrativa** de la Unidad Deportiva Jaime Aparicio. Una unidad representa un metro; posiciones aproximadas y orientación por verificar. Los edificios son volúmenes genéricos, no levantamientos ni fachadas reales.
+Escena **conceptual e ilustrativa**, inspirada en la propuesta del complejo Jaime Aparicio. El campo abierto no representa dimensiones reales de Miguel Calero (coliseo de hockey en línea). Una unidad representa un metro; posiciones aproximadas y orientación por verificar. Los edificios son volúmenes genéricos, no levantamientos ni fachadas reales.
 
 ## Archivos
 
@@ -31,3 +31,7 @@ npm run build                # TypeScript estricto y producción
 ```
 
 El navegador también permite **Descargar emergencia en GLB** cuando se ha completado la transición a emergencia y están visibles las cubiertas y la ruta. La exportación se realiza localmente; no sube el modelo a servicios externos.
+
+## Preparación territorial
+
+La aplicación incorpora “Preparar este espacio” desde el mapa: adapta automáticamente la huella real IDESC, compara candidatos y calcula necesidades. `intervencion.png` documenta ese flujo y tiene formato de página completa, distinto de las siete capturas 1920 × 1080. El GLB de esta carpeta corresponde exclusivamente a la demostración conceptual; no es la exportación del espacio elegido en el mapa.

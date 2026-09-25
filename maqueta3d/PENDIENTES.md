@@ -95,3 +95,12 @@ Sin datos personales, logos ni obras civiles. Medidas ilustrativas y datos desco
 - Los seis pasos de construcción están entregados. Permanecen abiertos los datos y validaciones operativas de las secciones anteriores.
 
 **Verificación del paso 6:** compilación aprobada; 12 pruebas de lógica/geometría y 9 de navegador aprobadas por bloques. GLB recargable, cantidades/posiciones verificadas; glTF Validator: 0 errores y 0 advertencias (avisos informativos de UV sin textura y nodos vacíos de etiquetas HTML). Siete capturas 1920 × 1080 revisadas y manifiesto SHA-256 generado.
+
+## Preparación por espacio seleccionado
+
+- [x] Corregir la asociación de Miguel Calero con un campo abierto: existe como coliseo; demostración anterior rotulada conceptual, sin eliminar registros reales.
+- [x] Conectar selección del mapa con preparación, huella plana automática y vínculos Google Maps. Puntos sin contorno mantienen geometría desconocida.
+- [x] Preselección de hasta tres EPOU del sector por cercanía tras reglas de inundación/licuación; sequía sin candidatos por falta de datos.
+- [x] Necesidades por población simulada, brechas desconocidas separadas de cero, responsables propuestos, seguimiento local y exportación JSON.
+- [ ] Distribución interior real de kits, alturas, superficies útiles, accesos y obstáculos. No se sustituye con el área total del predio.
+- [ ] Aptitud operacional y brechas cuantificadas cuando existan aforos/servicios medidos. Validación con entidades fuera de la etapa actual.

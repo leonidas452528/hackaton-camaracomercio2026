@@ -44,10 +44,10 @@ test("mapa real, filtros, ficha, ausencia de resultados y vista 3D", async ({
   ).toBeVisible();
   await page.getByRole("button", { name: "Limpiar", exact: true }).click();
   await page
-    .getByRole("button", { name: "02 Maqueta del sitio piloto" })
+    .getByRole("button", { name: "02 Demostración de refugio" })
     .click();
   await expect(
-    page.getByRole("heading", { name: "Unidad Deportiva Jaime Aparicio" }),
+    page.getByRole("heading", { name: "Demostración conceptual de refugio y acopio" }),
   ).toBeVisible();
   await expect(page.locator("canvas")).toBeVisible();
   await expect(page.locator(".scene-label").first()).toBeVisible();

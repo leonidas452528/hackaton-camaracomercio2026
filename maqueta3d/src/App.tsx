@@ -7,6 +7,7 @@ import {
   type Territory,
   type Threat,
 } from "./types";
+const Intervention = lazy(() => import("./Intervention"));
 const SiteScene = lazy(() => import("./SiteScene"));
 const normalize = (text: string) =>
   text
@@ -111,6 +112,16 @@ export default function App() {
     setQuery("");
     setCrossing("");
   };
+  const planningScope = useMemo(
+    () =>
+      records.filter(
+        ({ properties: p }) =>
+          (!commune ||
+            (commune === "unassigned" ? !p.commune : p.commune === commune)) &&
+          (!neighborhood || p.neighborhood === neighborhood),
+      ),
+    [data, commune, neighborhood],
+  );
   const p = selected?.properties;
   const pages = Math.ceil(filtered.length / 12);
   return (
@@ -169,7 +180,13 @@ export default function App() {
             className={tab === "scene" ? "active" : ""}
             onClick={() => setTab("scene")}
           >
-            02 <span>Maqueta del sitio piloto</span>
+            02 <span>Demostración de refugio</span>
+          </button>
+          <button
+            className={tab === "plan" ? "active" : ""}
+            onClick={() => setTab("plan")}
+          >
+            03 <span>Preparar intervención</span>
           </button>
           <a href={`${import.meta.env.BASE_URL}data/sectores.csv`} download>
             ↓ Resumen por sector
@@ -183,6 +200,26 @@ export default function App() {
           <p role="status" className="notice">
             Cargando el inventario y las capas de Cali…
           </p>
+        ) : tab === "plan" ? (
+          <Suspense fallback={<p>Cargando preparación…</p>}>
+            <Intervention
+              key={selected?.properties.id ?? "empty"}
+              data={data}
+              origin={selected}
+              scope={planningScope}
+              scopeLabel={[
+                commune === "unassigned"
+                  ? "Sin comuna asignada"
+                  : commune
+                    ? `Comuna ${commune}`
+                    : "Todo Cali",
+                neighborhood,
+              ]
+                .filter(Boolean)
+                .join(" · ")}
+              onMap={() => setTab("map")}
+            />
+          </Suspense>
         ) : tab === "scene" ? (
           <Suspense fallback={<p>Cargando maqueta…</p>}>
             <SiteScene />
@@ -487,6 +524,15 @@ export default function App() {
                     <h2>{p.name}</h2>
                     <span className="badge">Disponibilidad por confirmar</span>
                     <GoogleMapsLinks coordinates={p.coordinates} />
+                    <button
+                      className="prepare-space"
+                      onClick={() => {
+                        setTab("plan");
+                        window.scrollTo({ top: 0 });
+                      }}
+                    >
+                      Preparar este espacio
+                    </button>
                     <p className="small-note">
                       Punto de referencia del inventario:{" "}
                       {p.coordinates[1].toFixed(6)},{" "}

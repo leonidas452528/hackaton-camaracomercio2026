@@ -10,7 +10,7 @@ test("acopio interactivo, descarte separado, trazabilidad vacía y ruta conceptu
     page.getByText("Una red por conocer", { exact: true }),
   ).toBeVisible();
   await page
-    .getByRole("button", { name: "02 Maqueta del sitio piloto" })
+    .getByRole("button", { name: "02 Demostración de refugio" })
     .click();
   await page.getByRole("button", { name: "Acopio", exact: true }).click();
   await expect(page.locator(".storage-label")).toHaveCount(7);
@@ -78,7 +78,7 @@ test("proceso de acopio accesible en móvil y por teclado", async ({ page }) => 
     page.getByText("Una red por conocer", { exact: true }),
   ).toBeVisible();
   await page
-    .getByRole("button", { name: "02 Maqueta del sitio piloto" })
+    .getByRole("button", { name: "02 Demostración de refugio" })
     .click();
   const button = page
     .locator(".storage-steps")

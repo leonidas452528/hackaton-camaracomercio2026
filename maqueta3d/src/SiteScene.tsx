@@ -296,7 +296,7 @@ export default function SiteScene() {
       <div className="scene-intro">
         <div>
           <p className="eyebrow">MAQUETA · CICLO DE USO DEL ESPACIO</p>
-          <h2>Unidad Deportiva Jaime Aparicio</h2>
+          <h2>Demostración conceptual de refugio y acopio</h2>
           <p>
             {site.coordinates.legend}. Una unidad de escena equivale a un metro.
           </p>
@@ -305,6 +305,20 @@ export default function SiteScene() {
           Maqueta ilustrativa, no levantamiento del sitio
         </span>
       </div>
+      <p className="notice">
+        Esta demostración es fija y no representa las dimensiones reales de
+        Miguel Calero. La Alcaldía lo identifica como coliseo de hockey en
+        línea; el campo abierto dibujado aquí es solo una referencia conceptual.
+        Para adaptar la huella a un lugar real, selecciónalo en el mapa y pulsa
+        “Preparar este espacio”.{" "}
+        <a
+          href="https://www.cali.gov.co/deportes/publicaciones/139089/escenarios-gratuitos/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Fuente municipal ↗
+        </a>
+      </p>
       <div
         className="lifecycle-controls"
         role="group"

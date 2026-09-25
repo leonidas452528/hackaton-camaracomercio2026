@@ -4,6 +4,7 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     include: [
+      "@turf/turf",
       "three/addons/exporters/GLTFExporter.js",
       "three/addons/loaders/GLTFLoader.js",
     ],

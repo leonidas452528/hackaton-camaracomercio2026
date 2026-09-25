@@ -11,7 +11,7 @@ test("entrega final: siete capturas y GLB de emergencia completo y recargable", 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page
-    .getByRole("button", { name: "02 Maqueta del sitio piloto" })
+    .getByRole("button", { name: "02 Demostración de refugio" })
     .click();
   await expect(page.locator("canvas")).toBeVisible();
   await expect(page.locator(".scene-label").first()).toBeVisible();

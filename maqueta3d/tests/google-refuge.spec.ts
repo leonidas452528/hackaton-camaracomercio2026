@@ -92,7 +92,7 @@ test("refugio con cantidades, cubiertas y registro agregado", async ({
     page.getByText("Una red por conocer", { exact: true }),
   ).toBeVisible();
   await page
-    .getByRole("button", { name: "02 Maqueta del sitio piloto" })
+    .getByRole("button", { name: "02 Demostración de refugio" })
     .click();
   await expect(
     page.getByLabel("Resumen de la propuesta de refugio"),
