@@ -58,6 +58,7 @@ export const site = {
       "Volumen genérico; dimensiones reales POR MEDIR.",
     ),
     surfaceThickness: 0.15,
+    shadow: { bias: -0.0001, normalBias: 0.08 },
     camera: {
       position: [280, 260, 290] as const,
       target: [70, 0, -30] as const,
@@ -73,14 +74,20 @@ export const site = {
       {
         id: "hockey",
         label: "Campo de hockey",
-        position: [85, 90, 95] as const,
+        position: [0, 65, 65] as const,
         target: [0, 0, 0] as const,
       },
       {
         id: "volleyball",
         label: "Coliseo",
-        position: [186, 42, -63] as const,
+        position: [172, 25, -83] as const,
         target: [148, 0, -111] as const,
+      },
+      {
+        id: "registration",
+        label: "Punto de registro",
+        position: [43, 9, -6] as const,
+        target: [35, 1, -17] as const,
       },
       {
         id: "baseball",
@@ -318,4 +325,105 @@ export const emergencyCalculation = evidence(
   sources.prompt,
   "ceil(personas/20); floor(área/70); ceil(personas/20) baños; personas×15 L/día. " +
     "Los 5 kits interiores son una estimación por área: falta validar encaje, evacuación y accesibilidad.",
+);
+
+/** Disposición de demostración. No describe equipamiento existente ni un diseño aprobado. */
+export const refugeLayout = evidence(
+  {
+    indoor: {
+      // Las particiones interiores son flexibles: no se exige la huella de la cubierta exterior.
+      footprint: {
+        length: courtLength / indoorKits,
+        width: kit.footprintM2 / (courtLength / indoorKits),
+      },
+      centers: Array.from(
+        { length: indoorKits },
+        (_, i) =>
+          [
+            -courtLength / 2 + (i + 0.5) * (courtLength / indoorKits),
+            0,
+            0,
+          ] as const,
+      ),
+      partitionCenters: Array.from(
+        { length: kit.partitions },
+        (_, i) => [-1.2, 0, (i - (kit.partitions - 1) / 2) * 2.8] as const,
+      ),
+    },
+    outdoor: {
+      centers: Array.from(
+        { length: emergencyCalculation.value.outdoorKits },
+        (_, i) => [-20 + i * 15, 0, 0] as const,
+      ),
+      partitionCenters: [
+        [-3, 0, -1.6],
+        [0, 0, -1.6],
+        [3, 0, -1.6],
+        [-3, 0, 1.6],
+        [0, 0, 1.6],
+      ] as const,
+    },
+    modules: [
+      {
+        label: site.equipment.closedModuleLabels[0],
+        position: [25, 0, 1] as const,
+        color: "#b79260",
+      },
+      {
+        label: site.equipment.closedModuleLabels[1],
+        position: [25, 0, -10] as const,
+        color: "#5e9688",
+      },
+    ],
+    toilets: Array.from(
+      { length: emergencyCalculation.value.toiletsRequired },
+      (_, i) => [-15 + i * 2.2, 0, 22] as const,
+    ),
+    tanks: {
+      centers: [
+        [-17, 0, -3],
+        [-17, 0, 0],
+      ] as const,
+      note: "Dos tanques ilustrativos; cantidad operativa y capacidad útil por definir.",
+    },
+    solar: {
+      position: [28, 0, 12] as const,
+      panel: [2.8, 0.12, 1.6] as const,
+      panelHeight: 1.2,
+      panelTilt: -0.3,
+      battery: [0.6, 0.7, 0.5] as const,
+    },
+    registration: {
+      position: [35, 0, -17] as const,
+      table: [2, 0.12, 0.9] as const,
+      tableHeight: 0.85,
+      screen: [1.3, 0.85, 0.08] as const,
+      screenHeight: 1.6,
+      reader: [0.18, 0.12, 0.25] as const,
+      code: "DEMO-0001",
+      labelHeight: 3.5,
+    },
+    details: {
+      poleThickness: 0.06,
+      clothThickness: 0.025,
+      roofThickness: 0.12,
+      door: [0.9, 2.1, 0.035] as const,
+      toiletDoor: [0.65, 1.8, 0.025] as const,
+      pipeRadius: 0.07,
+      labelLift: 1.5,
+      floorThickness: 0.06,
+    },
+    hall: { columnThickness: 0.3, roofOpacity: 0.22 },
+    fieldLabels: {
+      kits: [-8, 8, -12] as const,
+      toilets: [-30, 6, 23] as const,
+      modules: [32, 9, -14] as const,
+      solar: [35, 9, 14] as const,
+    },
+    legend:
+      "Distribución y equipamiento ilustrativos · no representan inventario instalado ni aforo autorizado",
+  },
+  "ilustrativo",
+  sources.prompt,
+  "5 huellas interiores de 70 m² reconfiguradas como franjas; 3 cubiertas exteriores de 10×7 m. Validar evacuación, circulación, protección y accesibilidad.",
 );

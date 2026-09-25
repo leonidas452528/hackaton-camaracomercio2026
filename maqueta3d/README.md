@@ -1,6 +1,6 @@
 # Cali Activa · mapa territorial y maqueta 3D
 
-Aplicación local con Vite, React, TypeScript estricto, Leaflet y React Three Fiber/Drei. Mapa con archivos reales de IDESC y escena general del sitio piloto (paso 2 del prompt). No hay disponibilidad operativa confirmada en los datos.
+Aplicación local con Vite, React, TypeScript estricto, Leaflet y React Three Fiber/Drei. Mapa con archivos reales de IDESC y escena del refugio del sitio piloto (paso 3 del prompt). No hay disponibilidad operativa confirmada en los datos.
 
 ## Abrir
 
@@ -14,7 +14,7 @@ npm run build                  # valida TypeScript y genera dist/
 npm run preview                # sirve dist/ localmente
 ```
 
-El mapa permite buscar, filtrar por comuna, barrio/sector, fuente y cruce de amenaza; activar límites y amenazas; seleccionar fichas y descargar `sectores.csv`. Los polígonos, puntos y capas se sirven desde la aplicación. La capa opcional de calles usa OpenStreetMap por internet. Las tipografías tienen sustitutos locales si no hay conexión.
+El mapa permite buscar, filtrar por comuna, barrio/sector, fuente y cruce de amenaza; activar límites y amenazas; seleccionar fichas y descargar `sectores.csv`. Los polígonos, puntos y capas se sirven desde la aplicación. La capa de calles está activada por defecto y usa OpenStreetMap por internet. Puede desactivarse; si falla, las geometrías locales siguen disponibles. Cada ficha y el panel del mapa enlazan las coordenadas a Google Maps, vista satélite y Street View. El enlace de zona sigue el centro y zoom al desplazar el mapa. Google Maps se abre en otra pestaña: no se incrustan teselas de Google ni se requiere clave de API. Las tipografías tienen sustitutos locales si no hay conexión.
 
 ## Datos y regeneración
 
@@ -41,4 +41,20 @@ npm run test:e2e                # filtros, fichas, 3D, móvil y capturas
 
 La pestaña 3D muestra el hockey, el volumen genérico del coliseo y el diamante en las posiciones aproximadas de la propuesta. Incluye órbita, vistas predefinidas y recuadro de Evangelista Mora. Las dimensiones y cantidades están en `src/data/site.ts`. La escena **no está georreferenciada al mapa**: hay que confirmar la identidad y posición de los escenarios genéricos del catálogo. No se inventaron coordenadas para enlazarlos.
 
-Quedan pendientes los pasos 3–6 del prompt: refugio, acopio, estados/transiciones, GLB y renders finales. Las capturas actuales en `deliverables/renders/` documentan el mapa y la escena general; no representan la escena de emergencia terminada.
+Quedan pendientes los pasos 4–6 del prompt: acopio, estados/transiciones, GLB y renders finales. Las capturas actuales en `deliverables/renders/` documentan el mapa y el refugio; no representan la escena completa con acopio y transiciones.
+
+## Reconocer los espacios en Google Maps
+
+Seleccionar un registro o un punto/polígono y usar **Abrir espacio en Google Maps**, **Vista satélite** o **Street View**. El enlace lleva al punto de referencia IDESC; no se inventan direcciones ni Place IDs. No se garantiza una entrada física ni cobertura de Street View. Comprobar siempre la fecha de la imagen y los accesos con la entidad responsable. La aplicación no solicita geolocalización del usuario.
+
+Referencia técnica oficial: https://developers.google.com/maps/documentation/urls/get-started. Las URLs incluyen `api=1` y convierten GeoJSON `[longitud, latitud]` a `latitud,longitud`; no requieren clave. El mapa dentro de la aplicación conserva la base OpenStreetMap y las geometrías IDESC con su atribución.
+
+## Refugio ilustrativo · paso 3
+
+La vista 3D incorpora 5 kits interiores, 3 exteriores con cubierta, 5 particiones por kit, 2 módulos cerrados (NNA y salud), 8 baños, un kit solar, dos tanques ilustrativos con bajantes y mesa/lector/pantalla de registro. Todos los tamaños y posiciones están en `src/data/site.ts`.
+
+Las huellas interiores se reconfiguran en franjas de 4,8 × (70/4,8) m para conservar 70 m² por kit dentro de la referencia 24 × 15 m. Las cubiertas exteriores conservan 10 × 7 m. Las pruebas verifican contención y ausencia de solapamiento geométrico, **no** evacuación, aforo, accesibilidad ni estabilidad. El diseño debe validarse profesionalmente.
+
+El registro muestra el código ficticio `DEMO-0001` y conteos agregados SIMULADOS; no existe registro nominal ni asociación del código con una persona. Las cantidades del equipamiento no representan instalaciones reales; el número operativo de tanques y su capacidad útil siguen sin confirmar.
+
+Controles: vistas General, Campo de hockey, Coliseo, Punto de registro y Acopio; órbita; mostrar/ocultar cubiertas para examinar las particiones. Las imágenes `refugio_coliseo.png`, `refugio_campo.png` y `registro.png` documentan este paso a 1920 × 1080.

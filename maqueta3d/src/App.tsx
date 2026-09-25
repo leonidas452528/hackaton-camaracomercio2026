@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import TerritoryMap from "./TerritoryMap";
+import GoogleMapsLinks from "./GoogleMapsLinks";
 import {
   formatNumber as fmt,
   type Space,
@@ -27,7 +28,7 @@ export default function App() {
     [page, setPage] = useState(0);
   const [showHazards, setShowHazards] = useState(true),
     [showNeighborhoods, setShowNeighborhoods] = useState(false),
-    [showStreets, setShowStreets] = useState(false);
+    [showStreets, setShowStreets] = useState(true);
   useEffect(() => {
     const controller = new AbortController();
     Promise.all(
@@ -63,7 +64,13 @@ export default function App() {
       [
         ...new Set(
           records
-            .filter((f) => !commune || f.properties.commune === commune)
+            .filter(
+              (f) =>
+                !commune ||
+                (commune === "unassigned"
+                  ? !f.properties.commune
+                  : f.properties.commune === commune),
+            )
             .map((f) => f.properties.neighborhood)
             .filter((v): v is string => !!v),
         ),
@@ -341,7 +348,7 @@ export default function App() {
                       checked={showStreets}
                       onChange={(e) => setShowStreets(e.target.checked)}
                     />{" "}
-                    Calles · requiere internet
+                    Calles (OpenStreetMap) · requiere internet
                   </label>
                 </div>
                 <p className="small-note">
@@ -468,12 +475,25 @@ export default function App() {
                   </button>
                 </div>
               </div>
-              <aside className="detail" aria-live="polite">
+              <aside
+                id="space-detail"
+                className="detail"
+                aria-live="polite"
+                tabIndex={-1}
+              >
                 {p ? (
                   <>
                     <p className="eyebrow">FICHA DEL ESPACIO · {p.id}</p>
                     <h2>{p.name}</h2>
                     <span className="badge">Disponibilidad por confirmar</span>
+                    <GoogleMapsLinks coordinates={p.coordinates} />
+                    <p className="small-note">
+                      Punto de referencia del inventario:{" "}
+                      {p.coordinates[1].toFixed(6)},{" "}
+                      {p.coordinates[0].toFixed(6)}. No identifica una entrada
+                      verificada. Street View depende de la cobertura; comprueba
+                      la fecha de las imágenes.
+                    </p>
                     <dl>
                       <dt>Fuente</dt>
                       <dd>

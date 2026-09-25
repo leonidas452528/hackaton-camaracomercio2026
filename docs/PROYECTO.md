@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): mapa territorial con fuentes IDESC verificadas y paso 2 de la maqueta 3D.
+**Última actualización:** 25 de septiembre de 2026 (tarde): mapa vinculado a Google Maps y paso 3 de refugio/equipamiento.
 
 ---
 
@@ -271,11 +271,28 @@ Por solicitud del equipo, antes de distribuir el refugio se construyó un mapa c
 - **Validación:** compilación de producción y TypeScript estricto sin errores; 3 pruebas de geometrías/integridad y 2 pruebas de navegador (escritorio y móvil) aprobadas. Capturas en `maqueta3d/deliverables/renders/`.
 - **Pendiente del prompt:** distribución de refugio (paso 3), acopio (4), estados (5) y GLB/renders finales (6). Las capturas actuales documentan únicamente el mapa y la escena general.
 
+## 6.5 Google Maps y zona de refugio — paso 3 (25 de septiembre)
+
+A petición del equipo se mejoró la referencia visual del mapa y se avanzó al paso 3 de `PROMPT_CODEX_3D.md`.
+
+- **Mapa:** calles OpenStreetMap activadas por defecto y capas de amenaza menos opacas. Cada ficha y el panel sobre el mapa enlazan el punto IDESC a Google Maps, vista satélite y Street View. Sin selección, el enlace de zona sigue el centro y zoom al desplazar el mapa. Los enlaces usan coordenadas, no nombres ambiguos ni Place IDs inventados. Google se abre en otra pestaña; la base de la aplicación sigue siendo OpenStreetMap, con atribución. No se pide geolocalización personal.
+- **Fuente técnica:** documentación oficial Google Maps URLs, https://developers.google.com/maps/documentation/urls/get-started. Incluye `api=1`, codificación de parámetros y conversión GeoJSON longitud/latitud → latitud,longitud. No requiere clave de API. No se copiaron teselas de Google.
+- **Límites visibles:** punto de referencia del inventario, no entrada verificada; Street View depende de cobertura y las imágenes deben revisarse por fecha. Google Maps no certifica disponibilidad, aforo ni seguridad. Si las calles no cargan, aparece un aviso y las geometrías IDESC siguen disponibles.
+- **Refugio:** 5 kits interiores y 3 exteriores, 5 particiones de 2 × 2 m por kit, 3 cubiertas exteriores, 2 módulos cerrados (NNA y salud), 8 baños, kit solar portátil, 2 tanques ilustrativos junto al coliseo conectados con bajantes superficiales y punto de registro (mesa, lector y pantalla). Todo el equipamiento es propuesto, no un inventario instalado.
+- **Disposición:** las huellas interiores son franjas de 4,8 × (70/4,8) m, conservan 70 m² y caben geométricamente en la referencia 24 × 15 m sin solaparse; las cubiertas exteriores mantienen 10 × 7 m. Este encaje matemático no certifica circulación, evacuación, accesibilidad, dignidad del alojamiento ni aforo: requiere validación profesional. Las medidas/posiciones se centralizan en `maqueta3d/src/data/site.ts`.
+- **Privacidad:** pantalla con código ficticio DEMO-0001 y conteos “143 personas · 40 menores · SIMULADO”; no hay registro individual, identificación, reconocimiento facial ni datos personales. Se mantiene la decisión de activación en la autoridad y los conceptos técnicos en sus responsables.
+- **Agua:** dos tanques dibujados a modo ilustrativo; cantidad operativa y capacidad útil siguen sin confirmar. Los 2.145 L/día son el cálculo de referencia solicitado, no suministro demostrado ni validación de su interpretación frente a Esfera.
+- **Interacción 3D:** vistas general, campo, coliseo, registro y acopio; órbita y control de cubiertas. Capturas del refugio, campo y registro a 1920 × 1080, además de la captura del mapa vinculado a Google Maps.
+- **Validación:** compilación de producción y TypeScript estricto aprobados; 7 pruebas de lógica/geometría y 4 de navegador aprobadas, con repetición dirigida de la prueba de refugio tras ajustar etiquetas y sombras. No se validaron servicios operativos ni la identificación exacta de los escenarios en Google.
+- **Pendiente:** paso 4 (centro de acopio y ruta), paso 5 (estados y transiciones) y paso 6 (GLB y revisión/capturas finales).
+
 ## 7. Pendientes
 - [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
 - [x] Maqueta 3D, paso 2: escena general con controles y mapa de inventarios reales por comuna/barrio, fuentes y cruces verificados.
 - [ ] Confirmar disponibilidad real, administración/acceso, evaluaciones técnicas y servicios de los espacios antes de proponer activaciones.
-- [ ] Maqueta 3D, pasos 3 a 6: refugio, acopio, transiciones, capturas finales y GLB; detenerse y reportar al terminar cada paso según el prompt.
+- [x] Mapa: calles activadas por defecto y vínculos oficiales a Google Maps, satélite y Street View por coordenadas.
+- [x] Maqueta 3D, paso 3: refugio y equipamiento ilustrativo, vista de registro y control de cubiertas.
+- [ ] Maqueta 3D, pasos 4 a 6: acopio, transiciones, capturas finales y GLB; detenerse y reportar al terminar cada paso según el prompt.
 - [ ] Artefacto 2: redactar los 6 campos y el "¿Cómo podríamos…?" con los hallazgos propios (albergues autogestionados y la amenaza cruzada con el Jarillón).
 - [ ] Artefacto 3: generar 6 a 8 ideas y filtrarlas.
 - [ ] Artefacto 4: propuesta de valor, validación con un usuario real (JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo) y plan del prototipo.

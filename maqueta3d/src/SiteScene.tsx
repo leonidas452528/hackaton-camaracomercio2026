@@ -1,7 +1,10 @@
 import { Component, useEffect, useState, type ReactNode } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import { Html, OrbitControls } from "@react-three/drei";
-import { site } from "./data/site";
+import { OrbitControls } from "@react-three/drei";
+import Label from "./SceneLabel";
+import { IndoorRefuge, FieldRefuge } from "./Refuge";
+import { site, emergencyCalculation, refugeLayout } from "./data/site";
+import { formatNumber } from "./types";
 const { venues, presentation } = site;
 type View = (typeof presentation.views)[number];
 function CameraView({ view }: { view: View }) {
@@ -20,29 +23,10 @@ function CameraView({ view }: { view: View }) {
     />
   );
 }
-function Label({
-  title,
-  subtitle,
-  position,
-}: {
-  title: string;
-  subtitle: string;
-  position: [number, number, number];
-}) {
-  return (
-    <Html center position={position} zIndexRange={[10, 0]}>
-      <div className="scene-label">
-        <strong>{title}</strong>
-        <span>{subtitle}</span>
-      </div>
-    </Html>
-  );
-}
-function Overview({ view }: { view: View }) {
+function Overview({ view, showRoofs }: { view: View; showRoofs: boolean }) {
   const field = venues.hockey.field.value,
     margins = venues.hockey.footprintWithMargins.value,
     hall = presentation.genericHall.value,
-    court = venues.volleyball.court.value,
     baseball = venues.baseball.placeholderFootprint.value;
   return (
     <>
@@ -53,6 +37,8 @@ function Overview({ view }: { view: View }) {
         intensity={2.3}
         castShadow
         shadow-mapSize={[2048, 2048]}
+        shadow-bias={presentation.shadow.bias}
+        shadow-normalBias={presentation.shadow.normalBias}
         shadow-camera-left={-250}
         shadow-camera-right={250}
         shadow-camera-top={250}
@@ -98,33 +84,24 @@ function Overview({ view }: { view: View }) {
           />
           <meshStandardMaterial color="#f6f4e8" />
         </mesh>
-        <Label
-          position={[0, 5, 0]}
-          title="Campo de hockey"
-          subtitle={`${field.length} × ${field.width} m · referencia reglamentaria`}
-        />
+        <FieldRefuge showRoofs={showRoofs} view={view.id} />
+        {view.id === "general" && (
+          <Label
+            position={[0, 5, 0]}
+            title="Campo de hockey"
+            subtitle={`${field.length} × ${field.width} m · referencia reglamentaria`}
+          />
+        )}
       </group>
       <group position={[...venues.volleyball.position.value]}>
-        <mesh position={[0, hall.height / 2, 0]} castShadow receiveShadow>
-          <boxGeometry args={[hall.length, hall.height, hall.width]} />
-          <meshStandardMaterial
-            color="#b5c1bc"
-            transparent
-            opacity={0.32}
-            depthWrite={false}
+        <IndoorRefuge showRoofs={showRoofs} labels={view.id === "volleyball"} />
+        {view.id === "general" && (
+          <Label
+            position={[0, hall.height + 6, 0]}
+            title="Coliseo Francisco Chois"
+            subtitle="Volumen ilustrativo · huella y altura POR MEDIR"
           />
-        </mesh>
-        <mesh position={[0, presentation.surfaceThickness, 0]}>
-          <boxGeometry
-            args={[court.length, presentation.surfaceThickness, court.width]}
-          />
-          <meshStandardMaterial color="#c88c5b" />
-        </mesh>
-        <Label
-          position={[0, hall.height + 6, 0]}
-          title="Coliseo Francisco Chois"
-          subtitle="Volumen ilustrativo · huella y altura POR MEDIR"
-        />
+        )}
       </group>
       <group position={[...venues.baseball.position.value]}>
         <mesh receiveShadow>
@@ -137,11 +114,13 @@ function Overview({ view }: { view: View }) {
           />
           <meshStandardMaterial color="#c8b58e" />
         </mesh>
-        <Label
-          position={[0, 5, 0]}
-          title="Diamante de Béisbol · acopio"
-          subtitle={`${baseball.length} × ${baseball.width} m ilustrativos · POR MEDIR`}
-        />
+        {(view.id === "general" || view.id === "baseball") && (
+          <Label
+            position={[0, 5, 0]}
+            title="Diamante de Béisbol · acopio"
+            subtitle={`${baseball.length} × ${baseball.width} m ilustrativos · POR MEDIR`}
+          />
+        )}
       </group>
       <CameraView view={view} />
     </>
@@ -168,11 +147,13 @@ class SceneBoundary extends Component<
 }
 export default function SiteScene() {
   const [view, setView] = useState<View>(presentation.views[0]);
+  const [showRoofs, setShowRoofs] = useState(true);
+  const quantities = emergencyCalculation.value;
   return (
     <section className="scene-section">
       <div className="scene-intro">
         <div>
-          <p className="eyebrow">PASO 2 · ESCENA GENERAL</p>
+          <p className="eyebrow">PASO 3 · REFUGIO Y SERVICIOS</p>
           <h2>Unidad Deportiva Jaime Aparicio</h2>
           <p>
             {site.coordinates.legend}. Una unidad de escena equivale a un metro.
@@ -192,7 +173,41 @@ export default function SiteScene() {
             {v.label}
           </button>
         ))}
+        <label className="roof-toggle">
+          <input
+            type="checkbox"
+            checked={showRoofs}
+            onChange={(e) => setShowRoofs(e.target.checked)}
+          />
+          Mostrar cubiertas
+        </label>
       </div>
+      <div
+        className="refuge-summary"
+        aria-label="Resumen de la propuesta de refugio"
+      >
+        <span>
+          <strong>{quantities.indoorKits}</strong> kits interiores
+        </span>
+        <span>
+          <strong>{quantities.outdoorKits}</strong> kits con cubierta
+        </span>
+        <span>
+          <strong>{quantities.toiletsRequired}</strong> baños portátiles
+        </span>
+        <span>
+          <strong>{quantities.closedModules}</strong> módulos cerrados
+        </span>
+        <span>
+          <strong>
+            {formatNumber(quantities.nonPotableLitersPerDay)} L/día
+          </strong>{" "}
+          uso no potable · cálculo de referencia
+        </span>
+      </div>
+      <p className="small-note">
+        {refugeLayout.value.legend}. La ocupación del registro es SIMULADA.
+      </p>
       <div className="scene-canvas">
         <SceneBoundary>
           <Canvas
@@ -202,7 +217,7 @@ export default function SiteScene() {
               fov: presentation.camera.fov,
             }}
           >
-            <Overview view={view} />
+            <Overview view={view} showRoofs={showRoofs} />
           </Canvas>
         </SceneBoundary>
       </div>
@@ -227,11 +242,14 @@ export default function SiteScene() {
           </p>
         </div>
         <div>
-          <h3>Próximo paso: organizar el refugio</h3>
+          <h3>Distribución del refugio por validar</h3>
           <p>
-            La distribución de kits, servicios y circulación requiere validación
-            física. No hay evaluación estructural ni disponibilidad confirmada
-            del complejo.
+            Las {quantities.indoorKits} franjas interiores conservan{" "}
+            {site.equipment.kit.value.footprintM2} m² por kit y contienen{" "}
+            {site.equipment.kit.value.partitions} particiones cada una. La
+            circulación y la evacuación requieren validación profesional. Los
+            tanques no acreditan suministro ni capacidad útil. No hay evaluación
+            estructural ni disponibilidad confirmada del complejo.
           </p>
         </div>
       </div>
