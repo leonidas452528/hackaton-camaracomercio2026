@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): escenarios de incendio forestal y en edificación, evidencia pendiente y pruebas específicas.
+**Última actualización:** 25 de septiembre de 2026 (tarde): corrección de navegación del botón Revisar en la preparación por espacio.
 
 ---
 
@@ -377,7 +377,17 @@ Se incorporan **Incendio forestal** e **Incendio en edificación** en “Prepara
 - **Filtro obligatorio:** solo datos públicos y conteos agregados SIMULADOS; sin identificación personal o reconocimiento facial. Criterios y vacíos visibles, controles con etiquetas y soporte móvil. Recomienda sin activar; no sustituye a la autoridad, evaluaciones estructurales ni conceptos de Bomberos. Se mantiene fuera del alcance actual la validación con entidades.
 - **Verificación:** compilación/TypeScript y 18 pruebas de lógica aprobadas. Cuatro pruebas de navegador aprobadas (dos específicas de incendios y dos de regresión de preparación): subtipos, persistencia, exportación, falta de candidatos, agua humanitaria, regreso a inundación, teclado y móvil. Captura `incendio_forestal.png` revisada visualmente; no se validó eficacia ante incendios reales.
 
+## 6.13 Corrección del botón Revisar (25 de septiembre)
+
+El usuario reportó que “Revisar epou-9465” no mostraba nada. Se reprodujo con el registro real **Parque · Colinas del Sur · EPE_1064**: el botón solo actualizaba el estado del espacio, dejando su ficha más abajo sin desplazar la vista. Al pulsar el espacio ya seleccionado, no ocurría ningún cambio visible.
+
+- Cada clic ahora selecciona el espacio y, después de actualizar el contenido, desplaza la vista y enfoca el título de su ficha. Funciona también al repetir el mismo ID y con teclado.
+- “Revisar el espacio de referencia” usa la misma navegación. Los botones vinculan el contenido mediante `aria-controls`; la ficha tiene título accesible y foco visible.
+- La corrección no modifica geometrías, reglas de amenaza, aptitud, disponibilidad ni evaluación técnica. Sigue siendo una revisión informativa, sin activar espacios o emitir conceptos de Bomberos; sin datos personales nuevos.
+- Se agregó prueba de regresión con `epou-9465` en escritorio y móvil, comprobando clic inicial, otro candidato, repetición y teclado. La prueba reprodujo el fallo antes de la corrección. Tras corregirlo: compilación/TypeScript aprobados y cuatro pruebas de navegador aprobadas (dos nuevas y dos de regresión del flujo de preparación).
+
 ## 7. Pendientes
+- [x] Corregir Revisar: selección, desplazamiento y foco a la ficha, incluidos clic repetido y teclado.
 - [x] Incorporar incendios forestales/en edificación con tareas por subtipo, exportación y bloqueo de preselección sin evidencia.
 - [ ] Incorporar cartografía de incendios con procedencia/licencia verificadas e información vigente del incidente antes de habilitar preselección para esos escenarios.
 - [x] Instalar skills Three.js y revisar cubiertas, apoyos, vista de corte y funcionamiento conceptual del agua.

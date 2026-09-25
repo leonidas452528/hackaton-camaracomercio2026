@@ -1481,3 +1481,6 @@ footer > span {
 .fire-evidence > li { padding: 16px; border: 1px solid #c5b79f; background: #fffdf8; border-radius: 6px; }
 .fire-evidence label { display: grid; gap: 8px; }
 @media(max-width: 760px) { .fire-evidence { grid-template-columns: 1fr; } }
+
+#planning-space-title { scroll-margin-top: 24px; }
+#planning-space-title:focus { outline: 2px solid #235b50; outline-offset: 6px; border-radius: 2px; }

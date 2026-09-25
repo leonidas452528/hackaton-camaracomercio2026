@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, lazy, Suspense } from "react";
+import { useMemo, useState, useEffect, useRef, lazy, Suspense } from "react";
 import type { Space, Territory } from "./types";
 import { formatNumber as fmt } from "./types";
 import {
@@ -31,6 +31,18 @@ export default function Intervention({
   const [threat, setThreat] = useState<ScenarioThreat>("flood");
   const [people, setPeople] = useState(String(site.scenario.people.value));
   const [targetId, setTargetId] = useState(origin?.properties.id ?? "");
+  const targetHeading = useRef<HTMLHeadingElement>(null);
+  const [reviewRequest, setReviewRequest] = useState(0);
+  const reviewSpace = (id: string) => {
+    setTargetId(id);
+    // Una nueva acción incluso cuando el espacio ya estaba seleccionado.
+    setReviewRequest((n) => n + 1);
+  };
+  useEffect(() => {
+    if (!reviewRequest) return;
+    targetHeading.current?.focus({ preventScroll: true });
+    targetHeading.current?.scrollIntoView({ block: "start", behavior: "auto" });
+  }, [reviewRequest]);
   const [followup, setFollowup] = useState<Record<string, Followup>>(() => {
     try {
       const saved = JSON.parse(
@@ -268,7 +280,8 @@ export default function Intervention({
               <p>Capacidad y servicios: sin confirmar.</p>
               <button
                 aria-pressed={targetId === c.space.properties.id}
-                onClick={() => setTargetId(c.space.properties.id)}
+                aria-controls="planning-space-detail"
+                onClick={() => reviewSpace(c.space.properties.id)}
               >
                 Revisar {c.space.properties.id}
               </button>
@@ -286,12 +299,19 @@ export default function Intervention({
       )}
       <button
         className="text-button"
-        onClick={() => setTargetId(origin.properties.id)}
+        aria-controls="planning-space-detail"
+        onClick={() => reviewSpace(origin.properties.id)}
       >
         Revisar el espacio de referencia
       </button>
-      <section className="planning-target" aria-live="polite">
-        <h2>{p.name}</h2>
+      <section
+        className="planning-target"
+        id="planning-space-detail"
+        aria-labelledby="planning-space-title"
+      >
+        <h2 id="planning-space-title" ref={targetHeading} tabIndex={-1}>
+          {p.name}
+        </h2>
         <p>
           {p.id} · Comuna {p.commune ?? "sin asignar"} ·{" "}
           {p.neighborhood ?? "sector sin asignar"}
