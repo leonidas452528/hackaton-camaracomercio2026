@@ -1484,3 +1484,10 @@ footer > span {
 
 #planning-space-title { scroll-margin-top: 24px; }
 #planning-space-title:focus { outline: 2px solid #235b50; outline-offset: 6px; border-radius: 2px; }
+
+.acopio-notice { border: 1px solid #75968b; border-radius: 8px; padding: 20px; margin: 24px 0; background: #f0f5ed; }
+.acopio-notice summary { cursor: pointer; font-weight: 700; color: #235b50; }
+.acopio-notice > label { display: grid; gap: 8px; margin: 16px 0; }
+.acopio-notice textarea { width: 100%; resize: vertical; padding: 12px; border: 1px solid #75968b; background: #fff; color: #203d38; font: inherit; line-height: 1.6; }
+.notice-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.acopio-notice summary:focus-visible { outline: 3px solid #a56d1e; outline-offset: 4px; }

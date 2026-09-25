@@ -111,3 +111,9 @@ Skills locales utilizadas: `threejs-r3f`, `threejs-lighting`, `threejs-materials
 **Mapa → seleccionar espacio → Preparar este espacio → Amenaza del escenario** permite elegir **Incendio forestal** o **Incendio en edificación**. Cada subtipo muestra la información pendiente, seguimiento local y exportación JSON. No hay una capa de incendio verificada ni datos vigentes del incidente incorporados: ambos escenarios mantienen la preselección sin candidatos. Cambiar una tarea a “En revisión” no acredita seguridad ni habilita espacios.
 
 La selección del mapa no representa el foco de un incendio. Las necesidades de agua son humanitarias, no de extinción; los tanques 3D no constituyen una red contra incendios. No se simulan fuego, humo o evacuación y no se emiten conceptos de Bomberos. La validación con entidades sigue fuera de esta etapa.
+
+### Avisos de acopio a la población
+
+En la ficha de **Preparar intervención**, abre **Preparar aviso SMS de acopio**. El borrador incluye ubicación real en Google Maps e información propuesta de horario y ayudas, para toda la población, sin clasificar damnificados. Permite copiar y descargar JSON. Los campos se limpian al cambiar de espacio.
+
+**No envía SMS todavía**: falta integrar el canal/proveedor, cobertura y entrega. No pide ni guarda teléfonos. Como no hay puntos habilitados confirmados, el borrador indica que no se debe acudir todavía; no es un aviso oficial de apertura.

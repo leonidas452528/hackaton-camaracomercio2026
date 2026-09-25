@@ -12,6 +12,7 @@ import {
 } from "./planning";
 import { site, planningView } from "./data/site";
 import GoogleMapsLinks from "./GoogleMapsLinks";
+import AcopioNotice from "./AcopioNotice";
 import { isFire, firePreparation, fireSources, fireLimitations } from "./fire";
 const SelectedSpaceScene = lazy(() => import("./SelectedSpaceScene"));
 type Followup = "Por medir" | "En revisión";
@@ -327,6 +328,7 @@ export default function Intervention({
           <SelectedSpaceScene space={target} />
         </Suspense>
       </section>
+      <AcopioNotice key={p.id} space={target} />
       <h3>Necesidades y brechas por medir</h3>
       <p>
         Conteo SIMULADO. Los servicios desconocidos no se convierten en cero:

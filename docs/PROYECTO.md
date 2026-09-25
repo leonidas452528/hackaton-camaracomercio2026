@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): corrección de navegación del botón Revisar en la preparación por espacio.
+**Última actualización:** 25 de septiembre de 2026 (tarde): preparación de avisos SMS de acopio dirigidos a toda la población.
 
 ---
 
@@ -386,7 +386,21 @@ El usuario reportó que “Revisar epou-9465” no mostraba nada. Se reprodujo c
 - La corrección no modifica geometrías, reglas de amenaza, aptitud, disponibilidad ni evaluación técnica. Sigue siendo una revisión informativa, sin activar espacios o emitir conceptos de Bomberos; sin datos personales nuevos.
 - Se agregó prueba de regresión con `epou-9465` en escritorio y móvil, comprobando clic inicial, otro candidato, repetición y teclado. La prueba reprodujo el fallo antes de la corrección. Tras corregirlo: compilación/TypeScript aprobados y cuatro pruebas de navegador aprobadas (dos nuevas y dos de regresión del flujo de preparación).
 
+## 6.14 Avisos de acopio para toda la población (25 de septiembre)
+
+El usuario solicita comunicar por SMS la ubicación de los puntos de acopio definidos y aclara que el público es **toda la población**, sin identificar previamente quién es damnificado. Se incorpora a la ficha de preparación “Preparar aviso SMS de acopio”.
+
+- **Contenido:** nombre e ID del espacio real, enlace Google Maps con sus coordenadas, horario propuesto e información de recepción/entrega de ayudas. Mensaje general para quienes puedan colaborar, quienes necesiten ayudas y quienes quieran informarse.
+- **Estado actual:** borrador revisable, copiable y descargable en JSON. No hay proveedor SMS conectado, envío real, destinatarios ni confirmaciones de entrega. No se afirma cobertura de toda Cali. `audience=general-population`, `deliveryStatus=not-sent`, `recipients=null`, `openingConfirmed=false`.
+- **Zonas todavía no habilitadas:** seleccionar un espacio no lo convierte en acopio abierto. El borrador indica apertura no confirmada y no invita a acudir todavía. Los campos propuestos no acreditan inventario, horarios efectivos, capacidad o rutas seguras. La autorización de activación sigue correspondiendo a la autoridad.
+- **Privacidad:** no se piden teléfonos, nombres, condición de damnificado ni datos de menores. Los campos operativos permanecen en memoria; se limpian al cambiar de espacio para no atribuir horarios o ayudas al lugar equivocado. No hay comunicaciones externas automáticas.
+- **Integración pendiente:** proveedor/canal, cobertura, distribución a población, suscripciones y bajas cuando corresponda, revisión/autorización del aviso y estados de entrega. Un SMS preparado no equivale a difusión masiva ni reemplaza un canal oficial. No se contrata ni activa ningún servicio de pago.
+- **Filtro del proyecto:** conserva datos públicos y criterios explícitos, no decide activación ni sustituye evaluaciones estructurales o Bomberos, sin reconocimiento facial o identificación individual; controles etiquetados y vista móvil. La validación con entidades continúa fuera de esta etapa.
+- **Verificación:** compilación/TypeScript aprobados y tres pruebas de navegador aprobadas por bloques: aviso general en móvil (coordenadas, descarga sin envío, vacíos y limpieza al cambiar de espacio) y dos regresiones de Revisar en escritorio/móvil. Se corrigió una etiqueta del borrador detectada durante las pruebas.
+
 ## 7. Pendientes
+- [x] Preparar avisos generales de acopio con ubicación real, horario/información propuesta, copia y descarga, sin identificar damnificados.
+- [ ] Integrar envío SMS y cobertura de difusión a población, autorización de avisos y seguimiento de entrega; sin proveedor configurado.
 - [x] Corregir Revisar: selección, desplazamiento y foco a la ficha, incluidos clic repetido y teclado.
 - [x] Incorporar incendios forestales/en edificación con tareas por subtipo, exportación y bloqueo de preselección sin evidencia.
 - [ ] Incorporar cartografía de incendios con procedencia/licencia verificadas e información vigente del incidente antes de habilitar preselección para esos escenarios.
