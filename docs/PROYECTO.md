@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (Sesión 2)
+**Última actualización:** 25 de septiembre de 2026 (Sesión 2, referentes internacionales)
 
 ---
 
@@ -121,6 +121,34 @@
 - El río Meléndez está en alerta naranja (~600 L/s). EMCALI tiene planes de contingencia para las laderas. Salvajina está al 80 % y Sara Brut al 96 %; la CVC descarta cortes de agua en Cali por ahora.
 - Los 6 riesgos que identificó Cali: incendios forestales, desabastecimiento de agua, salud pública, interrupción de servicios, sector agrícola y ecosistemas.
 
+### Referentes internacionales: planes de contingencia en espacios públicos
+Idea que los une: **el espacio público se diseña desde el inicio con dos vidas**, la cotidiana y la de emergencia, y además se **protege legalmente** para que no desaparezca.
+
+**Sismo**
+| País | Qué hacen | Qué adaptamos a Cali |
+|---|---|---|
+| Japón (Tokio) | **Parques de prevención de desastres (bōsai kōen):** bancas que se convierten en fogones (*kamado*), tapas de alcantarilla que se convierten en baños sin agua ni electricidad (el parque Hikarigaoka tiene 52), postes solares con tomas para cargar celulares y bodegas con comida. Bajo parques y colegios hay **tanques de agua potable antisísmicos** enterrados; en Yokohama, el de Minato Mirai 21 guarda agua para unas 170.000 personas durante 3 días. | Campo de la ficha de aptitud: "¿tiene agua almacenada, baños sin red y energía propia?". Es la brecha que más se vio en los albergues de Cali (baños portátiles, agua donada). |
+| Nepal (Katmandú) | En 2013, el Gobierno aprobó por decreto **83 espacios abiertos humanitarios** (unos 4 km²), con mapas SIG, un portal web y una app. Tras el sismo de 2015, 33 de esos espacios recibieron a casi 31.000 personas. En 2020, OIM encontró que **solo la mitad seguía siendo utilizable** por construcciones nuevas. | Un inventario oficial y previo, con revisión periódica: la ficha debe tener **fecha de última verificación**. |
+| Turquía (Estambul) | Tras el sismo de 1999 se definieron 470 áreas de reunión; más de 300 terminaron convertidas en centros comerciales, viviendas u oficinas porque **no tenían protección legal**. | Lección negativa: proponer que los espacios aptos queden protegidos en el POT o en el Plan Municipal de Gestión del Riesgo. |
+| México (CDMX) | El SASMEX da la alerta sísmica y el C5 la difunde por **28.287 altavoces**. En el Simulacro Nacional del 19 de septiembre de 2026 funcionó el 98,93 % (303 fallaron) y la ciudadanía reporta las fallas. | Simulacros periódicos de activación de espacios, con un indicador de qué funcionó y qué no. |
+
+**Inundación**
+| País | Qué hacen | Qué adaptamos a Cali |
+|---|---|---|
+| Japón (Yokohama) | El **estadio Nissan** está construido sobre pilotes dentro de la cuenca de retención del río Tsurumi (parque Shin-Yokohama): cuando el río se desborda, el agua pasa por debajo y el parque se inunda a propósito. Con el tifón Hagibis (12 de octubre de 2019) la cuenca se llenó, y al día siguiente el partido Japón-Escocia del Mundial de Rugby se jugó sin problemas. | La aptitud cambia con la amenaza: un espacio puede ser **zona de amortiguación** en una inundación y **albergue** en un sismo. El sistema debe saber cuál de los dos papeles le toca. |
+| Países Bajos (Róterdam) | **Plaza de agua Benthemplein:** canchas de baloncesto y skate hundidas que, en un aguacero, almacenan unos 1.700 m³ (una piscina olímpica) y alivian el alcantarillado. | Un parque o una cancha puede ser amortiguador, no albergue. |
+| Dinamarca (Copenhague) | El **Plan de Aguaceros** tiene unos 300 proyectos. El parque Enghaveparken tiene muros con compuertas que suben solas y lo convierten en un depósito de 22.600 m³. | Umbrales automáticos, como el "río Cauca ≥ 9 m" del plan. |
+| China | **Ciudades esponja** (desde 2015): la meta es que en 2030 el 80 % del área urbana absorba y reutilice al menos el 70 % de la lluvia. Hoy hay más de 640 proyectos en 250 municipios. | Contexto para el "después": reconstruir el espacio pensando en la próxima amenaza. |
+
+**Sequía o El Niño**
+| País | Qué hacen | Qué adaptamos a Cali |
+|---|---|---|
+| Alemania | La Ley de Aseguramiento del Agua (*Wassersicherstellungsgesetz*, 1965) mantiene unos **5.200 pozos de emergencia** independientes de la red, sobre todo en zonas residenciales de las ciudades grandes. Berlín tiene unos 900 pozos de calle. | Mapear las fuentes de agua alternas (pozos, tanques, carrotanques) asociadas a cada espacio. |
+| Sudáfrica (Ciudad del Cabo, 2018) | El plan del "Día Cero" definía unos 200 **puntos de recolección de agua** en espacios públicos, a 25 L por persona al día, con horario ampliable y seguridad de Policía y Ejército. Los carrotanques atendían primero a hogares de adultos mayores y de personas sin hogar. El Día Cero no llegó porque la ciudad redujo el consumo. | Un tercer papel para el espacio público: **punto de distribución de agua**, además de albergue y amortiguador. Poblaciones priorizadas. |
+| España (Barcelona, 2024) | Emergencia por sequía (embalses por debajo del 16 %): bajó la dotación de 210 a 200 L por persona al día, se cerraron fuentes ornamentales y parques acuáticos, y se dejó de regar los parques; los árboles se regaban lo mínimo con agua subterránea. | Qué se apaga en un espacio (riego, fuentes, piscinas) y qué se prende (punto de agua, refugio climático) cuando El Niño llegue a su pico en noviembre. |
+
+**Conclusión para la propuesta:** ningún referente usa el mismo espacio igual para las tres amenazas. Eso respalda la idea central de "Cali Activa": **la aptitud es por amenaza** y cada espacio tiene uno de tres papeles posibles, **albergue, amortiguador o punto de agua**. En Colombia la decisión de activarlo sigue siendo de la autoridad (Ley 1523). Obras como el estadio sobre pilotes o los tanques enterrados son de largo plazo y salen del alcance del prototipo; en la ficha solo se registran como atributos del espacio.
+
 ## 6. La propuesta: "Cali Activa: espacios listos para cualquier amenaza"
 
 **Idea central:** la aptitud de un espacio depende de la amenaza. Una cancha del oriente sirve para un sismo pero no para una inundación. Un coliseo de ladera sirve para una inundación pero queda sin agua en El Niño. El plan incluye los albergues autogestionados que la ciudad no tenía mapeados. La estructura sigue los tres procesos de la Ley 1523: conocimiento del riesgo, reducción y manejo.
@@ -165,6 +193,7 @@
 - [ ] Artefacto 3: generar 6 a 8 ideas y filtrarlas.
 - [ ] Artefacto 4: propuesta de valor, validación con un usuario real (JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo) y plan del prototipo.
 - [ ] Sábado: construir el dataset simulado y el prototipo No-Code, y grabar el video.
+- [ ] Agregar a la ficha de aptitud el campo "papel según la amenaza" (albergue, amortiguador o punto de agua) y los atributos de agua almacenada, baños sin red y energía propia (ver los referentes internacionales).
 - [ ] Confirmar las cifras oficiales de muertos en Cali (105 vs. 154) y las normas marcadas con (verificar).
 
 ## 8. Fuentes consultadas
@@ -188,3 +217,23 @@
 - https://ciudadregion.com/regiones/valle-del-cauca/cali/sequia-valle-del-cauca-niveles-represas-incendios-forestales
 - https://www.cali.gov.co/gobierno/publicaciones/193607/terremoto-de-cali-repositorio-oficial-de-informacion/
 - https://www.unocha.org/publications/report/colombia/colombia-prediccion-impactos-por-desarrollo-de-el-fenomeno-del-nino-2026-2027-19-de-junio-de-2026
+- https://www.cdp.net/en/insights/yokohama
+- https://adaptation-platform.nies.go.jp/en/db/measures/report_043.html
+- https://www.tokyo-park.or.jp/special/bousai/english/sisetsu.html
+- https://www.smithsonianmag.com/smart-news/tokyo-has-built-disaster-preparedness-fabric-city-180952366/
+- https://www.kubota.com/corporatehistory/ourchallenges/japan-water-03/2/
+- https://reliefweb.int/report/nepal/updated-report-83-open-spaces-identified-humanitarian-purposes-kathmandu-valley
+- https://nepalitimes.com/kathmandu-loses-its-open-spaces
+- https://www.turkeyrecap.com/p/out-of-space-lack-of-safe-zones-deepens
+- https://www.elimparcial.com/mexico/2026/09/19/simulacro-nacional-2026-303-altavoces-de-cdmx-no-sonaron-segun-c5-asi-puedes-reportar-una-falla/
+- https://www.urbanisten.nl/work/benthemplein
+- https://www.dutchwatersector.com/news/new-innovative-water-square-combines-leisure-and-storm-water-storage-in-rotterdam-the
+- https://stateofgreen.com/en/solutions/125669/
+- https://toposmagazine.com/enghaveparken-copenhagen-denmark/
+- https://www.preventionweb.net/news/chinas-sponge-cities-aim-re-use-70-rainwater-heres-how
+- https://de.wikipedia.org/wiki/Trinkwassernotbrunnen
+- https://www.bbk.bund.de/DE/Themen/Kritische-Infrastrukturen/Sektoren-Branchen/Wasser/Wassersicherstellung/wassersicherstellung_node.html
+- https://iol.co.za/capeargus/news/watercrisis-city-of-cape-town-unveils-scant-dayzero-plans-12989659
+- https://siwi.org/news/how-cape-town-saved-itself-from-day-zero
+- https://phys.org/news/2024-02-barcelona-restrictions-drought-emergency-declared.html
+- https://ajuntament.barcelona.cat/urbanisme-accio-climatica-mobilitat-pla-barris-serveis-urbans/en/aigua/la-sequera
