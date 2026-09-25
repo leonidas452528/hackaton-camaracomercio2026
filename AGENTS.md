@@ -26,7 +26,7 @@ Aplica este filtro y dilo explícitamente en tu respuesta:
 4. **Datos mínimos** (Ley 1581 de 2012): solo conteos agregados por ciclo vital. **Nada de nombres ni documentos**, y **ningún dato de menores** (Ley 1098 de 2006). Los datos sensibles (salud, discapacidad) son opcionales y agregados.
 5. **Sin reconocimiento facial** ni identificación individual innecesaria.
 6. **IA y reglas explicables:** cada recomendación muestra las variables y los criterios que usó (Circular SIC 002 de 2024 y CONPES 4144 de 2025, pendientes de verificar).
-7. **Prototipo con datos simulados**, marcados como FICTICIOS. Se pueden usar nombres reales de escenarios, pero las cifras de ocupación deben ser inventadas. **Nunca uses datos personales reales** ni los envíes a modelos externos.
+7. **Prototipo con datos REALES y públicos de Cali** (decisión del 25 de septiembre; ver `docs/DATASETS.md`): el espacio público del DAPM/IDESC, las amenazas del POT, los daños satelitales del sismo y otros. Solo el IoT del kit y la ocupación de los escenarios de la demo pueden ser simulados, **marcados como SIMULADOS**. Cita siempre la fuente primaria, respeta las licencias CC BY-SA (atribución) y **nunca uses datos personales reales** (del RUD solo se usan agregados) ni los envíes a modelos externos.
 8. Accesibilidad básica (Resolución MinTIC 1519 de 2020): buen contraste y lenguaje claro.
 9. **No inventes cifras ni normas.** Si un dato no aparece con fuente en `docs/PROYECTO.md`, búscalo y cítalo, o márcalo como "(verificar)".
 
@@ -48,7 +48,10 @@ docs/PROYECTO.md     ← bitácora completa (fuente de verdad)
 docs/PROYECTO.pdf    ← PDF generado a partir de PROYECTO.md
 docs/md2html.py      ← script de conversión de .md a HTML
 prototipo/           ← prototipo No-Code: especificación, enlaces, capturas
-prototipo/datos/     ← datasets SIMULADOS (CSV) para Sheets, Glide o Looker
+docs/DATASETS.md     ← catálogo de datos reales, zonas más afectadas y vacíos de información
+prototipo/datos/raw/ ← fuentes originales (IDESC, POT, Copernicus, SERTIT, MEN, OPS…)
+prototipo/datos/procesados/ ← cruces listos para Sheets o Looker (inventario_espacios_cali.csv…)
+prototipo/scripts/   ← scripts en Python puro que regeneran procesados/
 entregables/         ← Words de los artefactos, guion del video, entregable final
 ```
 
@@ -64,6 +67,7 @@ entregables/         ← Words de los artefactos, guion del video, entregable fi
 
 ## 7. Prototipo sugerido (sábado 26 de septiembre)
 - **Stack:** Google Sheets (base de datos) + Glide o Softr (app) + Looker Studio (mapa y tablero).
+- **Base real ya construida:** `prototipo/datos/procesados/inventario_espacios_cali.csv` (1.970 espacios con su exposición por amenaza) y `resumen_comunas_multiamenaza.csv`.
 - **Tablas mínimas** (en `prototipo/datos/`):
   - `espacios.csv`: id, nombre, comuna, lat, lon, capacidad, baños, agua_l_dia, energia_respaldo, accesible, zona_inundacion, zona_remocion, riesgo_incendio, evaluacion_estructural_fecha, dueño.
   - `escenarios.csv`: amenaza, personas, %niños, %adultos_mayores, %discapacidad, comuna_origen.

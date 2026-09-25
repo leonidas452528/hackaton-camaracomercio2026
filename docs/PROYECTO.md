@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (Sesión 2, integración de las ideas del equipo)
+**Última actualización:** 25 de septiembre de 2026 (tarde): datos reales de Cali.
 
 ---
 
@@ -178,7 +178,7 @@ Idea que los une: **el espacio público se diseña desde el inicio con dos vidas
 ### Demo para el sábado (60 s)
 "Alerta naranja, río Cauca a 9,25 m. Hay 300 personas de Calimio Norte que necesitan reubicarse." El sistema descarta los espacios del oriente que están en zona inundable, propone 3 alternativas con sus brechas y dice quién responde por cada una. Luego se cambia el escenario a "sismo" y la recomendación cambia. Así se cubren los indicadores de la ficha.
 
-**Herramientas:** Google Sheets como base de datos, Glide o Softr para la app, Looker Studio para el mapa y el tablero. Datos simulados, con nombres reales de escenarios y cifras ficticias marcadas como tales.
+**Herramientas:** Google Sheets como base de datos, Glide o Softr para la app, Looker Studio para el mapa y el tablero. **Datos reales** (decisión del 25 de septiembre; ver la sección 6.2 y `docs/DATASETS.md`). Solo el IoT y la ocupación de la demo son simulados, y así se marcan.
 
 ### Filtro legal de la propuesta
 - Es una recomendación; la decisión la toma la autoridad (Ley 1523).
@@ -235,21 +235,36 @@ Idea que los une: **el espacio público se diseña desde el inicio con dos vidas
 | IoT | Seguridad y apertura | Decreto 767 de 2022 (MSPI); Ley 1712 de 2014 | Cifrado; datos operativos agregados como datos abiertos |
 | IoT | Alertas oficiales | Ley 1523 (competencias) | Los sensores dan datos operativos; las alertas las emiten el IDEAM, la CVC, el SGC o la autoridad |
 
+## 6.2 Datos reales y zonas más afectadas (25 de septiembre)
+**Decisión:** el alcance es Santiago de Cali y el prototipo usa **datos reales y públicos**, no simulados. El detalle está en `docs/DATASETS.md`, los datos en `prototipo/datos/` y los scripts en `prototipo/scripts/`.
+
+- **Sismo del 10 de agosto:** 1.090 puntos de daño georreferenciados (Copernicus EMSR916, ICube-SERTIT, Microsoft/Airbus y sedes del MEN) cruzados con las comunas. Las más afectadas son la **19** (Nueva Tequendama, Cuarto de Legua, Los Cámbulos), la **20** (Siloé), la **2**, la **13**, la **9** (Barrio Obrero, Sucre) y la **3**. *Sesgo:* la cobertura satelital es parcial, así que hay que pedir el RUD por barrio.
+- **Cifras oficiales:** RUD con corte al 17 de septiembre: 45.138 familias, 879 viviendas destruidas y 16.357 averiadas. Balance del 23 de septiembre: 3.403 edificaciones evaluadas (1.078 rojo, 1.272 amarillo y 1.053 verde) y 333 personas en alojamientos temporales.
+- **Hallazgo multiamenaza con datos:** en el occidente y el sur (comunas 1, 3, 9, 17, 18, 19 y 20) estuvo el daño sísmico, pero sus espacios son aptos como albergue (sin inundación ni licuación). En el oriente, sobre el Jarillón (comunas 6, 7, 13, 14 y 21), entre el 55 y el 92 % de los espacios tiene amenaza alta de inundación y casi todos están en suelo licuable, así que sirven como amortiguación, no como albergue.
+- **Validación de la Defensoría:** los parques de Chiminangos I y II y de Calimio, donde hubo albergues autogestionados, tienen amenaza **alta** de inundación, están en suelo **licuable** y quedan **a entre 72 y 152 m del dique** del río Cauca en Urbanización Calimio.
+- **Vacíos:** el RUD y las evaluaciones por barrio, el nivel del río en Juanchito (la CVC no tiene API), el aforo y los servicios de los escenarios, la población de 2026 por comuna y las redes de EMCALI.
+
 ## 7. Pendientes
 - [ ] Artefacto 2: redactar los 6 campos y el "¿Cómo podríamos…?" con los hallazgos propios (albergues autogestionados y la amenaza cruzada con el Jarillón).
 - [ ] Artefacto 3: generar 6 a 8 ideas y filtrarlas.
 - [ ] Artefacto 4: propuesta de valor, validación con un usuario real (JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo) y plan del prototipo.
-- [ ] Sábado: construir el dataset simulado y el prototipo No-Code, y grabar el video.
+- [x] Datos reales de Cali: inventario de 1.970 espacios × amenazas y afectación del sismo por comuna (`docs/DATASETS.md`).
+- [ ] Derecho de petición a la Secretaría de Gestión del Riesgo: RUD y evaluaciones de edificaciones **agregadas por barrio** (Leyes 1712 y 1755).
+- [ ] Geocodificar los 4 alojamientos oficiales y los 3 autogestionados, y agregarlos al inventario.
+- [ ] Sábado: subir `inventario_espacios_cali.csv` a Sheets, construir el prototipo No-Code y grabar el video.
 - [ ] Agregar a la ficha de aptitud el campo "papel según la amenaza" (albergue, amortiguador o punto de agua) y los atributos de agua almacenada, baños sin red y energía propia (ver los referentes internacionales).
 - [x] Ruta de aprendizaje y Gema de Gemini para entrenar al equipo: `gema/INSTRUCCIONES_GEMA.md` y `gema/RUTA_APRENDIZAJE.pdf` (incluye el análisis de la competencia del RETO-01).
 - [ ] **Decidir el nombre:** "Cali Activa" (el nombre del reto) o "Cali Lista" (el de Pablo). Opción: usar Cali Lista para el producto y mencionar que responde a Cali Activa.
 - [ ] Pedirle al integrante de los refugios de PVC su material (ficha, bocetos, sensores) y sumarlo a `docs/`.
-- [ ] Unificar el formulario de Cali Lista con las columnas de aptitud por amenaza en el dataset simulado.
+- [ ] Unificar el formulario de Cali Lista con las columnas de `inventario_espacios_cali.csv`.
 - [ ] Marco legal: verificar las normas marcadas con (verificar) en la sección 6.1.
 - [ ] Actualizar la Gema (`gema/RUTA_APRENDIZAJE`) con la propuesta integrada.
 - [ ] Confirmar las cifras oficiales de muertos en Cali (105 vs. 154) y las normas marcadas con (verificar).
 
 ## 8. Fuentes consultadas
+- Datos reales (ver `docs/DATASETS.md`): https://datos.cali.gov.co · https://idesc.cali.gov.co (WFS ws-idesc.cali.gov.co) · https://rapidmapping.emergency.copernicus.eu/EMSR916/ · https://sertit.unistra.fr/cartographie-rapide/cartoaction/845/ · https://datosdelterremoto.org/municipio/cali/ · https://github.com/18orkidea/monitor-terremoto-colombia · https://rud.gestiondelriesgo.gov.co/ · https://portal-hidroclimatologico.cvc.gov.co/ · https://www.datos.gov.co/resource/bdmn-sqnh
+- https://www.elpais.com.co/cali/alcaldia-de-cali-entrega-balance-de-gestion-tras-el-sismo-mas-de-3400-edificaciones-evaluadas-y-45000-familias-damnificadas-2338.html
+- https://www.elpais.com.co/cali/cali-antes-y-despues-del-terremoto-asi-cambiaron-los-sectores-mas-afectados-desgarradoras-imagenes-1636.html
 - Portafolio de Retos HSC, Alcaldía de Cali v2.0 (PDF, Sesión 1)
 - Guía de uso de los artefactos, Sesiones 2 y 3 (DOCX) y presentación de la Sesión 2 (PPTX)
 - https://es.wikipedia.org/wiki/Terremoto_de_Colombia_de_2026

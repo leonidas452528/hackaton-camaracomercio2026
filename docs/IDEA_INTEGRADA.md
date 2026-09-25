@@ -58,6 +58,7 @@ Referentes: Yokohama (estadio Nissan), Tokio, Nepal, Estambul, Róterdam, Copenh
 - [ ] Decidir el nombre: Cali Activa o Cali Lista.
 - [ ] Recibir el material del compañero del kit de PVC + IoT.
 - [ ] Validar el IRL 3 con un actor real: una JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo.
-- [ ] Construir el dataset simulado (espacios × amenazas × funciones, kits y sensores) y el prototipo No-Code (Sheets + Glide o Softr + Looker Studio).
+- [x] Datos reales: `prototipo/datos/procesados/inventario_espacios_cali.csv` (ver `docs/DATASETS.md`). Solo los sensores del kit quedan simulados.
+- [ ] Construir el prototipo No-Code (Sheets + Glide o Softr + Looker Studio).
 - [ ] Confirmar la cifra oficial del sismo en Cali (154 fallecidos según el repositorio de la Alcaldía; falta la fecha de corte).
 - [ ] Actualizar la Gema con esta versión integrada.

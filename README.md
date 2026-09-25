@@ -17,4 +17,4 @@ Un plan de contingencia **multiamenaza** (sismo, inundación y sequía) que orga
 - [Bitácora completa (MD)](docs/PROYECTO.md) · [PDF](docs/PROYECTO.pdf)
 - [Instrucciones para asistentes de IA](AGENTS.md)
 
-> El prototipo usa **datos simulados**. No contiene datos personales. Cumple la Ley 1581 de 2012 y las líneas rojas del reto.
+> El prototipo usa **datos reales y públicos de Cali**: espacio público del DAPM/IDESC, amenazas del POT y daños satelitales del sismo del 10 de agosto de 2026 (Copernicus EMSR916, SERTIT). Ver [docs/DATASETS.md](docs/DATASETS.md). Solo el IoT está simulado. No contiene datos personales. Cumple la Ley 1581 de 2012 y las líneas rojas del reto.
