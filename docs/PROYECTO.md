@@ -262,6 +262,7 @@ Idea que los une: **el espacio público se diseña desde el inicio con dos vidas
 - [ ] Confirmar las cifras oficiales de muertos en Cali (105 vs. 154) y las normas marcadas con (verificar).
 
 ## 8. Fuentes consultadas
+- **Catálogo con la URL de descarga de cada dataset: `prototipo/datos/FUENTES.md` y `prototipo/datos/fuentes.csv`**
 - Datos reales (ver `docs/DATASETS.md`): https://datos.cali.gov.co · https://idesc.cali.gov.co (WFS ws-idesc.cali.gov.co) · https://rapidmapping.emergency.copernicus.eu/EMSR916/ · https://sertit.unistra.fr/cartographie-rapide/cartoaction/845/ · https://datosdelterremoto.org/municipio/cali/ · https://github.com/18orkidea/monitor-terremoto-colombia · https://rud.gestiondelriesgo.gov.co/ · https://portal-hidroclimatologico.cvc.gov.co/ · https://www.datos.gov.co/resource/bdmn-sqnh
 - https://www.elpais.com.co/cali/alcaldia-de-cali-entrega-balance-de-gestion-tras-el-sismo-mas-de-3400-edificaciones-evaluadas-y-45000-familias-damnificadas-2338.html
 - https://www.elpais.com.co/cali/cali-antes-y-despues-del-terremoto-asi-cambiaron-los-sectores-mas-afectados-desgarradoras-imagenes-1636.html

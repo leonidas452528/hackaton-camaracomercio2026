@@ -2,6 +2,8 @@
 
 **Actualizado al 25 de septiembre de 2026.** Decisión del equipo: **el prototipo usa datos reales y públicos de Cali, no simulados.** Solo el IoT del kit de PVC sigue simulado, y así se marca en la demo.
 
+**Todas las URL de descarga, las páginas de origen y las licencias de cada archivo están en [`prototipo/datos/FUENTES.md`](../prototipo/datos/FUENTES.md)** (y en `fuentes.csv`).
+
 Los datos están en `prototipo/datos/raw/` (fuentes originales) y `prototipo/datos/procesados/` (cruces). Los scripts, en Python puro y sin dependencias, están en `prototipo/scripts/`:
 
 ```bash

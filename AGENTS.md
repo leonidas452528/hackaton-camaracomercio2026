@@ -49,6 +49,7 @@ docs/PROYECTO.pdf    ← PDF generado a partir de PROYECTO.md
 docs/md2html.py      ← script de conversión de .md a HTML
 prototipo/           ← prototipo No-Code: especificación, enlaces, capturas
 docs/DATASETS.md     ← catálogo de datos reales, zonas más afectadas y vacíos de información
+prototipo/datos/FUENTES.md ← URL de descarga, página de origen y licencia de cada dataset (también en fuentes.csv)
 prototipo/datos/raw/ ← fuentes originales (IDESC, POT, Copernicus, SERTIT, MEN, OPS…)
 prototipo/datos/procesados/ ← cruces listos para Sheets o Looker (inventario_espacios_cali.csv…)
 prototipo/scripts/   ← scripts en Python puro que regeneran procesados/
@@ -62,6 +63,7 @@ entregables/         ← Words de los artefactos, guion del video, entregable fi
   python3 docs/md2html.py docs/PROYECTO.md /tmp/PROYECTO.html
   soffice --headless --convert-to pdf:writer_web_pdf_Export --outdir docs /tmp/PROYECTO.html
   ```
+- Si agregas un dataset, registra su URL de descarga, su página de origen y su licencia en `prototipo/datos/FUENTES.md` y `fuentes.csv`.
 - Haz commits pequeños con mensajes en español, por ejemplo `docs: hallazgos de entrevista con JAC Calimio`.
 - **El repo es público:** no subas datos personales, teléfonos, cédulas, tokens ni los Word de otros equipos.
 
