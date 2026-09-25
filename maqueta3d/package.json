@@ -9,7 +9,9 @@
     "preview": "vite preview --host 0.0.0.0",
     "data": "node scripts/build-territory.mjs",
     "test": "node --test scripts/*.test.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "deliverables": "playwright test tests/zz-deliverables.spec.ts && node scripts/verify-deliverables.mjs",
+    "verify:deliverables": "node scripts/verify-deliverables.mjs"
   },
   "dependencies": {
     "@react-three/drei": "10.7.6",
@@ -29,6 +31,7 @@
     "@types/react-dom": "19.1.9",
     "@types/three": "0.180.0",
     "@vitejs/plugin-react": "5.0.3",
+    "gltf-validator": "2.0.0-dev.3.10",
     "typescript": "5.9.2",
     "vite": "7.3.6"
   }

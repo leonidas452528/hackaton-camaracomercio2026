@@ -278,7 +278,7 @@ export function StorageCenter({
             <meshStandardMaterial
               color={sector.color}
               emissive={selected === sector.id ? "#705927" : "#000000"}
-              emissiveIntensity={selected === sector.id ? 0.12 : 0}
+              emissiveIntensity={selected === sector.id ? 0.12 : 1}
             />
           </mesh>
           <group position={[0, layout.fixtures.floorThickness, 0]}>

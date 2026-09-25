@@ -1343,4 +1343,33 @@ footer > span {
   outline: 3px solid #b77816;
   outline-offset: 3px;
 }
-.scene-toolbar button:disabled { opacity: .45; cursor: not-allowed; }
+.scene-toolbar button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.scene-export {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid #75968b;
+  border-radius: 0.5rem;
+}
+.scene-export button {
+  background: #245c4e;
+  color: #fff;
+  border: 0;
+  border-radius: 0.4rem;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  cursor: pointer;
+}
+.scene-export button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.scene-export button:focus-visible {
+  outline: 3px solid #b77816;
+  outline-offset: 3px;
+}
+.scene-export p {
+  margin: 0.65rem 0 0;
+}

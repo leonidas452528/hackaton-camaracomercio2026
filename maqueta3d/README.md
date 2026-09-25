@@ -1,6 +1,6 @@
 # Cali Activa · mapa territorial y maqueta 3D
 
-Aplicación local con Vite, React, TypeScript estricto, Leaflet y React Three Fiber/Drei. Mapa con archivos reales de IDESC y escena del refugio y centro de acopio del sitio piloto (paso 5 del prompt). No hay disponibilidad operativa confirmada en los datos.
+Aplicación local con Vite, React, TypeScript estricto, Leaflet y React Three Fiber/Drei. Mapa con archivos reales de IDESC y escena del refugio y centro de acopio del sitio piloto (seis pasos del prompt completados). No hay disponibilidad operativa confirmada en los datos.
 
 ## Abrir
 
@@ -41,7 +41,7 @@ npm run test:e2e                # filtros, fichas, 3D, móvil y capturas
 
 La pestaña 3D muestra el hockey, el volumen genérico del coliseo y el diamante en las posiciones aproximadas de la propuesta. Incluye órbita, vistas predefinidas y recuadro de Evangelista Mora. Las dimensiones y cantidades están en `src/data/site.ts`. La escena **no está georreferenciada al mapa**: hay que confirmar la identidad y posición de los escenarios genéricos del catálogo. No se inventaron coordenadas para enlazarlos.
 
-Queda pendiente el paso 6 del prompt: exportación GLB y revisión/renders finales. Las capturas actuales en `deliverables/renders/` documentan el mapa, el refugio, el acopio y los estados cotidiano y de recuperación.
+Los seis pasos del prompt están completados. La entrega en `deliverables/renders/` incluye siete capturas 1920 × 1080 y el GLB estático de emergencia; los pendientes de datos y validación operativa permanecen en `PENDIENTES.md`.
 
 ## Reconocer los espacios en Google Maps
 
@@ -73,4 +73,15 @@ Las medidas, cámaras, cantidades de mobiliario y posiciones están en `src/data
 
 En **Maqueta del sitio piloto**, usa **Uso cotidiano**, **Emergencia (sismo)** y **Recuperación**. Los ocho kits pasan de stands de feria a refugio y después se compactan y regresan a la bodega ilustrativa. En uso cotidiano hay una conexión de riego superficial de uso no potable; el acopio queda vacío. Puedes cambiar de destino durante una transición.
 
-**Reducir movimiento** elimina la animación y respeta inicialmente la preferencia del sistema. El selector solo cambia la representación; no activa espacios, certifica condiciones ni registra movimientos de inventario. Recuperación requiere revisión, limpieza y acta por los responsables. El paso 6 (GLB y revisión final) sigue pendiente.
+**Reducir movimiento** elimina la animación y respeta inicialmente la preferencia del sistema. El selector solo cambia la representación; no activa espacios, certifica condiciones ni registra movimientos de inventario. Recuperación requiere revisión, limpieza y acta por los responsables. La exportación GLB y las capturas se describen a continuación.
+
+## Entrega GLB y capturas
+
+En emergencia, con la transición terminada, cubiertas y ruta visibles, usa **Descargar emergencia en GLB**. El archivo se genera localmente con la geometría y metadatos de procedencia/limitaciones. No contiene etiquetas ni pantallas HTML, controles, mapa o animaciones: se consultan en la aplicación y capturas.
+
+```bash
+npm run deliverables         # regenera las siete capturas y el GLB; valida y genera manifiesto
+npm run verify:deliverables  # verifica GLB y dimensiones; actualiza manifiesto SHA-256
+```
+
+Guía completa en [deliverables/renders/LEEME.md](deliverables/renders/LEEME.md). Informe de glTF Validator en `validacion_glb.json`, huellas en `manifest.json`. Ninguno de estos archivos acredita disponibilidad, aforo, evaluación estructural ni autorización de activación.

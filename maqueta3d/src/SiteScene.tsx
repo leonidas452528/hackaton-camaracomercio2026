@@ -1,4 +1,6 @@
-import { Component, useEffect, useState, type ReactNode } from "react";
+import { Component, useEffect, useState, useRef, type ReactNode } from "react";
+import type { Scene } from "three";
+import { exportEmergencyScene } from "./exportScene";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Label from "./SceneLabel";
@@ -16,7 +18,14 @@ import { lifecycle, type SceneState } from "./data/site";
 import { formatNumber } from "./types";
 const { venues, presentation } = site;
 type View = (typeof presentation.views)[number];
-function CameraView({ view }: { view: { position: readonly [number, number, number]; target: readonly [number, number, number] } }) {
+function CameraView({
+  view,
+}: {
+  view: {
+    position: readonly [number, number, number];
+    target: readonly [number, number, number];
+  };
+}) {
   const { camera } = useThree();
   useEffect(() => {
     camera.position.set(view.position[0], view.position[1], view.position[2]);
@@ -228,8 +237,36 @@ class SceneBoundary extends Component<
   }
 }
 export default function SiteScene() {
+  const sceneRef = useRef<Scene | null>(null);
+  const [exporting, setExporting] = useState(false);
+  const [exportMessage, setExportMessage] = useState("");
+  const downloadScene = async () => {
+    if (!sceneRef.current) return;
+    setExporting(true);
+    setExportMessage("Preparando GLB…");
+    try {
+      const binary = await exportEmergencyScene(sceneRef.current);
+      const url = URL.createObjectURL(
+        new Blob([binary], { type: "model/gltf-binary" }),
+      );
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = "cali_activa.glb";
+      anchor.click();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setExportMessage(
+        "GLB descargado: escena estática de emergencia. Las etiquetas y pantallas se conservan en las capturas.",
+      );
+    } catch {
+      setExportMessage(
+        "No se pudo exportar el GLB. Intenta nuevamente con la escena de emergencia completa.",
+      );
+    } finally {
+      setExporting(false);
+    }
+  };
   const [state, setState] = useState<SceneState>("emergency");
-  const [transitioning, setTransitioning] = useState(false);
+  const [transitioning, setTransitioning] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(
     () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
@@ -258,7 +295,7 @@ export default function SiteScene() {
     <section className="scene-section">
       <div className="scene-intro">
         <div>
-          <p className="eyebrow">PASO 5 · CICLO DE USO DEL ESPACIO</p>
+          <p className="eyebrow">MAQUETA · CICLO DE USO DEL ESPACIO</p>
           <h2>Unidad Deportiva Jaime Aparicio</h2>
           <p>
             {site.coordinates.legend}. Una unidad de escena equivale a un metro.
@@ -280,7 +317,7 @@ export default function SiteScene() {
             onClick={() => {
               if (option.id === state) return;
               setState(option.id);
-              setTransitioning(!reducedMotion);
+              setTransitioning(true);
               setView(presentation.views[0]);
             }}
           >
@@ -377,6 +414,9 @@ export default function SiteScene() {
       <div className="scene-canvas">
         <SceneBoundary>
           <Canvas
+            onCreated={({ scene }) => {
+              sceneRef.current = scene;
+            }}
             shadows
             camera={{
               position: [...presentation.camera.position],
@@ -402,6 +442,26 @@ export default function SiteScene() {
           <StoragePanel selected={selectedSector} onSelect={selectSector} />
         </>
       )}
+      <div className="scene-export">
+        <button
+          onClick={downloadScene}
+          disabled={
+            exporting ||
+            transitioning ||
+            state !== "emergency" ||
+            !showRoofs ||
+            !showRoute
+          }
+        >
+          {exporting ? "Exportando…" : "Descargar emergencia en GLB"}
+        </button>
+        <p>
+          Exportación estática: selecciona Emergencia y muestra cubiertas y
+          ruta. Las etiquetas, pantallas y animaciones se consultan en la
+          aplicación y las capturas.
+        </p>
+        <p role="status">{exportMessage}</p>
+      </div>
       <div className="scene-notes">
         <div>
           <h3>Fuera del encuadre · Evangelista Mora</h3>

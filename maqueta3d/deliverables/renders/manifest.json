@@ -1,0 +1,63 @@
+{
+  "description": "Entregables de la maqueta ilustrativa; no certifican disponibilidad ni condiciones técnicas.",
+  "files": [
+    {
+      "file": "general.png",
+      "bytes": 96461,
+      "sha256": "cbd91a831afca437284ab5de2c5eebba8e1b0e1708b8ebd90ef2faff57f922b5",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "refugio_coliseo.png",
+      "bytes": 174351,
+      "sha256": "9a202e508d02fc1e0c33ed6139aa0fbd85335687b7416f14e2af6f4b5855af18",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "refugio_campo.png",
+      "bytes": 128846,
+      "sha256": "4798cd2b211672026149cd34b684fa19c82b410209cf74dcfdb55fd3c891cce7",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "acopio.png",
+      "bytes": 128509,
+      "sha256": "e81e00b0286fe6af9004c1ad1622b246c280b9d05e94b29719a22feca9d42fe9",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "registro.png",
+      "bytes": 163210,
+      "sha256": "59e85620c34286d02085bef2511bf24174d73340b798f5d7ffcdb9eb8f00bb69",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "cotidiano.png",
+      "bytes": 92953,
+      "sha256": "f173b245cdc1999596563572f3a0f18ce1f69b3041df5fab234238f3617a75bf",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "recuperacion.png",
+      "bytes": 77179,
+      "sha256": "af4565e81ed17944c961c9cc45ffbaa616507090cc8e7d6fa6febc0ddf12a149",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "cali_activa.glb",
+      "bytes": 895588,
+      "sha256": "81e4df433e6bfb7a94d4164d89fd142805969c10be52a87e8803dbb17566fff2",
+      "validation": {
+        "errors": 0,
+        "warnings": 0
+      }
+    }
+  ]
+}

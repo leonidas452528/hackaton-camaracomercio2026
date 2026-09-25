@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): paso 5, estados de uso y transiciones animadas de la maqueta.
+**Última actualización:** 25 de septiembre de 2026 (tarde): paso 6, entrega de capturas y exportación GLB de la maqueta.
 
 ---
 
@@ -314,6 +314,18 @@ Se implementó la sección 4 de `PROMPT_CODEX_3D.md`, siguiendo el uso cotidiano
 - **Validación:** compilación de producción y TypeScript estricto aprobados; 12 pruebas de lógica/geometría y 8 pruebas de navegador aprobadas por bloques. Incluyen conservación/encaje de kits, ciclo completo, interrupciones rápidas, retorno a emergencia, movimiento reducido, teclado, móvil y regresión de mapa/refugio/acopio. Capturas revisadas y etiquetas/encuadre corregidos. No validan operaciones reales.
 - **Archivos:** `maqueta3d/src/Lifecycle.tsx`, `SiteScene.tsx`, `Refuge.tsx`, medidas y cantidades en `src/data/site.ts`, estilos, pruebas y documentación. Capturas de revisión `cotidiano.png` y `recuperacion.png`; la exportación GLB y revisión final pertenecen al paso 6.
 
+## 6.8 Entrega de la maqueta — paso 6 (25 de septiembre)
+
+Se implementó la exportación local de la escena de emergencia mediante `GLTFExporter` de Three.js, conforme a `PROMPT_CODEX_3D.md`, secciones 5–7. No se agregaron datasets ni cifras externas.
+
+- **Descarga:** botón “Descargar emergencia en GLB”, habilitado al completar la transición a emergencia con cubiertas y ruta visibles. Se exporta una copia independiente de la escena y no se envía a servicios externos. Se evita exportar posiciones intermedias, incluso con movimiento reducido.
+- **Archivo:** `maqueta3d/deliverables/renders/cali_activa.glb`, geometría estática con kits, servicios propuestos, acopio y ruta. Metadatos con unidades, procedencia, cantidades, limitaciones y trazabilidad sin registro verificado. No incluye pantallas/etiquetas HTML, animaciones, controles, mapa IDESC ni el recuadro externo de Evangelista Mora.
+- **Capturas:** `general.png`, `refugio_coliseo.png`, `refugio_campo.png`, `acopio.png`, `registro.png`, `cotidiano.png` y `recuperacion.png`, a 1920 × 1080. La cubierta del coliseo se oculta solo en su captura para permitir revisar las particiones.
+- **Reproducibilidad:** `npm run deliverables` genera capturas y GLB; `npm run verify:deliverables` valida el GLB, comprueba dimensiones y genera `manifest.json` con tamaños y SHA-256. `LEEME.md` acompaña los archivos con fuentes y límites; `validacion_glb.json` conserva el informe del validador.
+- **Revisión de líneas rojas:** sin datos personales, reconocimiento facial, logos, fachadas reales ni obra civil. Registro agregado SIMULADO; inventario/hash desconocidos, no inventados. Agua rotulada de uso no potable. Equipos, distribución y ruta ilustrativos; dimensiones por medir explicitadas. Autoridad, evaluación estructural y conceptos de Bomberos permanecen en sus responsables.
+- **Validación final:** `npm run build` aprobado; 12 pruebas de lógica/geometría y 9 de navegador aprobadas por bloques. El GLB se recargó con GLTFLoader: 8 kits, 40 particiones, 8 baños, 2 tanques, 2 módulos cerrados, 7 sectores y ruta presentes; kits en posiciones finales. glTF Validator: **0 errores y 0 advertencias**, con avisos informativos de atributos UV no usados (no hay texturas) y nodos vacíos de etiquetas HTML. Siete PNG a 1920 × 1080, revisados visualmente.
+- **Límites pendientes:** mediciones y orientación reales, disponibilidad/servicios/accesibilidad, evaluaciones técnicas, inventario de insumos verificado y validación con actores. La entrega técnica de la maqueta no resuelve esos pendientes operativos ni valida por sí misma IRL 3.
+
 ## 7. Pendientes
 - [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
 - [x] Maqueta 3D, paso 2: escena general con controles y mapa de inventarios reales por comuna/barrio, fuentes y cruces verificados.
@@ -323,7 +335,7 @@ Se implementó la sección 4 de `PROMPT_CODEX_3D.md`, siguiendo el uso cotidiano
 - [x] Maqueta 3D, paso 4: centro de acopio, sectores seleccionables, ramal de descarte, ruta conceptual y pantalla de trazabilidad preparada.
 - [ ] Obtener lote e inventario reales verificados para poblar la trazabilidad (cantidad, origen, destino, movimientos y hash); no fabricar datos.
 - [x] Maqueta 3D, paso 5: estados de uso cotidiano, emergencia y recuperación con transiciones y movimiento reducido.
-- [ ] Maqueta 3D, paso 6: capturas finales, exportación GLB y revisión final; detenerse y reportar según el prompt.
+- [x] Maqueta 3D, paso 6: siete capturas finales, exportación GLB y revisión final de las líneas rojas.
 - [ ] Artefacto 2: redactar los 6 campos y el "¿Cómo podríamos…?" con los hallazgos propios (albergues autogestionados y la amenaza cruzada con el Jarillón).
 - [ ] Artefacto 3: generar 6 a 8 ideas y filtrarlas.
 - [ ] Artefacto 4: propuesta de valor, validación con un usuario real (JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo) y plan del prototipo.

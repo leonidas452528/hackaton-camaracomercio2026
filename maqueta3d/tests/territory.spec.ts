@@ -54,10 +54,8 @@ test("mapa real, filtros, ficha, ausencia de resultados y vista 3D", async ({
   await page.getByRole("button", { name: "Coliseo", exact: true }).click();
   await page.getByRole("button", { name: "General", exact: true }).click();
   await page.waitForTimeout(1500);
-  await page.screenshot({
-    path: "deliverables/renders/general.png",
-    fullPage: true,
-  });
+  await page.locator(".scene-canvas").scrollIntoViewIfNeeded();
+  await page.screenshot({ path: "deliverables/renders/general.png" });
   expect(errors).toEqual([]);
 });
 test("filtros y mapa utilizables en móvil sin desbordamiento", async ({
