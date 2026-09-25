@@ -3,57 +3,78 @@
   "files": [
     {
       "file": "general.png",
-      "bytes": 98451,
-      "sha256": "e1244d2a69cbe8a6cc0eb972bb1cd95559c7d2e587c8f73c6520f13f2e31020a",
+      "bytes": 101720,
+      "sha256": "e2c7af05e10d8bf89c454d183f9f68c6fca0ee91bc7b3e9ed8c478bef7de0fcf",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "refugio_coliseo.png",
-      "bytes": 176157,
-      "sha256": "9eda99dd903b4d072990cfee6f7926cd85c91ccf77465910b217c3d65e8a697a",
+      "bytes": 201558,
+      "sha256": "876a78dcfed320f7b646cb0d225d3692c17f512fd07e2b83ede945052937b7ad",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "refugio_campo.png",
-      "bytes": 130630,
-      "sha256": "62e3e65201ca207d55b799b0f437ef17fad87181663c84e605a314d268395a78",
+      "bytes": 149447,
+      "sha256": "3e1362eac7a6442498e0e61819d5e0725973c711530b3ed3b82b7da5ae9118e8",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "acopio.png",
-      "bytes": 130232,
-      "sha256": "b6dfccb3405e1b21ae3506e36c0e1d9ed68f5d80f8e659835ee3674203d40a5a",
+      "bytes": 130654,
+      "sha256": "3d9caa354d5a9c4b7edb80a5f79b4100e3e924caf67a6516523f9002fc82f77e",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "registro.png",
-      "bytes": 165127,
-      "sha256": "97078feb251f24359bd3d9fb01fb343997553b844e2a7331b533870a443fb727",
+      "bytes": 153839,
+      "sha256": "135b8e5b3da6dbdd6c4f88eafaa8d6b7acae837b61dc1e89a72c3f0ce2900fab",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "cotidiano.png",
-      "bytes": 94962,
-      "sha256": "8a9dc11488a3f543336a7001ceb5dc49bf86464c9a536e1d229c29aa492d70e3",
+      "bytes": 97653,
+      "sha256": "5a1603a61cb184648dd6fd93010913e9fdb019445c43debd5cadd00c6b0a1dc7",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "recuperacion.png",
-      "bytes": 79280,
-      "sha256": "574c5392f692dc3416a39162bf6c3d6f0d37e13a26840fcf2ab56ef3c5864824",
+      "bytes": 81841,
+      "sha256": "8a28dcfd3a95ec2956473775bdb8a44b04ceb92939d38b06233968d608df2722",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "sistema_agua.png",
+      "bytes": 243323,
+      "sha256": "cd1b5158315442c8aa467fc1c0778af72d5e1714962df22ef239c3463ea1457e",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "coliseo_cubierto.png",
+      "bytes": 141511,
+      "sha256": "3c71c42d51a02a37d43740b23137ffde02ac4afa079e8e3caaac152c963286fc",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "albergue_exterior.png",
+      "bytes": 149816,
+      "sha256": "2d996a694f5ef93a496188d0f026c9bd0f99c943b0b1e27571ff0f52dcafed19",
       "width": 1920,
       "height": 1080
     },
     {
       "file": "cali_activa.glb",
-      "bytes": 895588,
-      "sha256": "81e4df433e6bfb7a94d4164d89fd142805969c10be52a87e8803dbb17566fff2",
+      "bytes": 1869348,
+      "sha256": "484a8bbcbe1cfef81405ccffe03d643c309fd97eb14ce81c574e1912ccfa48bd",
       "validation": {
         "errors": 0,
         "warnings": 0

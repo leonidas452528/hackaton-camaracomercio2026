@@ -1,6 +1,9 @@
 import { Html } from "@react-three/drei";
 import { site, refugeLayout, emergencyCalculation } from "./data/site";
 import SceneLabel from "./SceneLabel";
+import { PitchedCanopy, HallStructure } from "./Architecture";
+import { WaterSystem } from "./WaterSystem";
+import { construction } from "./data/site";
 const layout = refugeLayout.value;
 const { equipment, presentation } = site;
 type Vector = readonly [number, number, number];
@@ -59,20 +62,21 @@ export function Kit({
   showRoofs,
   index,
   labels,
+  outdoorCover = false,
 }: {
   position: Vector;
   indoor: boolean;
   showRoofs: boolean;
   index: number;
   labels: boolean;
+  outdoorCover?: boolean;
 }) {
   const canopy = equipment.canopy.value;
   const footprint = indoor ? layout.indoor.footprint : canopy;
   const positions = indoor
     ? layout.indoor.partitionCenters
     : layout.outdoor.partitionCenters;
-  const { poleThickness, roofThickness, labelLift, floorThickness } =
-    layout.details;
+  const { labelLift, floorThickness } = layout.details;
   return (
     <group
       position={[
@@ -93,31 +97,13 @@ export function Kit({
       {positions.map((p, i) => (
         <Partition position={p} key={i} />
       ))}
-      {!indoor && (
-        <>
-          {[-1, 1].flatMap((x) =>
-            [-1, 1].map((z) => (
-              <Box
-                key={`${x}-${z}`}
-                size={[poleThickness, canopy.clearHeight, poleThickness]}
-                position={[
-                  (x * canopy.length) / 2,
-                  canopy.clearHeight / 2,
-                  (z * canopy.width) / 2,
-                ]}
-                color="#d6e0d4"
-              />
-            )),
-          )}
-          {showRoofs && (
-            <Box
-              size={[canopy.length, roofThickness, canopy.width]}
-              position={[0, canopy.clearHeight + roofThickness / 2, 0]}
-              color="#fcf0d3"
-              opacity={0.68}
-            />
-          )}
-        </>
+      {(!indoor || outdoorCover) && (
+        <PitchedCanopy
+          length={footprint.length}
+          width={footprint.width}
+          height={canopy.clearHeight}
+          showRoof={showRoofs}
+        />
       )}
       {labels && (
         <SceneLabel
@@ -150,7 +136,6 @@ export function IndoorRefuge({
   showTanks?: boolean;
 }) {
   const hall = presentation.genericHall.value;
-  const { columnThickness, roofOpacity } = layout.hall;
   const court = emergencyCalculation.value;
   return (
     <>
@@ -167,28 +152,7 @@ export function IndoorRefuge({
         position={[0, layout.details.floorThickness, 0]}
         color="#a0b8a7"
       />
-      {[-1, 1].flatMap((x) =>
-        [-1, 1].map((z) => (
-          <Box
-            key={`${x}-${z}`}
-            size={[columnThickness, hall.height, columnThickness]}
-            position={[
-              (x * hall.length) / 2,
-              hall.height / 2,
-              (z * hall.width) / 2,
-            ]}
-            color="#7b9389"
-          />
-        )),
-      )}
-      {showRoofs && (
-        <Box
-          size={[hall.length, layout.details.roofThickness, hall.width]}
-          position={[0, hall.height, 0]}
-          color="#8ea79c"
-          opacity={roofOpacity}
-        />
-      )}
+      <HallStructure showRoof={showRoofs} />
       {showKits &&
         layout.indoor.centers.map((p, i) => (
           <Kit
@@ -200,54 +164,8 @@ export function IndoorRefuge({
             labels={false}
           />
         ))}
-      {showTanks &&
-        layout.tanks.centers.map((p, i) => <Tank key={i} position={p} />)}
-      {labels && showTanks && (
-        <SceneLabel
-          position={[
-            layout.tanks.centers[0][0],
-            equipment.tank.value.height + layout.details.labelLift,
-            layout.tanks.centers[0][2],
-          ]}
-          title="Tanques · uso no potable"
-          subtitle="Ilustrativos · cantidad y capacidad por verificar"
-        />
-      )}
+      {showTanks && <WaterSystem labels={labels} roofVisible={showRoofs} />}
     </>
-  );
-}
-function Tank({ position }: { position: Vector }) {
-  const tank = equipment.tank.value;
-  const hall = presentation.genericHall.value;
-  const radius = layout.details.pipeRadius;
-  // Bajante superficial desde el borde del techo hasta el tanque; no obra civil.
-  const connectionLength = Math.abs(position[0]) - hall.length / 2;
-  return (
-    <group position={[...position]} name="tanque-ilustrativo">
-      <Box
-        size={[tank.length, tank.height, tank.width]}
-        position={[0, tank.height / 2, 0]}
-        color="#689ba7"
-      />
-      <Box
-        size={[tank.length, layout.details.roofThickness, tank.width]}
-        position={[0, tank.height, 0]}
-        color="#d3e3da"
-      />
-      <mesh position={[0, (hall.height + tank.height) / 2, 0]}>
-        <cylinderGeometry
-          args={[radius, radius, hall.height - tank.height, 8]}
-        />
-        <meshStandardMaterial color="#dce8e1" />
-      </mesh>
-      <mesh
-        position={[connectionLength / 2, hall.height, 0]}
-        rotation={[0, 0, Math.PI / 2]}
-      >
-        <cylinderGeometry args={[radius, radius, connectionLength, 8]} />
-        <meshStandardMaterial color="#dce8e1" />
-      </mesh>
-    </group>
   );
 }
 function ClosedModule({
@@ -338,11 +256,23 @@ function SolarKit({ labels }: { labels: boolean }) {
     </group>
   );
 }
-function Registration({ labels }: { labels: boolean }) {
+function Registration({
+  labels,
+  showRoofs,
+}: {
+  labels: boolean;
+  showRoofs: boolean;
+}) {
   const r = layout.registration;
   const pole = layout.details.poleThickness;
   return (
     <group position={[...r.position]} name="punto-registro">
+      <PitchedCanopy
+        length={construction.value.registration.length}
+        width={construction.value.registration.width}
+        height={construction.value.registration.clearHeight}
+        showRoof={showRoofs}
+      />
       <Box size={r.table} position={[0, r.tableHeight, 0]} color="#ae8c60" />
       {[-1, 1].flatMap((x) =>
         [-1, 1].map((z) => (
@@ -420,7 +350,7 @@ export function FieldRefuge({
         <Toilet key={i} position={p} />
       ))}
       <SolarKit labels={labels} />
-      <Registration labels={view === "registration"} />
+      <Registration labels={view === "registration"} showRoofs={showRoofs} />
       {labels && (
         <>
           <SceneLabel

@@ -74,14 +74,26 @@ export const site = {
       {
         id: "hockey",
         label: "Campo de hockey",
-        position: [0, 65, 65] as const,
+        position: [12, 43, 55] as const,
         target: [0, 0, 0] as const,
+      },
+      {
+        id: "shelter-detail",
+        label: "Albergue exterior",
+        position: [-8, 9, 15] as const,
+        target: [-20, 1.5, 0] as const,
       },
       {
         id: "volleyball",
         label: "Coliseo",
-        position: [172, 25, -83] as const,
+        position: [113, 25, -79] as const,
         target: [148, 0, -111] as const,
+      },
+      {
+        id: "water",
+        label: "Sistema de agua",
+        position: [119, 12, -99] as const,
+        target: [133, 3.8, -113] as const,
       },
       {
         id: "registration",
@@ -781,3 +793,52 @@ export const planningView = {
   camera: { position: [0, 100, 100] as const, fov: 45 },
   boundsMargin: 1.3,
 };
+
+/** Propuesta visual (verificar): no es cálculo estructural ni diseño hidráulico. */
+export const construction = evidence(
+  {
+    canopy: {
+      rise: 1.1,
+      overhang: 0.35,
+      post: 0.12,
+      beam: 0.14,
+      foot: [0.48, 0.12, 0.48] as const,
+    },
+    hall: { rise: 2.1, overhang: 0.6, beam: 0.24, frames: 5 },
+    storage: { eaveHeight: 4.2, rise: 1.3 },
+    registration: { length: 4, width: 3, clearHeight: 2.8 },
+    water: {
+      baseHeight: 0.2,
+      baseMargin: 0.22,
+      cageThickness: 0.025,
+      gutterWidth: 0.3,
+      gutterDepth: 0.22,
+      gutterFall: 0.12,
+      filterRadius: 0.16,
+      filterHeight: 0.65,
+      pipeRadius: 0.06,
+      outletHeight: 0.34,
+      tapX: -19,
+      tapZ: 1.8,
+      servicePad: { center: [-17.7, 0, -1.5] as const, length: 6, width: 7 },
+      overflowDrop: 0.3,
+    },
+    palette: {
+      fabric: "#eee5cf",
+      structure: "#53645f",
+      roof: "#476a67",
+      pipe: "#44869a",
+      tank: "#e1e9df",
+    },
+    lighting: {
+      ambient: 0.45,
+      sun: 2.5,
+      shadowSpan: 195,
+      detailSpan: 65,
+      shadowFar: 650,
+    },
+  },
+  "ilustrativo",
+  "Diseño conceptual del equipo, revisión visual del 25 de septiembre de 2026",
+  "Apoyos, pendientes, conexiones y equipos propuestos; secciones, cargas, anclajes, caudal, calidad de agua y capacidad POR VERIFICAR. No representan instalaciones existentes.",
+);

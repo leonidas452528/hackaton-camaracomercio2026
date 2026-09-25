@@ -5,6 +5,7 @@ import {
   refugeLayout,
   storageLayout,
   sources,
+  construction,
 } from "./data/site";
 
 /** Copia independiente: no modifica la escena interactiva ni exporta DOM/datos del mapa. */
@@ -19,6 +20,7 @@ export async function exportEmergencyScene(scene: Scene): Promise<ArrayBuffer> {
     authority:
       "La activación la decide la autoridad. Sin evaluación estructural ni concepto de Bomberos; disponibilidad por confirmar.",
     sources,
+    construction,
     quantities: emergencyCalculation,
     layout: refugeLayout,
     traceability: storageLayout.value.traceability,

@@ -1465,3 +1465,12 @@ footer > span {
     flex-wrap: wrap;
   }
 }
+
+.cutaway-notice { padding: 12px 18px; border-left: 4px solid #a97733; background: #fff1d9; color: #4a381a; font-weight: 600; }
+.water-panel { padding: 24px; border: 1px solid #9cb9b3; background: #f0f5f1; margin: 20px 0; border-radius: 10px; }
+.water-panel h3 { font-size: 1.5rem; margin: 8px 0; }
+.water-panel ol { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-left: 22px; }
+.water-panel li { padding-left: 4px; }
+.water-panel li strong { display: block; margin-bottom: 8px; }
+.water-panel li span { font-size: .9rem; line-height: 1.6; }
+@media(max-width: 760px) { .water-panel ol { grid-template-columns: 1fr; } }

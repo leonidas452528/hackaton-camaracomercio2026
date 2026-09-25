@@ -97,3 +97,11 @@ Guía completa en [deliverables/renders/LEEME.md](deliverables/renders/LEEME.md)
 La pestaña **Demostración de refugio** conserva el ejemplo fijo. El campo dibujado no representa dimensiones reales de Miguel Calero, que sí es un coliseo real de hockey en línea. El aviso y la fuente municipal están en pantalla.
 
 Reglas en `src/planning.ts`, parámetros/referencias en `src/data/site.ts`, vista en `src/Intervention.tsx` y geometría adaptable en `src/SelectedSpaceScene.tsx`. El nuevo cálculo de agua contempla necesidades básicas, no exclusivamente uso no potable. Referencias Esfera contextualizables: no certificados de cumplimiento.
+
+### Cubiertas y sistema de agua
+
+En **Demostración de refugio**, usa **Albergue exterior** para revisar la cubierta y sus apoyos, y **Sistema de agua** para ver la propuesta junto al coliseo y leer el recorrido captación → filtrado propuesto → almacenamiento → servicio no potable. La bomba, las bases y las conexiones son geometría conceptual; no acreditan capacidad, calidad o caudal.
+
+**Mostrar cubiertas** permanece activado por defecto. Al desactivarlo aparece una **Vista de corte** para inspeccionar interiores. La exportación GLB exige cubiertas visibles. El modelo contiene techos opacos también en acopio, registro y bodega de retorno.
+
+Skills locales utilizadas: `threejs-r3f`, `threejs-lighting`, `threejs-materials`, `threejs-geometry`, de [cesartevisual/threejs-skills](https://github.com/cesartevisual/threejs-skills), revisión `84f9bcb4bea1f7a28d57fe7f0af78f7f9c3dc467`. No son dependencias necesarias para ejecutar la aplicación. WorldSkills es la referencia de la especialidad indicada por el usuario, no el proveedor de esas skills.

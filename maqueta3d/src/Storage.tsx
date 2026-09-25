@@ -2,6 +2,8 @@ import { Html } from "@react-three/drei";
 import { Shape } from "three";
 import { site, storageLayout, type StorageSectorId } from "./data/site";
 import SceneLabel from "./SceneLabel";
+import { PitchedCanopy } from "./Architecture";
+import { construction } from "./data/site";
 import { formatNumber } from "./types";
 const layout = storageLayout.value;
 type Vector = readonly [number, number, number];
@@ -244,10 +246,12 @@ export function StorageCenter({
   selected,
   onSelect,
   showLabels,
+  showRoofs,
 }: {
   selected: StorageSectorId;
   onSelect: (id: StorageSectorId) => void;
   showLabels: boolean;
+  showRoofs: boolean;
 }) {
   return (
     <group
@@ -281,6 +285,14 @@ export function StorageCenter({
               emissiveIntensity={selected === sector.id ? 0.12 : 1}
             />
           </mesh>
+          <PitchedCanopy
+            length={sector.footprint.length}
+            width={sector.footprint.width}
+            height={construction.value.storage.eaveHeight}
+            rise={construction.value.storage.rise}
+            showRoof={showRoofs}
+            name="cubierta-acopio"
+          />
           <group position={[0, layout.fixtures.floorThickness, 0]}>
             <Equipment sector={sector} />
           </group>

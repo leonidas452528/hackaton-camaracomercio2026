@@ -3,6 +3,8 @@ import { useFrame } from "@react-three/fiber";
 import { Group, Vector3 } from "three";
 import { Kit } from "./Refuge";
 import Label from "./SceneLabel";
+import { Member, PitchedCanopy, type Point } from "./Architecture";
+import { construction } from "./data/site";
 import {
   lifecycle,
   site,
@@ -113,6 +115,7 @@ export function MovingKits({
             position={[0, 0, 0]}
             indoor={i < refugeLayout.value.indoor.centers.length}
             showRoofs={showRoofs}
+            outdoorCover={state === "everyday"}
             index={i}
             labels={false}
           />
@@ -131,25 +134,36 @@ export function EverydayUse({ labels }: { labels: boolean }) {
         <boxGeometry args={[...patch.size]} />
         <meshStandardMaterial color="#639051" />
       </mesh>
-      {refugeLayout.value.tanks.centers.map((p, i) => {
-        const fromX = p[0] + tankOrigin[0],
-          toX = patch.position[0];
+      {(() => {
+        const water = construction.value.water;
+        const start: Point = [
+          tankOrigin[0] + water.tapX - 0.7,
+          water.outletHeight,
+          tankOrigin[2] + water.tapZ,
+        ];
+        const elbow: Point = [patch.position[0], water.outletHeight, start[2]];
+        const end: Point = [
+          patch.position[0],
+          water.outletHeight,
+          patch.position[2],
+        ];
         return (
-          <mesh
-            key={i}
-            position={[
-              (fromX + toX) / 2,
-              patch.position[1] + patch.size[1],
-              p[2] + tankOrigin[2],
-            ]}
-          >
-            <boxGeometry
-              args={[Math.abs(fromX - toX), config.hoseWidth, config.hoseWidth]}
+          <>
+            <Member
+              from={start}
+              to={elbow}
+              radius={config.hoseWidth / 2}
+              color="#44869a"
             />
-            <meshStandardMaterial color="#356f8a" />
-          </mesh>
+            <Member
+              from={elbow}
+              to={end}
+              radius={config.hoseWidth / 2}
+              color="#44869a"
+            />
+          </>
         );
-      })}
+      })()}
       {labels && (
         <Label
           position={[
@@ -171,23 +185,41 @@ export function RecoveryWarehouse() {
     (s) => s.id === "warehouse",
   )!;
   return (
-    <mesh
-      position={[
-        site.venues.baseball.position.value[0] + warehouse.position[0],
-        site.presentation.surfaceThickness,
-        site.venues.baseball.position.value[2] + warehouse.position[2],
-      ]}
-      receiveShadow
-      name="bodega-retorno"
-    >
-      <boxGeometry
-        args={[
-          warehouse.footprint.length,
-          storageLayout.value.fixtures.floorThickness,
-          warehouse.footprint.width,
+    <group>
+      <group
+        position={[
+          site.venues.baseball.position.value[0] + warehouse.position[0],
+          site.presentation.surfaceThickness,
+          site.venues.baseball.position.value[2] + warehouse.position[2],
         ]}
-      />
-      <meshStandardMaterial color={warehouse.color} />
-    </mesh>
+      >
+        <PitchedCanopy
+          length={warehouse.footprint.length}
+          width={warehouse.footprint.width}
+          height={construction.value.storage.eaveHeight}
+          rise={construction.value.storage.rise}
+          showRoof
+          name="cubierta-retorno"
+        />
+      </group>
+      <mesh
+        position={[
+          site.venues.baseball.position.value[0] + warehouse.position[0],
+          site.presentation.surfaceThickness,
+          site.venues.baseball.position.value[2] + warehouse.position[2],
+        ]}
+        receiveShadow
+        name="bodega-retorno"
+      >
+        <boxGeometry
+          args={[
+            warehouse.footprint.length,
+            storageLayout.value.fixtures.floorThickness,
+            warehouse.footprint.width,
+          ]}
+        />
+        <meshStandardMaterial color={warehouse.color} />
+      </mesh>
+    </group>
   );
 }

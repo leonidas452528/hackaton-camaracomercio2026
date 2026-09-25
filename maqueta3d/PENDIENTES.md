@@ -104,3 +104,14 @@ Sin datos personales, logos ni obras civiles. Medidas ilustrativas y datos desco
 - [x] Necesidades por población simulada, brechas desconocidas separadas de cero, responsables propuestos, seguimiento local y exportación JSON.
 - [ ] Distribución interior real de kits, alturas, superficies útiles, accesos y obstáculos. No se sustituye con el área total del predio.
 - [ ] Aptitud operacional y brechas cuantificadas cuando existan aforos/servicios medidos. Validación con entidades fuera de la etapa actual.
+
+## Revisión visual: cubiertas y agua
+
+- [x] Instalar y leer skills Three.js: R3F, iluminación, materiales y geometría (proveedor/revisión en la bitácora).
+- [x] Techos opacos con pendiente y estructura, bases/apoyos y cubiertas del acopio, registro y retorno a bodega.
+- [x] Vista de corte identificada al ocultar cubiertas; conserva bloqueo de exportación incompleta.
+- [x] Vista “Sistema de agua”: recipientes superficiales propuestos, canaleta, bajantes, filtros, rebose, válvula y bomba; explicación accesible en HTML.
+- [x] Vista cercana “Albergue exterior” y sombras ajustadas por encuadre.
+- [ ] Cálculo de cargas y anclajes; selección/dimensionamiento hidráulico, primeras aguas, calidad, energía y destino de rebose. No son resultados de la maqueta.
+
+Las referencias históricas a cubiertas transparentes quedan sustituidas por esta revisión. Las formas constructivas siguen siendo propuestas por verificar, no instalaciones medidas. La visualización no incorpora un simulador físico ni certifica estabilidad o suministro.

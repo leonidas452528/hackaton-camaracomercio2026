@@ -11,6 +11,9 @@ const files = [
   "registro.png",
   "cotidiano.png",
   "recuperacion.png",
+  "sistema_agua.png",
+  "coliseo_cubierto.png",
+  "albergue_exterior.png",
   "cali_activa.glb",
 ];
 const manifest = [];
@@ -58,5 +61,5 @@ await writeFile(
   ) + "\n",
 );
 console.log(
-  "Siete capturas 1920 × 1080 y GLB verificados; manifiesto SHA-256 generado.",
+  "Diez capturas 1920 × 1080 y GLB verificados; manifiesto SHA-256 generado.",
 );

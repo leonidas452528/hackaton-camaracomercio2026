@@ -35,3 +35,12 @@ El navegador también permite **Descargar emergencia en GLB** cuando se ha compl
 ## Preparación territorial
 
 La aplicación incorpora “Preparar este espacio” desde el mapa: adapta automáticamente la huella real IDESC, compara candidatos y calcula necesidades. `intervencion.png` documenta ese flujo y tiene formato de página completa, distinto de las siete capturas 1920 × 1080. El GLB de esta carpeta corresponde exclusivamente a la demostración conceptual; no es la exportación del espacio elegido en el mapa.
+
+## Revisión de cubiertas y agua
+
+- `coliseo_cubierto.png`: cubierta opaca, estructura y tanques junto al lateral; dimensiones conceptuales.
+- `albergue_exterior.png`: vista cercana de carpa, faldones y apoyos propuestos.
+- `sistema_agua.png`: canaleta, bajantes y recipientes superficiales propuestos, con conexiones para uso no potable. No representa capacidad/caudal verificados ni cisternas existentes.
+- `refugio_coliseo.png` muestra intencionadamente una **vista de corte**, rotulada en la interfaz; el techo se conserva en el GLB completo.
+
+La revisión reemplaza los techos transparentes de versiones anteriores. No acredita un diseño estructural o hidráulico calculado.

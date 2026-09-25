@@ -1,10 +1,12 @@
 import { Component, useEffect, useState, useRef, type ReactNode } from "react";
-import type { Scene } from "three";
+import { ACESFilmicToneMapping, type Scene } from "three";
 import { exportEmergencyScene } from "./exportScene";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Label from "./SceneLabel";
 import { IndoorRefuge, FieldRefuge } from "./Refuge";
+import { WaterPanel } from "./WaterSystem";
+import { construction } from "./data/site";
 import { StorageCenter, StoragePanel, SupplyRoute } from "./Storage";
 import {
   site,
@@ -64,21 +66,41 @@ function Overview({
     margins = venues.hockey.footprintWithMargins.value,
     hall = presentation.genericHall.value,
     baseball = venues.baseball.placeholderFootprint.value;
+  const cameraView =
+    view.id === "general" && state !== "emergency"
+      ? lifecycle.value.overviewCamera
+      : view;
+  const light = construction.value.lighting;
+  const span = ["general", "supply-route"].includes(view.id)
+    ? light.shadowSpan
+    : light.detailSpan;
+  const { scene } = useThree();
+  const lightTarget = useRef<import("three").Object3D>(null);
+  useEffect(() => {
+    const sun = scene.getObjectByName(
+      "sol-maqueta",
+    ) as import("three").DirectionalLight;
+    if (sun && lightTarget.current) sun.target = lightTarget.current;
+  }, [scene, view]);
   return (
     <>
       <color attach="background" args={["#e7eee7"]} />
-      <ambientLight intensity={1.3} />
+      <ambientLight intensity={light.ambient} />
+      <hemisphereLight args={["#e8f0f5", "#7c8069", 1.1]} />
+      <object3D ref={lightTarget} position={[...cameraView.target]} />
       <directionalLight
-        position={[80, 160, 90]}
-        intensity={2.3}
+        name="sol-maqueta"
+        position={[cameraView.target[0] - 80, 150, cameraView.target[2] + 70]}
+        intensity={light.sun}
         castShadow
         shadow-mapSize={[2048, 2048]}
         shadow-bias={presentation.shadow.bias}
         shadow-normalBias={presentation.shadow.normalBias}
-        shadow-camera-left={-250}
-        shadow-camera-right={250}
-        shadow-camera-top={250}
-        shadow-camera-bottom={-250}
+        shadow-camera-left={-span}
+        shadow-camera-right={span}
+        shadow-camera-top={span}
+        shadow-camera-bottom={-span}
+        shadow-camera-far={light.shadowFar}
       />
       <mesh
         receiveShadow
@@ -136,7 +158,7 @@ function Overview({
           showKits={false}
           showTanks={state !== "recovery"}
           showRoofs={showRoofs}
-          labels={view.id === "volleyball"}
+          labels={view.id === "volleyball" || view.id === "water"}
         />
         {view.id === "general" && state !== "everyday" && (
           <Label
@@ -162,6 +184,7 @@ function Overview({
             selected={selectedSector}
             onSelect={onSelectSector}
             showLabels={view.id === "baseball"}
+            showRoofs={showRoofs}
           />
         )}
         {(view.id === "general" || view.id === "supply-route") && (
@@ -369,7 +392,13 @@ export default function SiteScene() {
           <button
             disabled={
               state !== "emergency" &&
-              ["registration", "supply-route", "traceability"].includes(v.id)
+              [
+                "registration",
+                "supply-route",
+                "traceability",
+                "water",
+                "shelter-detail",
+              ].includes(v.id)
             }
             className={v.id === view.id ? "active" : ""}
             onClick={() => setView(v)}
@@ -425,6 +454,12 @@ export default function SiteScene() {
         {refugeLayout.value.legend}.{" "}
         {state === "emergency" && "La ocupación del registro es SIMULADA."}
       </p>
+      {!showRoofs && (
+        <p className="cutaway-notice" role="status">
+          Vista de corte: se ocultan cubiertas para inspeccionar el interior. No
+          representa un albergue o acopio sin techo.
+        </p>
+      )}
       <div className="scene-canvas">
         <SceneBoundary>
           <Canvas
@@ -432,6 +467,7 @@ export default function SiteScene() {
               sceneRef.current = scene;
             }}
             shadows
+            gl={{ toneMapping: ACESFilmicToneMapping, toneMappingExposure: 1 }}
             camera={{
               position: [...presentation.camera.position],
               fov: presentation.camera.fov,
@@ -450,6 +486,7 @@ export default function SiteScene() {
           </Canvas>
         </SceneBoundary>
       </div>
+      {view.id === "water" && state !== "recovery" && <WaterPanel />}
       {state === "emergency" && (
         <>
           <p className="route-note">{storageLayout.value.route.note}</p>

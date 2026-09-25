@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 
-test("entrega final: siete capturas y GLB de emergencia completo y recargable", async ({
+test("entrega final: diez capturas y GLB de emergencia completo y recargable", async ({
   page,
 }) => {
   test.setTimeout(90000);
@@ -22,6 +22,9 @@ test("entrega final: siete capturas y GLB de emergencia completo y recargable", 
     await page.screenshot({ path: `deliverables/renders/${file}.png` });
   };
   await capture("general", "General");
+  await capture("coliseo_cubierto", "Coliseo");
+  await capture("sistema_agua", "Sistema de agua");
+  await capture("albergue_exterior", "Albergue exterior");
   await page.getByRole("checkbox", { name: "Mostrar cubiertas" }).uncheck();
   await expect(
     page.getByRole("button", { name: "Descargar emergencia en GLB" }),
@@ -72,6 +75,14 @@ test("entrega final: siete capturas y GLB de emergencia completo y recargable", 
     "tanque-ilustrativo": 2,
     "punto-registro": 1,
     "centro-acopio": 1,
+    "estructura-coliseo-conceptual": 1,
+    "techo-coliseo-opaco": 1,
+    "cubierta-acopio": 7,
+    "sistema-agua-propuesto": 1,
+    "bomba-propuesta": 1,
+    bajante: 2,
+    "entrada-filtrada": 2,
+    rebose: 2,
     "ruta-conceptual-refugio": 1,
     "Espacio NNA": 1,
     "Punto de salud": 1,
@@ -82,7 +93,19 @@ test("entrega final: siete capturas y GLB de emergencia completo y recargable", 
     ).toHaveLength(count);
   }
   expect(nodes.filter((n) => n.name?.startsWith("acopio-"))).toHaveLength(7);
+  // El refugio exportado conserva techos opacos, no una vista de corte.
+  const roofMeshes = nodes.filter(
+    (n) => n.name === "faldon-opaco" || n.name === "techo-coliseo-opaco",
+  ) as { mesh: number }[];
+  expect(roofMeshes).toHaveLength(23); // 3 carpas + registro + 7 acopios, dos faldones cada uno; coliseo.
+  for (const node of roofMeshes)
+    for (const primitive of gltf.meshes[node.mesh].primitives) {
+      const material = gltf.materials[primitive.material];
+      expect(material.alphaMode ?? "OPAQUE").toBe("OPAQUE");
+      expect(material.pbrMetallicRoughness?.baseColorFactor?.[3] ?? 1).toBe(1);
+    }
   expect(gltf.scenes[0].extras.state).toBe("emergency");
+  expect(gltf.scenes[0].extras.construction.status).toBe("ilustrativo");
   expect(gltf.scenes[0].extras.traceability.record).toBeNull();
   // Recarga independiente con GLTFLoader: geometría finita y kits en sus sedes.
   const inspection = await page.evaluate(async (base64) => {
@@ -105,9 +128,25 @@ test("entrega final: siete capturas y GLB de emergencia completo y recargable", 
         });
       }
     });
-    return { meshes, positions };
+    const threePath = "/node_modules/three/build/three.module.js";
+    const { Raycaster, Vector3 } = await import(/* @vite-ignore */ threePath);
+    const outside = positions.find((p) => p.name === "kit-cubierto")!;
+    const heightAt = (z: number) => {
+      const ray = new Raycaster(
+        new Vector3(outside.x, 20, outside.z + z),
+        new Vector3(0, -1, 0),
+      );
+      const hits = ray
+        .intersectObjects(loaded.scene.children, true)
+        .filter((hit: any) => hit.object.name.startsWith("faldon-opaco"));
+      return hits[0]?.point.y ?? null;
+    };
+    return { meshes, positions, ridge: heightAt(0.1), eave: heightAt(3) };
   }, bytes.toString("base64"));
   expect(inspection.meshes).toBeGreaterThan(200);
+  expect(inspection.ridge).not.toBeNull();
+  expect(inspection.eave).not.toBeNull();
+  expect(inspection.ridge!).toBeGreaterThan(inspection.eave! + 0.5);
   expect(
     inspection.positions
       .filter((p) => p.name === "kit-interior")

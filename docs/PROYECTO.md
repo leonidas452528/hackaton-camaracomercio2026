@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): preparación por espacio seleccionado, huella adaptable, comparación y brechas.
+**Última actualización:** 25 de septiembre de 2026 (tarde): revisión visual de cubiertas, estructuras y circuito conceptual de agua; skills Three.js instaladas.
 
 ---
 
@@ -352,7 +352,20 @@ Se implementó el siguiente flujo solicitado por el usuario, manteniendo fuera d
 - **Archivos:** `Intervention.tsx`, `SelectedSpaceScene.tsx`, `planning.ts`, integración en `App.tsx`; referencias y parámetros en `src/data/site.ts`. Corrección conceptual en `SiteScene.tsx`, estilos y pruebas. Sin datasets nuevos.
 - **Validación:** compilación de producción y TypeScript aprobados; 17 pruebas de lógica/geometría y 11 de navegador aprobadas por bloques. Se comprobaron cambio de huella, puntos sin contorno, escenarios, necesidades, brechas desconocidas, seguimiento local, exportación JSON, móvil y regresiones del mapa y la demostración. Captura `intervencion.png` revisada; siete capturas finales y GLB regenerados, con 0 errores y 0 advertencias del validador glTF. Las pruebas verifican el software, no la disponibilidad física de los espacios.
 
+## 6.11 Revisión de representación 3D y skills (25 de septiembre)
+
+El usuario pidió corregir la falta de lógica física visible de la maqueta e instalar skills de renderizado. El enlace https://worldskills.org/skills/id/483/ describe la especialidad **3D Digital Game Art**; no contiene una skill instalable de Codex ni se instaló software de WorldSkills.
+
+- **Skills instaladas:** `threejs-r3f`, `threejs-lighting`, `threejs-materials` y `threejs-geometry`, desde https://github.com/cesartevisual/threejs-skills, revisión `84f9bcb4bea1f7a28d57fe7f0af78f7f9c3dc467`. Se revisaron sus instrucciones y se usó el instalador del sistema. Ubicación local: `~/.codex/skills/`; no se añaden dependencias del frontend ni scripts del proveedor al repositorio. Disponibles en el siguiente turno; se aplicaron sus guías leídas durante esta revisión.
+- **Cubiertas y apoyos:** techos opacos con pendiente, cerchas/travesaños y apoyos visibles; cubiertas de carpas, registro y sectores de acopio. Las particiones interiores se alojan bajo el techo conceptual del coliseo; la feria exterior incorpora cubierta. Ocultar techos activa un aviso explícito de “Vista de corte”, no un estado operativo sin protección.
+- **Agua:** vista dedicada “Sistema de agua”. Dos recipientes superficiales ilustrativos junto al coliseo, base, jaula, tapa, canaleta, bajantes, filtro propuesto, entradas superiores, salidas bajas, rebose, válvula y bomba propuesta. Los tramos se construyen por extremos conectados. Panel con secuencia captación → entrada → almacenamiento → servicio; agua exclusivamente no potable. No se conecta a consumo humano ni se supone alimentación de baños portátiles. Capacidad útil, caudal, energía, primeras aguas, tratamiento y destino final del rebose pendientes; la lluvia no acredita continuidad del suministro. No se simula circulación de agua ni nivel de llenado como si estuvieran medidos.
+- **Renderizado:** materiales opacos con rugosidad, iluminación direccional/hemisférica, exposición y encuadre de sombras ajustados por vista; no se agregan modelos descargados, texturas remotas ni datos de espacios inventados.
+- **Límites:** geometría constructiva **propuesta y por verificar**, centralizada en `construction` dentro de `src/data/site.ts`. No es cálculo de cargas, estabilidad, anclajes, simulación hidráulica ni levantamiento del sitio. Siguen fuera de alcance la validación con entidades y la certificación de activación. Sin datos personales, identificación individual o reconocimiento facial; se conservan controles HTML y contraste.
+- **Verificación:** compilación y TypeScript aprobados; 17 pruebas de lógica y 8 pruebas de navegador relevantes aprobadas por bloques (mapa/refugio, agua, acopio, ciclo y entregables). Se revisaron capturas y se corrigió la orientación inicial de los faldones. El GLB se recargó y comprobó con rayos que la cumbrera esté más alta que los aleros; conserva 23 faldones/techos opacos y los elementos del circuito de agua. glTF Validator: 0 errores y 0 advertencias. Diez PNG 1920 × 1080 y manifiesto SHA-256 regenerados; metadatos GLB incluyen procedencia y condición ilustrativa de la construcción.
+
 ## 7. Pendientes
+- [x] Instalar skills Three.js y revisar cubiertas, apoyos, vista de corte y funcionamiento conceptual del agua.
+- [ ] Dimensionamiento profesional de estructuras, anclajes y sistema de agua; capacidad, primeras aguas, suministro y descarga por verificar.
 - [x] Frontend: preparar espacio seleccionado, adaptar huella pública, preseleccionar candidatos con criterios, calcular necesidades y seguir brechas desconocidas; exportar borrador.
 - [ ] Distribuir kits por superficie útil y accesos medidos; completar aforos/servicios para calcular faltantes reales y aptitud operacional.
 - [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
