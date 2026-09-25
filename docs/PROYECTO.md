@@ -93,7 +93,7 @@
 
 ### Terremoto del 10 de agosto de 2026
 - Magnitud 7,4, a las 7:34 a. m.; epicentro en San José del Palmar (Chocó), a 103 km de profundidad.
-- **Cali:** 105 muertos, 1.401 heridos; 879 viviendas destruidas y 16.357 averiadas; **45.138 familias (97.337 personas) inscritas en el Registro Único de Damnificados (RUD)**; cerca de 20 edificios colapsados. (Otra nota del 13 de septiembre habla de 154 fallecidos y 1.517 heridos: hay que confirmar la cifra oficial.)
+- **Cali:** 105 muertos, 1.401 heridos; 879 viviendas destruidas y 16.357 averiadas; **45.138 familias (97.337 personas) inscritas en el Registro Único de Damnificados (RUD)**; cerca de 20 edificios colapsados. (Otra nota del 13 de septiembre habla de 154 fallecidos y 1.517 heridos. El repositorio oficial de la Alcaldía, que citó el equipo Revo HUD, reporta **154 fallecidos, 1.657 lesionados y 24 edificaciones con colapso total**: falta confirmar la fecha de corte.)
 - **Valle del Cauca (corte al 24 de agosto):** 220 muertos, 3.043 heridos; el 80 % de las casas de El Cairo quedó destruido.
 - **País (OCHA, 25 de septiembre):** 486.917 afectados (303.934 familias), 335 muertos, 4.516 heridos, 105 desaparecidos, 36.478 viviendas destruidas; **6.903 personas en 105 alojamientos temporales**; 4.431 sedes educativas, 402 centros de salud y 182 acueductos afectados.
 - **Vacíos que señala OCHA:** cifras que no coinciden entre las evaluaciones de daños y los reportes municipales; migrantes que quedaron fuera de los registros; familias sin información sobre las inspecciones estructurales; fallas de agua y saneamiento en los albergues.
@@ -194,6 +194,7 @@ Idea que los une: **el espacio público se diseña desde el inicio con dos vidas
 - [ ] Artefacto 4: propuesta de valor, validación con un usuario real (JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo) y plan del prototipo.
 - [ ] Sábado: construir el dataset simulado y el prototipo No-Code, y grabar el video.
 - [ ] Agregar a la ficha de aptitud el campo "papel según la amenaza" (albergue, amortiguador o punto de agua) y los atributos de agua almacenada, baños sin red y energía propia (ver los referentes internacionales).
+- [x] Ruta de aprendizaje y Gema de Gemini para entrenar al equipo: `gema/INSTRUCCIONES_GEMA.md` y `gema/RUTA_APRENDIZAJE.pdf` (incluye el análisis de la competencia del RETO-01).
 - [ ] Confirmar las cifras oficiales de muertos en Cali (105 vs. 154) y las normas marcadas con (verificar).
 
 ## 8. Fuentes consultadas
