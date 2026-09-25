@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Space } from "./types";
+import SmsChannel from "./SmsChannel";
 import { acopioNotice } from "./buildAcopioNotice";
 export default function AcopioNotice({ space }: { space: Space }) {
   const [hours, setHours] = useState("");
@@ -39,7 +40,8 @@ export default function AcopioNotice({ space }: { space: Space }) {
       <p>
         Flujo previsto: definir el punto → confirmar apertura, horario y acceso
         → revisar el mensaje → difundir a la población por el canal habilitado.
-        Este prototipo permite preparar el borrador.
+        En esta demo puedes recorrer el envío con una simulación, sin
+        comunicaciones reales.
       </p>
       <div className="planning-controls">
         <p>
@@ -78,19 +80,18 @@ export default function AcopioNotice({ space }: { space: Space }) {
         cambiar de espacio.
       </p>
       <label htmlFor="acopio-notice-body">Borrador del mensaje</label>
-      <textarea id="acopio-notice-body" readOnly value={notice.text} rows={10} />
+      <textarea
+        id="acopio-notice-body"
+        readOnly
+        value={notice.text}
+        rows={10}
+      />
       <div className="notice-actions">
         <button onClick={copy}>Copiar borrador SMS</button>
         <button onClick={download}>Descargar aviso de acopio</button>
       </div>
       <p role="status">{message || "Borrador sin enviar."}</p>
-      <p>
-        <strong>Envío SMS pendiente de integración.</strong> Falta conectar un
-        proveedor, definir la cobertura del canal, gestionar suscripciones y
-        bajas cuando corresponda, autorización del aviso y confirmaciones de
-        entrega. No se almacenan teléfonos ni se envían mensajes desde esta
-        pantalla.
-      </p>
+      <SmsChannel key={notice.text} notice={notice} />
       <p>
         Los mensajes pueden ocupar varios SMS según su longitud y codificación;
         el costo y la entrega dependerán del proveedor. El enlace ubica el punto

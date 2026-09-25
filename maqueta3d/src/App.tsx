@@ -8,6 +8,7 @@ import {
   type Threat,
 } from "./types";
 const Intervention = lazy(() => import("./Intervention"));
+const Prevention = lazy(() => import("./Prevention"));
 const SiteScene = lazy(() => import("./SiteScene"));
 const normalize = (text: string) =>
   text
@@ -188,6 +189,12 @@ export default function App() {
           >
             03 <span>Preparar intervención</span>
           </button>
+          <button
+            className={tab === "prevention" ? "active" : ""}
+            onClick={() => setTab("prevention")}
+          >
+            04 <span>Análisis preventivo</span>
+          </button>
           <a href={`${import.meta.env.BASE_URL}data/sectores.csv`} download>
             ↓ Resumen por sector
           </a>
@@ -200,6 +207,10 @@ export default function App() {
           <p role="status" className="notice">
             Cargando el inventario y las capas de Cali…
           </p>
+        ) : tab === "prevention" ? (
+          <Suspense fallback={<p>Cargando orientación…</p>}>
+            <Prevention onMap={() => setTab("map")} />
+          </Suspense>
         ) : tab === "plan" ? (
           <Suspense fallback={<p>Cargando preparación…</p>}>
             <Intervention

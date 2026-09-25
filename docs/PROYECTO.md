@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): preparación de avisos SMS de acopio dirigidos a toda la población.
+**Última actualización:** 25 de septiembre de 2026: canal SMS simulado y análisis preventivo con cultura ciudadana.
 
 ---
 
@@ -398,9 +398,22 @@ El usuario solicita comunicar por SMS la ubicación de los puntos de acopio defi
 - **Filtro del proyecto:** conserva datos públicos y criterios explícitos, no decide activación ni sustituye evaluaciones estructurales o Bomberos, sin reconocimiento facial o identificación individual; controles etiquetados y vista móvil. La validación con entidades continúa fuera de esta etapa.
 - **Verificación:** compilación/TypeScript aprobados y tres pruebas de navegador aprobadas por bloques: aviso general en móvil (coordenadas, descarga sin envío, vacíos y limpieza al cambiar de espacio) y dos regresiones de Revisar en escritorio/móvil. Se corrigió una etiqueta del borrador detectada durante las pruebas.
 
+## 6.15 Difusión simulada y cultura ciudadana (25 de septiembre)
+
+Por instrucción expresa del usuario, el canal SMS se implementa **como simulación para el prototipo**, sin proveedor real. Esta excepción amplía el alcance de simulación autorizado en esta etapa; no altera los datos geográficos públicos ni confirma aperturas.
+
+- **Recorrido:** mapa → seleccionar espacio → Preparar este espacio → Preparar aviso SMS de acopio → **Simular envío masivo**. Incluye vista previa marcada SIMULADA, audiencia agregada ficticia configurable, procesamiento y resultados. Escenarios deterministas: entrega completa o 5 % pendientes (redondeado hacia arriba); son cifras ilustrativas elegidas para la demo, no métricas medidas ni cobertura real de Cali.
+- **Privacidad y estados:** cero envíos reales, sin proveedor, teléfonos, contactos, credenciales ni solicitudes de envío por red. Se bloquea el doble clic durante el proceso. Editar el aviso o cambiar el espacio reinicia los resultados. El mensaje conserva apertura no confirmada: no invita a acudir a un punto sin habilitación.
+- **Nueva pestaña “Análisis preventivo”:** orientación antes/durante/después para inundación, sismo e incendio forestal; explicación de encuentro/acopio/alojamiento; revisión de fuente, fecha, apertura y acceso; enlace al mapa y a Gestión del Riesgo de Cali. Lista de aprendizaje sin persistencia y pregunta interactiva para distinguir un registro cartográfico de un punto habilitado.
+- **Límites:** contenido educativo, no alerta vigente, orden de evacuación, evaluación estructural ni concepto de seguridad contra incendios. No calcula rutas seguras. La autoridad conserva la decisión de activación. Sin identificación individual, reconocimiento facial o datos personales; controles etiquetados y uso móvil. La validación con entidades sigue fuera de esta etapa.
+- **Verificación:** compilación TypeScript/Vite aprobada; tres pruebas de navegador aprobadas (borrador en móvil, simulación sin solicitudes de envío y aprendizaje interactivo móvil). Verifican validación de audiencia, bloqueo durante envío simulado, resultados, reinicio al editar, cambio de amenaza y retorno al mapa.
+- **Pitch:** segmento listo para narrar en `entregables/guion_prevencion_difusion.md`. Explica la conexión entre preparación, territorio y comunicación, sin atribuir resultados reales a la simulación.
+- **Fuentes primarias educativas consultadas el 25 de septiembre de 2026:** [UNGRD, boletín de inundaciones](https://repositorio.gestiondelriesgo.gov.co/bitstream/handle/20.500.11762/32902/BoletinInundaciones.pdf?isAllowed=y&sequence=33), [UNGRD, recordatorios frente a sismo](https://portal.gestiondelriesgo.gov.co/paginas/old_noticias/2122.aspx), [UNGRD, prevención de incendios forestales](https://portal.gestiondelriesgo.gov.co/Paginas/recomendaciones-incendios-forestales.aspx) y [Gestión del Riesgo de Cali](https://www.cali.gov.co/gestiondelriesgo/). Las publicaciones son material de orientación, no evidencia de un incidente actual. No se añade ningún dataset.
+
 ## 7. Pendientes
 - [x] Preparar avisos generales de acopio con ubicación real, horario/información propuesta, copia y descarga, sin identificar damnificados.
-- [ ] Integrar envío SMS y cobertura de difusión a población, autorización de avisos y seguimiento de entrega; sin proveedor configurado.
+- [x] Canal SMS SIMULADO y sección de análisis preventivo/cultura ciudadana, por solicitud del usuario.
+- [ ] **Fuera del alcance de esta demo:** envío SMS real, proveedor, cobertura, autorización de avisos y seguimiento de entrega.
 - [x] Corregir Revisar: selección, desplazamiento y foco a la ficha, incluidos clic repetido y teclado.
 - [x] Incorporar incendios forestales/en edificación con tareas por subtipo, exportación y bloqueo de preselección sin evidencia.
 - [ ] Incorporar cartografía de incendios con procedencia/licencia verificadas e información vigente del incidente antes de habilitar preselección para esos escenarios.
