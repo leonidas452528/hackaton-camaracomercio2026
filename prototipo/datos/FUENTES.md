@@ -1,6 +1,6 @@
 # Fuentes de los datos
 
-Todos los archivos de `raw/` se descargaron el **25 de septiembre de 2026** de las URL que aparecen abajo. La versión para máquinas (para Sheets) está en `fuentes.csv`. Las URL WFS devuelven la capa completa en GeoJSON (EPSG:4326), así que para actualizar un archivo basta con volver a descargarlo desde su URL.
+Todos los archivos de `raw/` se descargaron el **25 de septiembre de 2026** de las URL que aparecen abajo. La versión para máquinas (para Sheets) está en `fuentes.csv`. Salvo los recortes indicados expresamente, las URL WFS devuelven la capa completa en GeoJSON (EPSG:4326), así que para actualizar un archivo basta con volver a descargarlo desde su URL.
 
 **Atribución obligatoria (CC BY / CC BY-SA):** "Fuente: Alcaldía de Santiago de Cali - DAPM / IDESC, datos.cali.gov.co". Los derivados de `procesados/` se publican con **CC BY-SA 4.0**. Para los daños del sismo: "© Copernicus EMS EMSR916", "© ICube-SERTIT 2026 / International Charter", "Microsoft AI for Good / Airbus, vía HDX".
 
@@ -344,3 +344,13 @@ Todos los archivos de `raw/` se descargaron el **25 de septiembre de 2026** de l
 - **Verificación remota:** descarga completa de cada una de las nueve capas el 25 de septiembre; geometrías y atributos iguales a los archivos archivados, excluidos los IDs transitorios WFS. Evidencia: `maqueta3d/public/data/source-checks.json`. Repetible con `python3 maqueta3d/scripts/check-sources.py`. No equivale a verificar condiciones operativas actuales.
 - **Transformación:** exportación de atributos permitidos, asignación administrativa por punto representativo e intersección con la huella completa de EPOU o el punto deportivo. Se omiten visitadores, contactos e identificadores prediales.
 - **Límite:** inventarios superpuestos y disponibilidad por confirmar; sin cruce de amenaza no implica aptitud. El mapa no usa la interpretación “Sin amenaza” del CSV histórico.
+
+## Construcciones catastrales — recorte para medición del piloto
+
+- **Archivo:** `raw/idesc/construcciones_piloto_geometria.geojson`
+- **Entidad:** Subdirección de Catastro / IDESC, Alcaldía de Santiago de Cali.
+- **Página de origen:** https://idesc.cali.gov.co
+- **Descarga:** https://ws-idesc.cali.gov.co/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=catastro%3Acat_bas_construcciones&outputFormat=application%2Fjson&srsName=EPSG%3A4326&propertyName=the_geom&bbox=-76.5386%2C3.4216%2C-76.5357%2C3.4238%2CEPSG%3A4326
+- **Licencia:** no declarada en las respuestas WFS consultadas **(verificar)**. No se traslada la licencia del dataset distinto de construcciones de propiedad distrital (SIBICA). Este recorte y sus derivados de medición son una excepción a la declaración general CC BY-SA de este catálogo: no se les atribuye una licencia no comprobada.
+- **Privacidad:** se solicitó exclusivamente `the_geom`; la respuesta tiene 51 geometrías y propiedades vacías. No se descargaron nombres, documentos, contactos ni atributos de identificación predial. Los IDs de entidades geográficas del servicio se conservan para reproducibilidad.
+- **Uso:** estimaciones de huella; no interior utilizable, altura, aforo ni disponibilidad. Precisión y antigüedad cartográfica por verificar. Resultados en `maqueta3d/deliverables/mediciones/`.

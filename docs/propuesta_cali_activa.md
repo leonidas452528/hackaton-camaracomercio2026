@@ -228,6 +228,8 @@ Los albergues oficiales del sismo quedaron concentrados en el complejo Jaime Apa
 
 ## Sitio piloto: complejo Jaime Aparicio
 
+> **Revisión de mediciones, 25/09/2026:** la tabla siguiente conserva el supuesto histórico de la maqueta. La Alcaldía identifica a Miguel Calero como coliseo de hockey en línea; 91,40 × 55 m no es una medida verificada del escenario. No utilizarla para deducir área disponible. Ver `maqueta3d/deliverables/mediciones/LEEME.md` para la discrepancia y la huella cartográfica candidata a voleibol.
+
 Sitio piloto de la maqueta 3D, porque fue el albergue oficial del sismo del 10 de agosto de 2026 y reúne espacios abiertos y cubiertos. Las medidas son reglamentarias; las que dicen "medir" se toman sobre imagen satelital o en el geoportal IDESC.
 
 | Escenario | Tipo | Medida | Fuente | Rol propuesto |

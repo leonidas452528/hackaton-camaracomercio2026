@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): paso 6, entrega de capturas y exportación GLB de la maqueta.
+**Última actualización:** 25 de septiembre de 2026 (tarde): mediciones cartográficas preliminares y revisión de identidad del piloto.
 
 ---
 
@@ -326,10 +326,23 @@ Se implementó la exportación local de la escena de emergencia mediante `GLTFEx
 - **Validación final:** `npm run build` aprobado; 12 pruebas de lógica/geometría y 9 de navegador aprobadas por bloques. El GLB se recargó con GLTFLoader: 8 kits, 40 particiones, 8 baños, 2 tanques, 2 módulos cerrados, 7 sectores y ruta presentes; kits en posiciones finales. glTF Validator: **0 errores y 0 advertencias**, con avisos informativos de atributos UV no usados (no hay texturas) y nodos vacíos de etiquetas HTML. Siete PNG a 1920 × 1080, revisados visualmente.
 - **Límites pendientes:** mediciones y orientación reales, disponibilidad/servicios/accesibilidad, evaluaciones técnicas, inventario de insumos verificado y validación con actores. La entrega técnica de la maqueta no resuelve esos pendientes operativos ni valida por sí misma IRL 3.
 
+## 6.9 Mediciones preliminares — alcance sin validación con entidades (25 de septiembre)
+
+Por instrucción del usuario se deja **fuera de esta etapa** la validación con entidades y se pasa a mediciones. No se marca como validación realizada ni se certifican condiciones operativas. La idea principal del frontend sigue siendo explorar espacios/amenazas y explicar su transformación: hoy implementa mapa y maqueta; la recomendación multiamenaza y el tablero completo de brechas siguen pendientes.
+
+- **Fuente nueva:** WFS `catastro:cat_bas_construcciones` de IDESC, recorte del piloto, solicitando solo `the_geom` (51 geometrías con propiedades vacías). URL de descarga/licencia por verificar registradas en `prototipo/datos/FUENTES.md` y `fuentes.csv`. No se descargaron atributos personales ni prediales. No se presume la licencia de la capa distinta de SIBICA.
+- **Voleibol:** una construcción contiene los puntos `deporte-230`, `deporte-268` y `deporte-791`; se considera candidata a Francisco Chois, no identificación confirmada. Huella calculada ≈ **3.069 m²**, perímetro **236,7 m**, envolvente **68,7 × 47,0 m**, eje largo **47,5° respecto al norte**. No son dimensiones interiores, superficie disponible ni número actual de canchas. La precisión de la fuente no está verificada.
+- **Hockey:** la fuente municipal identifica a Miguel Calero como **coliseo de hockey en línea**, en contradicción con la referencia de campo abierto 91,40 × 55 m utilizada por la propuesta. No tratar esa referencia como medida real del sitio ni como área disponible. La maqueta anterior permanece conceptual, sin recalibrar hasta aclarar la identidad/planta. Fuentes: https://www.cali.gov.co/deportes/publicaciones/139089/escenarios-gratuitos/ y https://idesc.cali.gov.co/download/turismo/recursos_zonas/RT-65-C19p.pdf.
+- **Evangelista Mora:** la ficha municipal publica **3.586 m²** sin precisar superficie útil. Es referencia documental, no medición nueva ni aforo: https://www.cali.gov.co/deportes/publicaciones/131771/unidades-deportivas-de-alto-rendimiento/.
+- **Verificación:** regeneración del cálculo y revisión visual del SVG; control independiente por fórmula de área plana ≈ 3.069,2 m², consistente con el área esférica al redondear. Se confirmó que las 51 entidades descargadas carecen de atributos. No se modificó el frontend ni el GLB de la maqueta.
+- **Entregables:** `maqueta3d/deliverables/mediciones/LEEME.md`, medidas JSON, distancias rectas entre puntos CSV (incluye alternativas de hockey) y plano SVG. Script reproducible `maqueta3d/scripts/measure-pilot.mjs`. Altura y superficie útil permanecen sin dato. Sin cambios de geometría en el GLB previo.
+
 ## 7. Pendientes
 - [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
 - [x] Maqueta 3D, paso 2: escena general con controles y mapa de inventarios reales por comuna/barrio, fuentes y cruces verificados.
-- [ ] Confirmar disponibilidad real, administración/acceso, evaluaciones técnicas y servicios de los espacios antes de proponer activaciones.
+- [ ] **Fuera de la etapa actual por decisión del usuario:** validación con entidades de disponibilidad, administración/acceso, evaluaciones y servicios; no se marca como realizada.
+- [x] Mediciones cartográficas iniciales: huella candidata a voleibol, plano, distancias reproducibles y fuentes.
+- [ ] Resolver identidad de hockey y planta de los escenarios antes de recalibrar la maqueta; dimensiones interiores/alturas y área útil siguen sin verificar.
 - [x] Mapa: calles activadas por defecto y vínculos oficiales a Google Maps, satélite y Street View por coordenadas.
 - [x] Maqueta 3D, paso 3: refugio y equipamiento ilustrativo, vista de registro y control de cubiertas.
 - [x] Maqueta 3D, paso 4: centro de acopio, sectores seleccionables, ramal de descarte, ruta conceptual y pantalla de trazabilidad preparada.

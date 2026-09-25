@@ -15,6 +15,10 @@
 - [x] Paso 5: estados y transiciones, reutilización de kits, riego ilustrativo y movimiento reducido.
 - [x] Paso 6: siete capturas 1920 × 1080, GLB estático de emergencia, guía y revisión final.
 
+## Alcance de la etapa de mediciones
+
+La validación con entidades queda fuera de esta etapa por instrucción del usuario; no se marca como realizada. Ver `deliverables/mediciones/LEEME.md`. Huella cartográfica candidata a voleibol medida; identidad exacta, dimensiones interiores, alturas y superficie libre siguen pendientes. Miguel Calero figura oficialmente como coliseo de hockey en línea: la referencia de campo abierto del modelo no es una medida real del sitio.
+
 ## Datos y restricciones por resolver
 
 - Confirmar medidas reales y orientación del hockey; posiciones aproximadas según el prompt, sin coordenadas originales disponibles.

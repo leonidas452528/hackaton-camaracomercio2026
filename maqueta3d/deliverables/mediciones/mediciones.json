@@ -1,0 +1,189 @@
+{
+  "measurements": {
+    "status": "Estimación cartográfica; identificación con Francisco Chois por confirmar",
+    "sourceFile": "prototipo/datos/raw/idesc/construcciones_piloto_geometria.geojson",
+    "sourceSha256": "912b870a8cbfdca46d63598b26c91e192884caddc8ebffb162be1629f6c25ef6",
+    "featureId": "cat_bas_construcciones.2992614",
+    "catalogPoints": [
+      {
+        "id": "deporte-230",
+        "name": "cancha cubierta 1 de voleibol de la liga",
+        "coordinates": [
+          -76.53656316,
+          3.42323003
+        ],
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.42323003,-76.53656316"
+      },
+      {
+        "id": "deporte-268",
+        "name": "voleibol 3 madera",
+        "coordinates": [
+          -76.53674178,
+          3.42330076
+        ],
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.42330076,-76.53674178"
+      },
+      {
+        "id": "deporte-791",
+        "name": "voleibol sdr",
+        "coordinates": [
+          -76.53661508,
+          3.4233037
+        ],
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.4233037,-76.53661508"
+      }
+    ],
+    "areaM2": 3069,
+    "perimeterM": 236.7,
+    "enclosingRectangle": {
+      "lengthM": 68.7,
+      "widthM": 47,
+      "longAxisBearingDegrees": 47.5
+    },
+    "actualClearHeight": null,
+    "actualCourtCount": null,
+    "usableAreaM2": null,
+    "method": "Área esférica y perímetro geodésico Turf. Rectángulo envolvente mínimo con proyección equirectangular local centrada en la geometría; norte geográfico. Redondeo a 1 m² / 0,1 m no implica esa exactitud de la fuente.",
+    "limits": "Huella de construcción, no cancha, área de cubierta inclinada, superficie libre, aforo ni medición topográfica. Tres puntos no demuestran tres canchas actuales. Antigüedad y exactitud de la cartografía no verificadas. La geometría de la maqueta no se recalibra automáticamente.",
+    "license": "No identificada en las respuestas WFS consultadas (verificar); no se presume CC BY-SA de otro dataset."
+  },
+  "points": [
+    {
+      "id": "deporte-225",
+      "name": "cancha de hockey",
+      "coordinates": [
+        -76.53801534,
+        3.42216391
+      ],
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.42216391,-76.53801534"
+    },
+    {
+      "id": "deporte-535",
+      "name": "cancha hockey",
+      "coordinates": [
+        -76.53516191,
+        3.42392194
+      ],
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.42392194,-76.53516191"
+    },
+    {
+      "id": "deporte-229",
+      "name": "diamante de beisbol miguel chavez",
+      "coordinates": [
+        -76.53686569,
+        3.42226099
+      ],
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.42226099,-76.53686569"
+    },
+    {
+      "id": "deporte-230",
+      "name": "cancha cubierta 1 de voleibol de la liga",
+      "coordinates": [
+        -76.53656316,
+        3.42323003
+      ],
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.42323003,-76.53656316"
+    },
+    {
+      "id": "deporte-268",
+      "name": "voleibol 3 madera",
+      "coordinates": [
+        -76.53674178,
+        3.42330076
+      ],
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.42330076,-76.53674178"
+    },
+    {
+      "id": "deporte-791",
+      "name": "voleibol sdr",
+      "coordinates": [
+        -76.53661508,
+        3.4233037
+      ],
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.4233037,-76.53661508"
+    },
+    {
+      "id": "deporte-802",
+      "name": "coliseo evangelista mora",
+      "coordinates": [
+        -76.53982622,
+        3.42851381
+      ],
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=3.42851381,-76.53982622"
+    }
+  ],
+  "distances": [
+    {
+      "origin": "deporte-225",
+      "target": "deporte-535",
+      "distanceM": 372,
+      "bearingDegrees": 58.3
+    },
+    {
+      "origin": "deporte-225",
+      "target": "deporte-229",
+      "distanceM": 128,
+      "bearingDegrees": 85.2
+    },
+    {
+      "origin": "deporte-225",
+      "target": "deporte-230",
+      "distanceM": 200,
+      "bearingDegrees": 53.7
+    },
+    {
+      "origin": "deporte-225",
+      "target": "deporte-268",
+      "distanceM": 190,
+      "bearingDegrees": 48.2
+    },
+    {
+      "origin": "deporte-225",
+      "target": "deporte-791",
+      "distanceM": 201,
+      "bearingDegrees": 50.8
+    },
+    {
+      "origin": "deporte-225",
+      "target": "deporte-802",
+      "distanceM": 734,
+      "bearingDegrees": 344.1
+    },
+    {
+      "origin": "deporte-535",
+      "target": "deporte-225",
+      "distanceM": 372,
+      "bearingDegrees": 238.3
+    },
+    {
+      "origin": "deporte-535",
+      "target": "deporte-229",
+      "distanceM": 264,
+      "bearingDegrees": 225.7
+    },
+    {
+      "origin": "deporte-535",
+      "target": "deporte-230",
+      "distanceM": 174,
+      "bearingDegrees": 243.7
+    },
+    {
+      "origin": "deporte-535",
+      "target": "deporte-268",
+      "distanceM": 188,
+      "bearingDegrees": 248.5
+    },
+    {
+      "origin": "deporte-535",
+      "target": "deporte-791",
+      "distanceM": 175,
+      "bearingDegrees": 246.9
+    },
+    {
+      "origin": "deporte-535",
+      "target": "deporte-802",
+      "distanceM": 727,
+      "bearingDegrees": 314.6
+    }
+  ]
+}

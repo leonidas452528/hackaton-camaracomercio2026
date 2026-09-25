@@ -1,0 +1,13 @@
+origen_id,destino_id,distancia_recta_m,rumbo_grados
+deporte-225,deporte-535,372,58.3
+deporte-225,deporte-229,128,85.2
+deporte-225,deporte-230,200,53.7
+deporte-225,deporte-268,190,48.2
+deporte-225,deporte-791,201,50.8
+deporte-225,deporte-802,734,344.1
+deporte-535,deporte-225,372,238.3
+deporte-535,deporte-229,264,225.7
+deporte-535,deporte-230,174,243.7
+deporte-535,deporte-268,188,248.5
+deporte-535,deporte-791,175,246.9
+deporte-535,deporte-802,727,314.6
