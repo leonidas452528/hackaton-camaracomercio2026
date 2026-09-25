@@ -12,6 +12,7 @@ import {
 } from "./planning";
 import { site, planningView } from "./data/site";
 import GoogleMapsLinks from "./GoogleMapsLinks";
+import { isFire, firePreparation, fireSources, fireLimitations } from "./fire";
 const SelectedSpaceScene = lazy(() => import("./SelectedSpaceScene"));
 type Followup = "Por medir" | "En revisión";
 export default function Intervention({
@@ -38,7 +39,9 @@ export default function Intervention({
       return Object.fromEntries(
         Object.entries(saved).filter(
           ([key, value]) =>
-            /^(epou|deporte)-[\w-]+:(toilets|water|shelter)$/.test(key) &&
+            /^(epou|deporte)-[\w-]+:(toilets|water|shelter|(?:wildfire|building-fire)-(?:perimeter|access|vegetation|smoke|building|inspection))$/.test(
+              key,
+            ) &&
             (value === "Por medir" || value === "En revisión"),
         ),
       ) as Record<string, Followup>;
@@ -83,6 +86,11 @@ export default function Intervention({
     decision = eligibility(target, threat),
     rows = problem ? [] : gaps(target, count),
     area = geometryArea(target);
+  const fireRows = isFire(threat) ? firePreparation(threat) : [];
+  const fireReview = fireRows.map((r) => ({
+    ...r,
+    followup: followup[`${p.id}:${threat}-${r.id}`] ?? "Por medir",
+  }));
   const exportPlan = () => {
     const payload = {
       kind: "Borrador de preparación; no autorización",
@@ -96,6 +104,22 @@ export default function Intervention({
         reason: c.reason,
       })),
       decision,
+      screening: {
+        considered: result.considered,
+        excludedByIntersection: result.excluded,
+        pendingEvidence: result.pendingEvidence,
+      },
+      ...(isFire(threat)
+        ? {
+            fire: {
+              subtype: threat,
+              evidence: fireReview,
+              limitations: fireLimitations,
+              sources: fireSources,
+              authorityValidation: "Fuera de esta etapa; no realizada",
+            },
+          }
+        : {}),
       gaps: rows.map((r) => ({
         ...r,
         followup: followup[`${p.id}:${r.id}`] ?? "Por medir",
@@ -139,6 +163,8 @@ export default function Intervention({
             <option value="flood">Inundación</option>
             <option value="earthquake">Sismo</option>
             <option value="drought">Sequía (sin datos suficientes)</option>
+            <option value="wildfire">Incendio forestal</option>
+            <option value="building-fire">Incendio en edificación</option>
           </select>
         </label>
         <label>
@@ -154,13 +180,81 @@ export default function Intervention({
         </label>
       </div>
       {problem && <p role="alert">{problem}</p>}
+      {isFire(threat) && (
+        <section className="fire-panel" aria-label="Preparación ante incendio">
+          <h3>
+            {threat === "wildfire"
+              ? "Incendio forestal"
+              : "Incendio en edificación"}
+            : preparación con evidencia pendiente
+          </h3>
+          <p>
+            El mapa conserva el inventario real de Cali. No se muestran focos,
+            perímetros ni zonas seguras inventados. El espacio seleccionado es
+            una referencia para preparar la atención de la población, no una
+            ubicación confirmada del incendio.
+          </p>
+          <h4>Información necesaria para evaluar este espacio</h4>
+          <p>
+            Lista propuesta por el equipo, no protocolo oficial. “En revisión”
+            guarda una tarea local; no acredita evidencia ni habilita
+            recomendaciones. La validación con entidades permanece fuera de esta
+            etapa.
+          </p>
+          <ul className="fire-evidence">
+            {fireReview.map((r) => (
+              <li key={r.id}>
+                <strong>{r.label}</strong>
+                <p>{r.detail}</p>
+                <p>{r.status}</p>
+                <label>
+                  Seguimiento de {r.label}
+                  <select
+                    value={r.followup}
+                    onChange={(e) =>
+                      setFollowup({
+                        ...followup,
+                        [`${p.id}:${threat}-${r.id}`]: e.target
+                          .value as Followup,
+                      })
+                    }
+                  >
+                    <option>Por medir</option>
+                    <option>En revisión</option>
+                  </select>
+                </label>
+              </li>
+            ))}
+          </ul>
+          <ul>
+            {fireLimitations.map((text) => (
+              <li key={text}>{text}</li>
+            ))}
+          </ul>
+          <p>
+            Fuentes de contexto institucional; no contienen una evaluación de
+            este espacio:
+          </p>
+          <ul>
+            {fireSources.map((source) => (
+              <li key={source.url}>
+                <a href={source.url} target="_blank" rel="noreferrer">
+                  {source.title} ↗
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       <div className="notice">
         <strong>Preselección para revisión, no espacios habilitados.</strong> Se
         consideran {result.considered} polígonos EPOU del sector;{" "}
-        {result.excluded} quedan fuera por las reglas de la amenaza. Se ordenan
-        por distancia recta al punto de referencia; empate por ID. No se evalúa
-        capacidad, tránsito, acceso ni disponibilidad. Los filtros de búsqueda,
-        fuente y cruce del mapa no ocultan candidatos de esta comparación.
+        {result.excluded} quedan fuera por cruces de amenaza;{" "}
+        {result.pendingEvidence} no pueden evaluarse por falta de evidencia. Los
+        candidatos, cuando existen, se ordenan por distancia recta al punto de
+        referencia; empate por ID. No se evalúa capacidad, tránsito, acceso ni
+        disponibilidad. Los filtros de búsqueda, fuente y cruce del mapa no
+        ocultan candidatos de esta comparación.
       </div>
       {result.candidates.length ? (
         <div className="candidate-grid">
@@ -184,7 +278,10 @@ export default function Intervention({
       ) : (
         <p role="status">
           No hay candidatos para esta amenaza en el sector. No se sustituyen por
-          espacios descartados. Puedes ampliar el sector en el mapa.
+          espacios descartados.{" "}
+          {result.pendingEvidence > 0
+            ? "Ampliar el sector no resuelve la falta de evidencia para esta amenaza."
+            : "Puedes ampliar el sector en el mapa."}
         </p>
       )}
       <button

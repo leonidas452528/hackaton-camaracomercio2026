@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): revisión visual de cubiertas, estructuras y circuito conceptual de agua; skills Three.js instaladas.
+**Última actualización:** 25 de septiembre de 2026 (tarde): escenarios de incendio forestal y en edificación, evidencia pendiente y pruebas específicas.
 
 ---
 
@@ -363,7 +363,23 @@ El usuario pidió corregir la falta de lógica física visible de la maqueta e i
 - **Límites:** geometría constructiva **propuesta y por verificar**, centralizada en `construction` dentro de `src/data/site.ts`. No es cálculo de cargas, estabilidad, anclajes, simulación hidráulica ni levantamiento del sitio. Siguen fuera de alcance la validación con entidades y la certificación de activación. Sin datos personales, identificación individual o reconocimiento facial; se conservan controles HTML y contraste.
 - **Verificación:** compilación y TypeScript aprobados; 17 pruebas de lógica y 8 pruebas de navegador relevantes aprobadas por bloques (mapa/refugio, agua, acopio, ciclo y entregables). Se revisaron capturas y se corrigió la orientación inicial de los faldones. El GLB se recargó y comprobó con rayos que la cumbrera esté más alta que los aleros; conserva 23 faldones/techos opacos y los elementos del circuito de agua. glTF Validator: 0 errores y 0 advertencias. Diez PNG 1920 × 1080 y manifiesto SHA-256 regenerados; metadatos GLB incluyen procedencia y condición ilustrativa de la construcción.
 
+## 6.12 Incendios en el flujo de preparación (25 de septiembre)
+
+Se incorporan **Incendio forestal** e **Incendio en edificación** en “Preparar intervención”, a petición del usuario. Es preparación de atención a población; no simulación de propagación, combate al fuego ni evaluación de seguridad humana.
+
+- **Datos consultados:** el GetCapabilities WFS de IDESC no devolvió una capa de incendios en la consulta; las capas de protección forestal no se interpretan como amenaza. Fuente de acceso oficial: https://www.cali.gov.co/planeacion/publicaciones/46691/servicios-wms-idesc/; servicio consultado: https://ws-idesc.cali.gov.co/geoserver/ows?service=WFS&request=GetCapabilities.
+- **Hallazgo no incorporado:** una capa pública ArcGIS llamada “Zonas de amenaza por incendios forestales”, en https://services7.arcgis.com/fHfQ8qeNWagUQB9e/arcgis/rest/services/BDG_Bomberos_Cali_WFL1/FeatureServer/6, tiene descripción/atribución vacías y su ficha https://www.arcgis.com/sharing/rest/content/items/43695bad5c514344a027330550bcd9b3?f=json no declara licencia. El título no acredita procedencia oficial. No se descargó geometría, no se agregó como dataset y no se usa para decisiones. Esto no prueba que no existan otras fuentes oficiales.
+- **Reglas:** ambos escenarios devuelven “sin evidencia suficiente”, sin candidatos, aunque el espacio no cruce inundación/sismo o esté cerca de la referencia. No se infiere el foco a partir de la selección del mapa ni se inventan radios de seguridad. Se separan en el resumen los descartes por cruce cartográfico de los casos pendientes por falta de evidencia; también se corrige esa distinción para sequía. Amenazas no soportadas no producen una recomendación por defecto.
+- **Preparación por subtipo:** forestal requiere información de área/restricciones, accesos, amenaza/interfaz con vegetación y humo/entorno. Edificación requiere área/restricciones, accesos, edificio/entorno e inspecciones. Es una lista de información propuesta por el equipo, no un protocolo oficial. Las evidencias permanecen `null`.
+- **Seguimiento y exportación:** “Por medir”/“En revisión” por espacio, subtipo y tarea, guardados solo en el navegador. Ningún cambio de tarea habilita recomendaciones ni acredita seguridad. El JSON incluye subtipo, decisiones, conteos de casos sin evidencia, tareas, fuentes de contexto y límites. Cambiar entre incendio e inundación no mezcla reglas ni tareas.
+- **Agua y maqueta:** las necesidades humanitarias de agua no representan caudal de extinción; los tanques ilustrativos no son una red contra incendios. No se acredita resistencia al fuego de materiales ni aptitud del kit. No se añaden llamas, humo ni perímetros ficticios a la geometría real.
+- **Fuentes primarias de contexto institucional:** https://www.cali.gov.co/gestiondelriesgo/publicaciones/140522/recomendaciones-en-caso-de-emergencias/ y https://www.cali.gov.co/gestiondelriesgo/publicaciones/184412/por-inconsciencia-ciudadana-nuevamente-se-presenta-incendio-forestal-en-pichinde/. Son contexto sobre atención de emergencias, no evidencia de aptitud de cada predio.
+- **Filtro obligatorio:** solo datos públicos y conteos agregados SIMULADOS; sin identificación personal o reconocimiento facial. Criterios y vacíos visibles, controles con etiquetas y soporte móvil. Recomienda sin activar; no sustituye a la autoridad, evaluaciones estructurales ni conceptos de Bomberos. Se mantiene fuera del alcance actual la validación con entidades.
+- **Verificación:** compilación/TypeScript y 18 pruebas de lógica aprobadas. Cuatro pruebas de navegador aprobadas (dos específicas de incendios y dos de regresión de preparación): subtipos, persistencia, exportación, falta de candidatos, agua humanitaria, regreso a inundación, teclado y móvil. Captura `incendio_forestal.png` revisada visualmente; no se validó eficacia ante incendios reales.
+
 ## 7. Pendientes
+- [x] Incorporar incendios forestales/en edificación con tareas por subtipo, exportación y bloqueo de preselección sin evidencia.
+- [ ] Incorporar cartografía de incendios con procedencia/licencia verificadas e información vigente del incidente antes de habilitar preselección para esos escenarios.
 - [x] Instalar skills Three.js y revisar cubiertas, apoyos, vista de corte y funcionamiento conceptual del agua.
 - [ ] Dimensionamiento profesional de estructuras, anclajes y sistema de agua; capacidad, primeras aguas, suministro y descarga por verificar.
 - [x] Frontend: preparar espacio seleccionado, adaptar huella pública, preseleccionar candidatos con criterios, calcular necesidades y seguir brechas desconocidas; exportar borrador.

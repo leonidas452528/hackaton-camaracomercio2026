@@ -44,3 +44,5 @@ La aplicación incorpora “Preparar este espacio” desde el mapa: adapta autom
 - `refugio_coliseo.png` muestra intencionadamente una **vista de corte**, rotulada en la interfaz; el techo se conserva en el GLB completo.
 
 La revisión reemplaza los techos transparentes de versiones anteriores. No acredita un diseño estructural o hidráulico calculado.
+
+`incendio_forestal.png` documenta el nuevo flujo de preparación (captura de página completa, fuera de las diez vistas 1920 × 1080). Muestra información pendiente y ausencia de candidatos; no representa un incendio observado ni una zona segura certificada.

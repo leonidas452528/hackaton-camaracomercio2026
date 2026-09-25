@@ -115,3 +115,10 @@ Sin datos personales, logos ni obras civiles. Medidas ilustrativas y datos desco
 - [ ] Cálculo de cargas y anclajes; selección/dimensionamiento hidráulico, primeras aguas, calidad, energía y destino de rebose. No son resultados de la maqueta.
 
 Las referencias históricas a cubiertas transparentes quedan sustituidas por esta revisión. Las formas constructivas siguen siendo propuestas por verificar, no instalaciones medidas. La visualización no incorpora un simulador físico ni certifica estabilidad o suministro.
+
+## Incendios
+
+- [x] Escenarios forestal/en edificación, requisitos de información diferenciados y seguimiento local por espacio/subtipo.
+- [x] Bloquear preselección sin evidencia; separar falta de datos de descarte por intersección. Exportar tareas, fuentes, límites y decisión.
+- [ ] Conseguir cartografía de amenaza con procedencia/licencia verificadas y datos del incidente antes de habilitar candidatos. No confundir cobertura forestal con amenaza.
+- [ ] Información de restricciones, humo/entorno, accesos e inspecciones. La validación con entidades continúa excluida de esta etapa.

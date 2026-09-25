@@ -105,3 +105,9 @@ En **Demostración de refugio**, usa **Albergue exterior** para revisar la cubie
 **Mostrar cubiertas** permanece activado por defecto. Al desactivarlo aparece una **Vista de corte** para inspeccionar interiores. La exportación GLB exige cubiertas visibles. El modelo contiene techos opacos también en acopio, registro y bodega de retorno.
 
 Skills locales utilizadas: `threejs-r3f`, `threejs-lighting`, `threejs-materials`, `threejs-geometry`, de [cesartevisual/threejs-skills](https://github.com/cesartevisual/threejs-skills), revisión `84f9bcb4bea1f7a28d57fe7f0af78f7f9c3dc467`. No son dependencias necesarias para ejecutar la aplicación. WorldSkills es la referencia de la especialidad indicada por el usuario, no el proveedor de esas skills.
+
+### Preparación ante incendios
+
+**Mapa → seleccionar espacio → Preparar este espacio → Amenaza del escenario** permite elegir **Incendio forestal** o **Incendio en edificación**. Cada subtipo muestra la información pendiente, seguimiento local y exportación JSON. No hay una capa de incendio verificada ni datos vigentes del incidente incorporados: ambos escenarios mantienen la preselección sin candidatos. Cambiar una tarea a “En revisión” no acredita seguridad ni habilita espacios.
+
+La selección del mapa no representa el foco de un incendio. Las necesidades de agua son humanitarias, no de extinción; los tanques 3D no constituyen una red contra incendios. No se simulan fuego, humo o evacuación y no se emiten conceptos de Bomberos. La validación con entidades sigue fuera de esta etapa.

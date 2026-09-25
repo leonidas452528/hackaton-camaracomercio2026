@@ -1,6 +1,7 @@
 import { distance, area } from "@turf/turf";
 import type { Space } from "./types";
-export type ScenarioThreat = "flood" | "earthquake" | "drought";
+import { isFire, type FireThreat } from "./fire.ts";
+export type ScenarioThreat = "flood" | "earthquake" | "drought" | FireThreat;
 import { planningRules, planningView } from "./data/site.ts";
 export { planningRules };
 export function requirements(people: number) {
@@ -17,24 +18,40 @@ export function requirements(people: number) {
   };
 }
 export function eligibility(space: Space, threat: ScenarioThreat) {
+  if (isFire(threat))
+    return {
+      excluded: true,
+      status: "pending" as const,
+      reason: `${threat === "wildfire" ? "Incendio forestal" : "Incendio en edificación"}: sin evidencia suficiente del incidente y sus restricciones. No se puede preseleccionar este espacio; cercanía no significa seguridad.`,
+    };
+  if (!["flood", "earthquake", "drought"].includes(threat))
+    return {
+      excluded: true,
+      status: "pending" as const,
+      reason: "Amenaza no soportada: no se puede recomendar.",
+    };
   if (threat === "drought")
     return {
       excluded: true,
+      status: "pending" as const,
       reason: "Sin datos de sequía y abastecimiento: no se puede recomendar.",
     };
   if (threat === "flood" && space.properties.flood.length)
     return {
       excluded: true,
+      status: "excluded" as const,
       reason: "Descartado por cruce de inundación en las capas consultadas.",
     };
   if (threat === "earthquake" && space.properties.seismic.length)
     return {
       excluded: true,
+      status: "excluded" as const,
       reason:
         "Fuera de la preselección por cruce de licuación/corrimiento; requiere evaluación territorial.",
     };
   return {
     excluded: false,
+    status: "conditional" as const,
     reason:
       threat === "earthquake"
         ? "Sin cruce de licuación/corrimiento; requiere inspección estructural antes de considerar activación."
@@ -76,7 +93,11 @@ export function compareCandidates(
   return {
     candidates: candidates.slice(0, 3),
     considered: pool.length,
-    excluded: pool.filter((s) => eligibility(s, threat).excluded).length,
+    excluded: pool.filter((s) => eligibility(s, threat).status === "excluded")
+      .length,
+    pendingEvidence: pool.filter(
+      (s) => eligibility(s, threat).status === "pending",
+    ).length,
   };
 }
 export function geometryArea(space: Space): number | null {

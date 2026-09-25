@@ -104,3 +104,9 @@ El nuevo cruce usa toda la huella de EPOU, no solo su punto central. Conserva lo
 **Corrección del análisis anterior:** “sin intersección detectada” sustituye a “sin amenaza” en el mapa. No existe en estas fuentes evidencia de disponibilidad actual, aforo, baños, agua o evaluación estructural vigente. Los términos “aptos” y “ningún espacio sirve” de la interpretación anterior se retiraron: eran conclusiones que excedían lo que demuestra el cruce. El CSV histórico conserva su esquema por compatibilidad; no se usa para clasificar seguridad en la aplicación.
 
 Quedan por pedir a las entidades la disponibilidad/administración del espacio, inspecciones vigentes, servicios y acceso; faltan otras amenazas para una recomendación multiamenaza. No se inventaron zonas disponibles.
+
+## Consulta de incendios — 25 de septiembre de 2026
+
+No hay una capa de incendio validada e incorporada al prototipo. La consulta de `GetCapabilities` del [WFS IDESC](https://ws-idesc.cali.gov.co/geoserver/ows?service=WFS&request=GetCapabilities) no identificó capas de incendio; protección forestal no equivale a amenaza. Se encontró una [capa ArcGIS con título de amenaza forestal](https://services7.arcgis.com/fHfQ8qeNWagUQB9e/arcgis/rest/services/BDG_Bomberos_Cali_WFL1/FeatureServer/6), pero faltan procedencia oficial acreditada y licencia en sus metadatos. Se consultaron metadatos, sin importar geometrías ni redistribuir el dataset. No se presume CC BY-SA.
+
+El frontend distingue incendios forestales y de edificación, con preselección bloqueada por evidencia insuficiente. Falta información del incidente, restricciones, humo/entorno, accesos e inspecciones. No se usan noticias o ausencia de cruces de otras amenazas como prueba de seguridad. Ver bitácora, sección 6.12.

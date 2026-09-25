@@ -108,3 +108,25 @@ test("geometría conserva huecos y multipolígonos; puntos no adquieren una huel
   assert.deepEqual(projectedFootprint(point), []);
   assert.equal(geometryArea(point), null);
 });
+
+test("incendios no heredan aptitud de inundación ni sismo y separan falta de datos de descarte", () => {
+  const origin = fixture("origin");
+  const spaces = [
+    origin,
+    fixture("close", 0.00001),
+    fixture("flood", 0.01, { flood: ["alta"] }),
+  ];
+  for (const threat of ["wildfire", "building-fire"]) {
+    const result = compareCandidates(spaces, origin, threat);
+    assert.equal(result.candidates.length, 0);
+    assert.equal(result.pendingEvidence, 3);
+    assert.equal(result.excluded, 0);
+    assert.equal(eligibility(origin, threat).status, "pending");
+    assert.match(
+      eligibility(origin, threat).reason,
+      /sin evidencia suficiente/,
+    );
+  }
+  assert.equal(eligibility(origin, "unsupported").status, "pending");
+  assert.equal(eligibility(origin, "flood").status, "conditional");
+});
