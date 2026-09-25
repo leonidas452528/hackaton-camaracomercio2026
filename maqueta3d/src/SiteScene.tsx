@@ -3,7 +3,14 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Label from "./SceneLabel";
 import { IndoorRefuge, FieldRefuge } from "./Refuge";
-import { site, emergencyCalculation, refugeLayout } from "./data/site";
+import { StorageCenter, StoragePanel, SupplyRoute } from "./Storage";
+import {
+  site,
+  emergencyCalculation,
+  refugeLayout,
+  storageLayout,
+  type StorageSectorId,
+} from "./data/site";
 import { formatNumber } from "./types";
 const { venues, presentation } = site;
 type View = (typeof presentation.views)[number];
@@ -23,7 +30,19 @@ function CameraView({ view }: { view: View }) {
     />
   );
 }
-function Overview({ view, showRoofs }: { view: View; showRoofs: boolean }) {
+function Overview({
+  view,
+  showRoofs,
+  showRoute,
+  selectedSector,
+  onSelectSector,
+}: {
+  view: View;
+  showRoofs: boolean;
+  showRoute: boolean;
+  selectedSector: StorageSectorId;
+  onSelectSector: (id: StorageSectorId) => void;
+}) {
   const field = venues.hockey.field.value,
     margins = venues.hockey.footprintWithMargins.value,
     hall = presentation.genericHall.value,
@@ -114,7 +133,12 @@ function Overview({ view, showRoofs }: { view: View; showRoofs: boolean }) {
           />
           <meshStandardMaterial color="#c8b58e" />
         </mesh>
-        {(view.id === "general" || view.id === "baseball") && (
+        <StorageCenter
+          selected={selectedSector}
+          onSelect={onSelectSector}
+          showLabels={view.id === "baseball"}
+        />
+        {(view.id === "general" || view.id === "supply-route") && (
           <Label
             position={[0, 5, 0]}
             title="Diamante de Béisbol · acopio"
@@ -122,6 +146,7 @@ function Overview({ view, showRoofs }: { view: View; showRoofs: boolean }) {
           />
         )}
       </group>
+      {showRoute && <SupplyRoute labels={view.id === "supply-route"} />}
       <CameraView view={view} />
     </>
   );
@@ -149,11 +174,23 @@ export default function SiteScene() {
   const [view, setView] = useState<View>(presentation.views[0]);
   const [showRoofs, setShowRoofs] = useState(true);
   const quantities = emergencyCalculation.value;
+  const [selectedSector, setSelectedSector] = useState<StorageSectorId>(
+    storageLayout.value.sectors[0].id,
+  );
+  const [showRoute, setShowRoute] = useState(true);
+  const selectSector = (id: StorageSectorId) => {
+    setSelectedSector(id);
+    setView(
+      presentation.views.find(
+        (v) => v.id === (id === "traceability" ? "traceability" : "baseball"),
+      )!,
+    );
+  };
   return (
     <section className="scene-section">
       <div className="scene-intro">
         <div>
-          <p className="eyebrow">PASO 3 · REFUGIO Y SERVICIOS</p>
+          <p className="eyebrow">PASO 4 · REFUGIO Y CENTRO DE ACOPIO</p>
           <h2>Unidad Deportiva Jaime Aparicio</h2>
           <p>
             {site.coordinates.legend}. Una unidad de escena equivale a un metro.
@@ -173,6 +210,14 @@ export default function SiteScene() {
             {v.label}
           </button>
         ))}
+        <label className="roof-toggle">
+          <input
+            type="checkbox"
+            checked={showRoute}
+            onChange={(e) => setShowRoute(e.target.checked)}
+          />
+          Mostrar ruta conceptual
+        </label>
         <label className="roof-toggle">
           <input
             type="checkbox"
@@ -217,10 +262,18 @@ export default function SiteScene() {
               fov: presentation.camera.fov,
             }}
           >
-            <Overview view={view} showRoofs={showRoofs} />
+            <Overview
+              view={view}
+              showRoofs={showRoofs}
+              showRoute={showRoute}
+              selectedSector={selectedSector}
+              onSelectSector={selectSector}
+            />
           </Canvas>
         </SceneBoundary>
       </div>
+      <p className="route-note">{storageLayout.value.route.note}</p>
+      <StoragePanel selected={selectedSector} onSelect={selectSector} />
       <div className="scene-notes">
         <div>
           <h3>Fuera del encuadre · Evangelista Mora</h3>

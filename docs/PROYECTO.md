@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): mapa vinculado a Google Maps y paso 3 de refugio/equipamiento.
+**Última actualización:** 25 de septiembre de 2026 (tarde): paso 4, centro de acopio interactivo y ruta conceptual al refugio.
 
 ---
 
@@ -286,13 +286,30 @@ A petición del equipo se mejoró la referencia visual del mapa y se avanzó al 
 - **Validación:** compilación de producción y TypeScript estricto aprobados; 7 pruebas de lógica/geometría y 4 de navegador aprobadas, con repetición dirigida de la prueba de refugio tras ajustar etiquetas y sombras. No se validaron servicios operativos ni la identificación exacta de los escenarios en Google.
 - **Pendiente:** paso 4 (centro de acopio y ruta), paso 5 (estados y transiciones) y paso 6 (GLB y revisión/capturas finales).
 
+## 6.6 Centro de acopio y ruta al refugio — paso 4 (25 de septiembre)
+
+Se construyó el centro de acopio en el volumen ilustrativo del Diamante de Béisbol, siguiendo `docs/propuesta_cali_activa.md` (Centros de acopio por zona y Trazabilidad de insumos) y `PROMPT_CODEX_3D.md`, sección 3. No se incorporaron datasets ni cifras externas nuevas.
+
+- **Siete sectores seleccionables:** lista pública de necesidades, recepción, clasificación, descarte, bodega/inventario, despacho y pantalla de trazabilidad. Etiquetas 3D y panel HTML accesible por teclado con la explicación de cada función.
+- **Mobiliario ilustrativo:** cartelera, mesa, cinco contenedores de clasificación (alimentos, agua de uso no potable, aseo, abrigo y kits), contenedor de descarte, estanterías, plataformas de despacho y pantalla. El número y tamaño de los muebles son decisiones visuales de la maqueta, no inventario real. Valores centralizados en `maqueta3d/src/data/site.ts`.
+- **Flujo:** recepción → clasificación; aceptados → bodega → despacho. Los rechazados van a descarte por un ramal independiente sin salida hacia bodega/despacho. La conexión gráfica a trazabilidad representa registrar un movimiento, no trasladar allí el insumo.
+- **Necesidades:** se muestran los requerimientos brutos calculados en el escenario de 143 personas, sin restar existencias desconocidas. No se presentan como faltantes confirmados ni como donaciones recibidas.
+- **Ruta conceptual:** conecta el despacho con el acceso propuesto junto al registro del refugio; tiene flechas, vista de cámara propia y control para mostrar/ocultar. Evita el equipamiento dibujado del campo, pero **no es ruta vial, de evacuación ni levantamiento georreferenciado**. Falta verificar accesos, circulación y obstáculos reales.
+- **Trazabilidad:** interfaz con lote, tipo, cantidad, origen, destino y hash. Estado **Sin registro verificado**; no hay cantidades de existencias, movimientos o hash inventados ni conexión a blockchain. Se resolvió la diferencia con el ejemplo simulado del prompt dando prioridad a AGENTS.md, que limita la simulación a IoT y ocupación. Es necesario un lote real validado para poblar la pantalla.
+- **Alcance y competencias:** los muebles y el trazado son ilustrativos; la disponibilidad real del diamante, sus dimensiones, accesos y operación requieren validación. Se mantiene la activación en la autoridad y los conceptos de estructura, seguridad y Bomberos en sus responsables. Sin personas, dinero ni identificación individual en la trazabilidad.
+- **Archivos:** `maqueta3d/src/Storage.tsx`, integración en `SiteScene.tsx`, datos en `site.ts`, estilos, pruebas y documentación. Capturas de acopio, trazabilidad y ruta en `maqueta3d/deliverables/renders/`, a 1920 × 1080.
+- **Validación:** compilación de producción y TypeScript estricto aprobados; 11 pruebas de lógica/geometría y 6 de navegador aprobadas. Se verificaron sectores sin solapamiento, descarte separado, ruta sin colisiones con el equipamiento representado, trazabilidad vacía, teclado y móvil. Las pruebas no validan condiciones físicas ni disponibilidad real.
+- **Pendiente:** incorporar lote/inventario real verificado, validar la operación con actores y continuar con estados/transiciones (paso 5) y GLB/revisión final (paso 6).
+
 ## 7. Pendientes
 - [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
 - [x] Maqueta 3D, paso 2: escena general con controles y mapa de inventarios reales por comuna/barrio, fuentes y cruces verificados.
 - [ ] Confirmar disponibilidad real, administración/acceso, evaluaciones técnicas y servicios de los espacios antes de proponer activaciones.
 - [x] Mapa: calles activadas por defecto y vínculos oficiales a Google Maps, satélite y Street View por coordenadas.
 - [x] Maqueta 3D, paso 3: refugio y equipamiento ilustrativo, vista de registro y control de cubiertas.
-- [ ] Maqueta 3D, pasos 4 a 6: acopio, transiciones, capturas finales y GLB; detenerse y reportar al terminar cada paso según el prompt.
+- [x] Maqueta 3D, paso 4: centro de acopio, sectores seleccionables, ramal de descarte, ruta conceptual y pantalla de trazabilidad preparada.
+- [ ] Obtener lote e inventario reales verificados para poblar la trazabilidad (cantidad, origen, destino, movimientos y hash); no fabricar datos.
+- [ ] Maqueta 3D, pasos 5 a 6: estados/transiciones, capturas finales y GLB; detenerse y reportar al terminar cada paso según el prompt.
 - [ ] Artefacto 2: redactar los 6 campos y el "¿Cómo podríamos…?" con los hallazgos propios (albergues autogestionados y la amenaza cruzada con el Jarillón).
 - [ ] Artefacto 3: generar 6 a 8 ideas y filtrarlas.
 - [ ] Artefacto 4: propuesta de valor, validación con un usuario real (JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo) y plan del prototipo.

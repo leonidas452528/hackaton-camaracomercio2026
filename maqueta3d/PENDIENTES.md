@@ -1,6 +1,6 @@
 # Maqueta 3D — avance y pendientes
 
-25 de septiembre de 2026. Ejecutados los pasos 1, 2 y 3 de `PROMPT_CODEX_3D.md`, más el mapa con datos reales solicitado por el equipo. El prompt exige detenerse al terminar cada paso.
+25 de septiembre de 2026. Ejecutados los pasos 1, 2, 3 y 4 de `PROMPT_CODEX_3D.md`, más el mapa con datos reales solicitado por el equipo. El prompt exige detenerse al terminar cada paso.
 
 - [x] Centralizar medidas, procedencia, marcadores y cálculos en `src/data/site.ts`.
 - [x] Leer RETO-01 del portafolio local y copiarlo a la ruta documental indicada. La ficha respalda las 143 personas del caso.
@@ -10,7 +10,8 @@
 - [x] Distinguir cruce de amenaza de disponibilidad; conservar 52 registros sin comuna asignada.
 - [x] Paso 3: refugio y equipamiento ilustrativo; cubiertas ocultables y vista de registro.
 - [x] Mapa con calles por defecto y enlaces oficiales de Google Maps, satélite y Street View por coordenadas; acceso por espacio y zona visible.
-- [ ] Paso 4: acopio y ruta.
+- [x] Paso 4: acopio interactivo con siete sectores, ramal de descarte, ruta conceptual y pantalla de trazabilidad sin registro verificado.
+- [ ] Incorporar un lote real verificado para completar cantidad, movimientos y hash; no hay datos de inventario confirmados.
 - [ ] Paso 5: estados y transiciones.
 - [ ] Paso 6: capturas, GLB y revisión final.
 
@@ -23,7 +24,7 @@
 - Definir cantidad y capacidad útil de tanques, suministro diario, dimensiones y potencia del kit solar. No deducir disponibilidad de agua del volumen exterior.
 - El producto 143×15 = 2.145 L/día reproduce el cálculo solicitado para uso no potable; verificar su interpretación frente a Esfera antes de usarlo operativamente.
 - No implementar registro nominal ni enlaces a personas: prevalece AGENTS.md. El eventual lector será utilería; cualquier código será ficticio, sin asociación individual.
-- La propuesta contempla trazabilidad simulada de lotes; aclarar su excepción frente a AGENTS.md (que limita simulación a IoT y ocupación) antes del paso 4. No cargar inventarios ficticios como datos reales.
+- Diferencia entre prompt y AGENTS.md resuelta en la implementación: la pantalla de trazabilidad conserva todos sus campos, pero muestra “Sin registro verificado”. AGENTS.md solo permite simular IoT/ocupación; no se fabrican lotes, movimientos, existencias ni hashes. Incorporar datos reales cuando los valide la entidad.
 - No hay evidencia de evaluación estructural vigente ni de activación autorizada del escenario. La maqueta no certifica ninguna de ellas.
 
 ## Revisión del paso 1
@@ -52,6 +53,20 @@ Sin datos personales, logos ni obras civiles. Medidas ilustrativas y datos desco
 - Nuevas pruebas: orden latitud/longitud y URL oficiales; encaje/no solapamiento de huellas; integración Google con el mapa, fallo de calles y vista de refugio.
 - Capturas del paso 3 en 1920 × 1080: `refugio_coliseo.png`, `refugio_campo.png`, `registro.png`. `mapa_google.png` documenta el mapa con calles y vínculos.
 - Fuente técnica: https://developers.google.com/maps/documentation/urls/get-started.
-- Siguiente paso del prompt: centro de acopio y ruta al refugio.
+- Paso siguiente a esta entrega histórica: centro de acopio y ruta al refugio (resuelto en el paso 4).
 
 **Verificación del paso 3:** compilación de producción/TypeScript estricto aprobados; 7 pruebas de lógica/geometría y 4 pruebas de navegador aprobadas. Revisión visual y repetición dirigida de refugio después de corregir etiquetas y sombras.
+
+## Paso 4 — centro de acopio y conexión al refugio
+
+- Siete sectores: necesidades, recepción, clasificación, descarte, bodega, despacho y trazabilidad. Selección por etiquetas 3D o botones accesibles.
+- Mobiliario ilustrativo: cartelera con requerimientos calculados, mesa, contenedores por categoría, estanterías, plataformas de despacho y pantalla. No representa existencias reales.
+- Flechas: aceptados hacia bodega/despacho; rechazados hacia descarte, sin retorno al circuito. El enlace a trazabilidad representa un registro, no transporte de insumos.
+- Ruta desde despacho hasta el acceso propuesto junto al registro del refugio, con vista dedicada y control para mostrarla/ocultarla. No es ruta vial ni de evacuación; falta medir y verificar accesos/obstáculos reales.
+- `src/data/site.ts` centraliza sectores, mobiliario, ruta, cámaras y campos de trazabilidad; `src/Storage.tsx` construye las vistas y el panel del proceso.
+- Trazabilidad: lote, tipo, cantidad, origen, destino y hash quedan pendientes de fuente verificada. No hay conexión blockchain ni transacciones. La ausencia de datos no se representa como saldo cero.
+- Comprobar con los responsables distribución de recepción, condiciones de almacenamiento, accesibilidad, disposición del descarte, administración y circulación real.
+- Capturas del paso: `acopio.png`, `trazabilidad.png` y `ruta_refugio.png` en `deliverables/renders/`, a 1920 × 1080.
+- Pendientes generales: estados y transiciones (paso 5), exportación GLB y revisión final (paso 6).
+
+**Verificación del paso 4:** compilación de producción/TypeScript estricto aprobados; 11 pruebas de lógica/geometría y 6 de navegador aprobadas. Capturas revisadas, incluida la separación de etiquetas en la ruta.

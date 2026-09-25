@@ -92,8 +92,20 @@ export const site = {
       {
         id: "baseball",
         label: "Acopio",
-        position: [235, 80, 120] as const,
+        position: [173, 80, 115] as const,
         target: [173, 0, 40] as const,
+      },
+      {
+        id: "supply-route",
+        label: "Ruta al refugio",
+        position: [120, 170, 195] as const,
+        target: [100, 0, 10] as const,
+      },
+      {
+        id: "traceability",
+        label: "Pantalla de trazabilidad",
+        position: [153, 10, 82] as const,
+        target: [153, 2.6, 64] as const,
       },
     ],
   },
@@ -427,3 +439,273 @@ export const refugeLayout = evidence(
   sources.prompt,
   "5 huellas interiores de 70 m² reconfiguradas como franjas; 3 cubiertas exteriores de 10×7 m. Validar evacuación, circulación, protección y accesibilidad.",
 );
+
+/** Acopio conceptual: el mobiliario no describe existencias ni instalaciones reales. */
+export const storageLayout = evidence(
+  {
+    sectors: [
+      {
+        id: "needs",
+        number: 1,
+        label: site.storageFlow[0],
+        shortLabel: "Necesidades",
+        position: [-20, 0, -20] as const,
+        footprint: { length: 14, width: 10 },
+        color: "#e7ce9b",
+        description:
+          "Publicar el requerimiento calculado para el escenario. Las existencias son desconocidas: todavía no se puede calcular el faltante real.",
+      },
+      {
+        id: "reception",
+        number: 2,
+        label: site.storageFlow[1],
+        shortLabel: "Recepción",
+        position: [0, 0, -20] as const,
+        footprint: { length: 14, width: 10 },
+        color: "#b4caba",
+        description:
+          "Verificar y registrar los insumos que llegan antes de incorporarlos al inventario. La maqueta no registra donantes ni personas.",
+      },
+      {
+        id: "sorting",
+        number: 3,
+        label: site.storageFlow[2],
+        shortLabel: "Clasificación",
+        position: [20, 0, -17] as const,
+        footprint: { length: 14, width: 16 },
+        color: "#a7c3c9",
+        description:
+          "Separar por categoría y revisar estado. Lo aceptado sigue a la bodega; lo vencido o inservible pasa al área de descarte.",
+      },
+      {
+        id: "rejection",
+        number: 4,
+        label: site.storageFlow[3],
+        shortLabel: "Descarte",
+        position: [22, 0, 8] as const,
+        footprint: { length: 10, width: 10 },
+        color: "#dfb19a",
+        description:
+          "Separar los insumos vencidos o inservibles y registrar el motivo. No vuelven al circuito de distribución; la disposición la define la entidad responsable.",
+      },
+      {
+        id: "warehouse",
+        number: 5,
+        label: site.storageFlow[4],
+        shortLabel: "Bodega",
+        position: [0, 0, 10] as const,
+        footprint: { length: 18, width: 16 },
+        color: "#b6c5a1",
+        description:
+          "Conservar los insumos aceptados en estanterías y registrar entradas, salidas y saldo verificados. Los muebles dibujados son ilustrativos; no representan existencias.",
+      },
+      {
+        id: "dispatch",
+        number: 6,
+        label: site.storageFlow[5],
+        shortLabel: "Despacho",
+        position: [-20, 0, 10] as const,
+        footprint: { length: 12, width: 12 },
+        color: "#9fc3b3",
+        description:
+          "Preparar el despacho que solicite el refugio y registrar origen, destino y cantidad. La recepción en el refugio requiere confirmación por la entidad responsable.",
+      },
+      {
+        id: "traceability",
+        number: 7,
+        label: site.storageFlow[6],
+        shortLabel: "Trazabilidad",
+        position: [-20, 0, 24] as const,
+        footprint: { length: 12, width: 7 },
+        color: "#c3c4d3",
+        description:
+          "Consultar la secuencia de un lote: ingreso, despacho y entrega. Sin un registro verificado no se muestran cantidades, movimientos ni un hash ficticio.",
+      },
+    ] as const,
+    flows: [
+      {
+        from: "needs",
+        to: "reception",
+        kind: "guidance",
+        label: "Consultar necesidades",
+        points: [
+          [-12, 0, -20],
+          [-8, 0, -20],
+        ] as const,
+      },
+      {
+        from: "reception",
+        to: "sorting",
+        kind: "accepted",
+        label: "Ingreso a revisión",
+        points: [
+          [8, 0, -20],
+          [12, 0, -20],
+        ] as const,
+      },
+      {
+        from: "sorting",
+        to: "warehouse",
+        kind: "accepted",
+        label: "Insumos aceptados",
+        points: [
+          [16, 0, -7],
+          [10, 0, -3],
+          [0, 0, -3],
+          [0, 0, 1],
+        ] as const,
+      },
+      {
+        from: "sorting",
+        to: "rejection",
+        kind: "rejected",
+        label: "Vencido o inservible",
+        points: [
+          [24, 0, -7],
+          [24, 0, 2],
+        ] as const,
+      },
+      {
+        from: "warehouse",
+        to: "dispatch",
+        kind: "accepted",
+        label: "Preparar salida",
+        points: [
+          [-10, 0, 10],
+          [-13, 0, 10],
+        ] as const,
+      },
+      {
+        from: "dispatch",
+        to: "traceability",
+        kind: "record",
+        label: "Registrar movimiento",
+        points: [
+          [-20, 0, 17],
+          [-20, 0, 19.5],
+        ] as const,
+      },
+    ],
+    categories: [
+      "Alimentos",
+      "Agua · uso no potable",
+      "Aseo",
+      "Abrigo",
+      "Kits",
+    ],
+    categoryCenters: [
+      [-4, 0, -4],
+      [0, 0, -4],
+      [4, 0, -4],
+      [-2, 0, 3],
+      [2, 0, 3],
+    ] as const,
+    shelfCenters: [
+      [-5, 0, 0],
+      [0, 0, 0],
+      [5, 0, 0],
+    ] as const,
+    fixtures: {
+      floorThickness: 0.07,
+      labelHeight: 3.4,
+      labelEdgeOffset: 1.5,
+      board: {
+        size: [5, 2.5, 0.16] as const,
+        centerHeight: 2.8,
+        postThickness: 0.12,
+      },
+      table: { size: [5, 0.14, 2] as const, height: 1.1, postThickness: 0.12 },
+      bin: { size: [2, 1, 2] as const, wallThickness: 0.1 },
+      shelf: {
+        width: 3.2,
+        depth: 6,
+        height: 3.2,
+        postThickness: 0.1,
+        boardThickness: 0.1,
+        levels: [0.2, 1.5, 3] as const,
+      },
+      pallet: {
+        size: [4, 0.2, 3] as const,
+        centers: [
+          [-3, 0, 0],
+          [3, 0, 0],
+        ] as const,
+      },
+      screen: {
+        size: [4, 2.2, 0.14] as const,
+        centerHeight: 2.6,
+        standThickness: 0.14,
+      },
+    },
+    arrows: {
+      width: 0.42,
+      height: 0.12,
+      headLength: 1.3,
+      headWidth: 1.1,
+      spacing: 16,
+    },
+    route: {
+      width: 2.4,
+      height: 0.09,
+      color: "#b17a32",
+      points: [
+        [
+          site.venues.baseball.position.value[0] - 20,
+          0,
+          site.venues.baseball.position.value[2] + 10,
+        ],
+        [135, 0, 50],
+        [135, 0, -32],
+        [45, 0, -32],
+        [45, 0, -14],
+        [
+          refugeLayout.value.registration.position[0],
+          0,
+          refugeLayout.value.registration.position[2] + 3,
+        ],
+      ] as const,
+      label: "Conexión conceptual · despacho → acceso al refugio",
+      note: "Trazado ilustrativo, no ruta vial ni de evacuación. Accesos, obstáculos y circulación por verificar en sitio.",
+      labelPosition: [135, 8, 5] as const,
+      entranceLabelPosition: [35, 5, -25] as const,
+    },
+    requiredSupplies: [
+      {
+        label: "Kits de refugio",
+        quantity: emergencyCalculation.value.kitsRequired,
+        unit: "kits",
+      },
+      {
+        label: "Baños portátiles",
+        quantity: emergencyCalculation.value.toiletsRequired,
+        unit: "unidades",
+      },
+      {
+        label: "Uso no potable",
+        quantity: emergencyCalculation.value.nonPotableLitersPerDay,
+        unit: "L/día",
+      },
+    ],
+    traceability: {
+      status: "Sin registro verificado",
+      fields: [
+        "Lote",
+        "Tipo de insumo",
+        "Cantidad",
+        "Origen",
+        "Destino",
+        "Hash",
+      ],
+      record: null,
+      note: "Estructura preparada para un lote real. Sin inventario, entregas, transacciones ni conexión a blockchain confirmados.",
+    },
+    legend:
+      "Sectores, mobiliario y circulación ilustrativos · dimensiones reales del diamante POR MEDIR",
+  },
+  "ilustrativo",
+  sources.prompt,
+  "Flujo según la propuesta del equipo. El descarte es un ramal separado. AGENTS.md limita la simulación a IoT y ocupación: la trazabilidad se deja sin datos hasta contar con evidencia verificable.",
+);
+
+export type StorageSectorId =
+  (typeof storageLayout.value.sectors)[number]["id"];

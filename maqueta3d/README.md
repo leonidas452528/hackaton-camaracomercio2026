@@ -1,6 +1,6 @@
 # Cali Activa · mapa territorial y maqueta 3D
 
-Aplicación local con Vite, React, TypeScript estricto, Leaflet y React Three Fiber/Drei. Mapa con archivos reales de IDESC y escena del refugio del sitio piloto (paso 3 del prompt). No hay disponibilidad operativa confirmada en los datos.
+Aplicación local con Vite, React, TypeScript estricto, Leaflet y React Three Fiber/Drei. Mapa con archivos reales de IDESC y escena del refugio y centro de acopio del sitio piloto (paso 4 del prompt). No hay disponibilidad operativa confirmada en los datos.
 
 ## Abrir
 
@@ -41,7 +41,7 @@ npm run test:e2e                # filtros, fichas, 3D, móvil y capturas
 
 La pestaña 3D muestra el hockey, el volumen genérico del coliseo y el diamante en las posiciones aproximadas de la propuesta. Incluye órbita, vistas predefinidas y recuadro de Evangelista Mora. Las dimensiones y cantidades están en `src/data/site.ts`. La escena **no está georreferenciada al mapa**: hay que confirmar la identidad y posición de los escenarios genéricos del catálogo. No se inventaron coordenadas para enlazarlos.
 
-Quedan pendientes los pasos 4–6 del prompt: acopio, estados/transiciones, GLB y renders finales. Las capturas actuales en `deliverables/renders/` documentan el mapa y el refugio; no representan la escena completa con acopio y transiciones.
+Quedan pendientes los pasos 5–6 del prompt: estados/transiciones, GLB y renders finales. Las capturas actuales en `deliverables/renders/` documentan el mapa y el refugio y el centro de acopio; todavía no incluyen las transiciones entre estados.
 
 ## Reconocer los espacios en Google Maps
 
@@ -58,3 +58,13 @@ Las huellas interiores se reconfiguran en franjas de 4,8 × (70/4,8) m para cons
 El registro muestra el código ficticio `DEMO-0001` y conteos agregados SIMULADOS; no existe registro nominal ni asociación del código con una persona. Las cantidades del equipamiento no representan instalaciones reales; el número operativo de tanques y su capacidad útil siguen sin confirmar.
 
 Controles: vistas General, Campo de hockey, Coliseo, Punto de registro y Acopio; órbita; mostrar/ocultar cubiertas para examinar las particiones. Las imágenes `refugio_coliseo.png`, `refugio_campo.png` y `registro.png` documentan este paso a 1920 × 1080.
+
+## Centro de acopio · paso 4
+
+En la pestaña **Maqueta del sitio piloto**, abrir **Acopio**. Las siete etiquetas 3D y los botones del panel permiten seleccionar sectores y consultar su función. La clasificación tiene cinco categorías; los insumos rechazados siguen un ramal independiente hacia descarte. La bodega contiene estanterías ilustrativas, sin representar cantidades de existencias.
+
+La cartelera muestra los requerimientos brutos calculados para el caso de la ficha; no son faltantes, pues se desconoce el inventario. **Pantalla de trazabilidad** abre una vista cercana con los campos lote, tipo, cantidad, origen, destino y hash. Se muestran pendientes de fuente verificada: el prompt sugería un lote simulado, pero AGENTS.md limita la simulación a IoT y ocupación. No se fabricaron datos ni un hash. No hay blockchain conectada.
+
+**Ruta al refugio** encuadra el enlace desde despacho hasta el acceso propuesto junto al registro. Puede ocultarse con **Mostrar ruta conceptual**. Es un trazado ilustrativo sin georreferenciación, no una ruta vial ni de evacuación; requiere verificación en sitio.
+
+Las medidas, cámaras, cantidades de mobiliario y posiciones están en `src/data/site.ts`; la escena y el panel en `src/Storage.tsx`. Pruebas en `scripts/storage.test.mjs` (encaje, ramal de descarte, ruta e integridad de la pantalla) y `tests/storage.spec.ts` (interacción, móvil, teclado y capturas). Las capturas `acopio.png`, `trazabilidad.png` y `ruta_refugio.png` se generan a 1920 × 1080.
