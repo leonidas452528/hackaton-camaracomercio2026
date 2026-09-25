@@ -53,7 +53,7 @@ function Partition({ position }: { position: Vector }) {
     </group>
   );
 }
-function Kit({
+export function Kit({
   position,
   indoor,
   showRoofs,
@@ -141,9 +141,13 @@ function Kit({
 export function IndoorRefuge({
   showRoofs,
   labels,
+  showKits = true,
+  showTanks = true,
 }: {
   showRoofs: boolean;
   labels: boolean;
+  showKits?: boolean;
+  showTanks?: boolean;
 }) {
   const hall = presentation.genericHall.value;
   const { columnThickness, roofOpacity } = layout.hall;
@@ -185,20 +189,20 @@ export function IndoorRefuge({
           opacity={roofOpacity}
         />
       )}
-      {layout.indoor.centers.map((p, i) => (
-        <Kit
-          key={i}
-          position={p}
-          index={i}
-          indoor
-          showRoofs={false}
-          labels={false}
-        />
-      ))}
-      {layout.tanks.centers.map((p, i) => (
-        <Tank key={i} position={p} />
-      ))}
-      {labels && (
+      {showKits &&
+        layout.indoor.centers.map((p, i) => (
+          <Kit
+            key={i}
+            position={p}
+            index={i}
+            indoor
+            showRoofs={false}
+            labels={false}
+          />
+        ))}
+      {showTanks &&
+        layout.tanks.centers.map((p, i) => <Tank key={i} position={p} />)}
+      {labels && showTanks && (
         <SceneLabel
           position={[
             layout.tanks.centers[0][0],
@@ -322,7 +326,11 @@ function SolarKit({ labels }: { labels: boolean }) {
       />
       {labels && (
         <SceneLabel
-          position={[layout.fieldLabels.solar[0]-solar.position[0],layout.fieldLabels.solar[1],layout.fieldLabels.solar[2]-solar.position[2]]}
+          position={[
+            layout.fieldLabels.solar[0] - solar.position[0],
+            layout.fieldLabels.solar[1],
+            layout.fieldLabels.solar[2] - solar.position[2],
+          ]}
           title="Kit solar portátil"
           subtitle="Ilustrativo · potencia por definir"
         />
@@ -385,23 +393,26 @@ function Registration({ labels }: { labels: boolean }) {
 export function FieldRefuge({
   showRoofs,
   view,
+  showKits = true,
 }: {
   showRoofs: boolean;
+  showKits?: boolean;
   view: string;
 }) {
   const labels = view === "hockey";
   return (
     <group position={[0, presentation.surfaceThickness * 2, 0]}>
-      {layout.outdoor.centers.map((p, i) => (
-        <Kit
-          key={i}
-          position={p}
-          index={i + emergencyCalculation.value.indoorKits}
-          indoor={false}
-          showRoofs={showRoofs}
-          labels={false}
-        />
-      ))}
+      {showKits &&
+        layout.outdoor.centers.map((p, i) => (
+          <Kit
+            key={i}
+            position={p}
+            index={i + emergencyCalculation.value.indoorKits}
+            indoor={false}
+            showRoofs={showRoofs}
+            labels={false}
+          />
+        ))}
       {layout.modules.map((m) => (
         <ClosedModule key={m.label} {...m} />
       ))}

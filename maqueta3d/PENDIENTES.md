@@ -1,6 +1,6 @@
 # Maqueta 3D — avance y pendientes
 
-25 de septiembre de 2026. Ejecutados los pasos 1, 2, 3 y 4 de `PROMPT_CODEX_3D.md`, más el mapa con datos reales solicitado por el equipo. El prompt exige detenerse al terminar cada paso.
+25 de septiembre de 2026. Ejecutados los pasos 1, 2, 3, 4 y 5 de `PROMPT_CODEX_3D.md`, más el mapa con datos reales solicitado por el equipo. El prompt exige detenerse al terminar cada paso.
 
 - [x] Centralizar medidas, procedencia, marcadores y cálculos en `src/data/site.ts`.
 - [x] Leer RETO-01 del portafolio local y copiarlo a la ruta documental indicada. La ficha respalda las 143 personas del caso.
@@ -12,7 +12,7 @@
 - [x] Mapa con calles por defecto y enlaces oficiales de Google Maps, satélite y Street View por coordenadas; acceso por espacio y zona visible.
 - [x] Paso 4: acopio interactivo con siete sectores, ramal de descarte, ruta conceptual y pantalla de trazabilidad sin registro verificado.
 - [ ] Incorporar un lote real verificado para completar cantidad, movimientos y hash; no hay datos de inventario confirmados.
-- [ ] Paso 5: estados y transiciones.
+- [x] Paso 5: estados y transiciones, reutilización de kits, riego ilustrativo y movimiento reducido.
 - [ ] Paso 6: capturas, GLB y revisión final.
 
 ## Datos y restricciones por resolver
@@ -70,3 +70,14 @@ Sin datos personales, logos ni obras civiles. Medidas ilustrativas y datos desco
 - Pendientes generales: estados y transiciones (paso 5), exportación GLB y revisión final (paso 6).
 
 **Verificación del paso 4:** compilación de producción/TypeScript estricto aprobados; 11 pruebas de lógica/geometría y 6 de navegador aprobadas. Capturas revisadas, incluida la separación de etiquetas en la ruta.
+
+## Paso 5 — estados y transiciones
+
+- Selector de uso cotidiano, emergencia por sismo y recuperación; estado anunciado y controles por teclado.
+- Ocho kits reutilizados: feria, distribución de refugio y compactación/retorno a bodega. Cambios de destino durante la animación sin reiniciar la posición.
+- Riego ilustrativo con los tanques existentes; acopio vacío en uso cotidiano. No se afirma suministro real ni evento programado.
+- En recuperación se retira equipamiento temporal del campo/coliseo. La animación no certifica inventario, acta, limpieza ni autorización de retorno.
+- Movimiento reducido automático por preferencia del sistema y control manual.
+- Capturas de revisión: `cotidiano.png` y `recuperacion.png` a 1920 × 1080. Pendiente paso 6: exportación GLB de emergencia y revisión/capturas finales.
+
+**Verificación del paso 5:** compilación de producción/TypeScript estricto aprobados; 12 pruebas de lógica/geometría y 8 de navegador aprobadas por bloques, con repetición del ciclo tras corregir encuadre y etiquetas. Revisión visual de cotidiano y recuperación completada.

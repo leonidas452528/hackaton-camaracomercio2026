@@ -709,3 +709,59 @@ export const storageLayout = evidence(
 
 export type StorageSectorId =
   (typeof storageLayout.value.sectors)[number]["id"];
+
+export type SceneState = "everyday" | "emergency" | "recovery";
+export const lifecycle = evidence(
+  {
+    durationSeconds: 2.4,
+    collapseFraction: 0.35,
+    packedScale: [0.22, 0.12, 0.22] as const,
+    states: [
+      {
+        id: "everyday",
+        label: "Uso cotidiano",
+        description:
+          "Los ocho kits se reutilizan como stands de feria en el campo. Los tanques ilustran riego de zonas verdes con agua de uso no potable; el acopio queda vacío.",
+      },
+      {
+        id: "emergency",
+        label: "Emergencia (sismo)",
+        description:
+          "Cinco kits interiores y tres exteriores, servicios propuestos y circuito de acopio. La activación requiere decisión de la autoridad e inspecciones; esta vista no las acredita.",
+      },
+      {
+        id: "recovery",
+        label: "Recuperación",
+        description:
+          "Los kits se compactan y regresan a la bodega ilustrativa. Campo y coliseo quedan sin equipamiento temporal. El retorno requiere revisión, limpieza y acta; aquí no se certifica su cumplimiento.",
+      },
+    ] as const,
+    everydayCenters: Array.from(
+      { length: kitsRequired },
+      (_, i) => [-30 + (i % 4) * 20, 0.24, i < 4 ? -13 : 13] as const,
+    ),
+    recoveryCenters: Array.from(
+      { length: kitsRequired },
+      (_, i) =>
+        [
+          site.venues.baseball.position.value[0] - 6 + (i % 4) * 4,
+          0.24,
+          site.venues.baseball.position.value[2] + 7 + Math.floor(i / 4) * 6,
+        ] as const,
+    ),
+    greenPatch: {
+      position: [123, 0.18, -112] as const,
+      size: [8, 0.12, 12] as const,
+    },
+    hoseWidth: 0.12,
+    overviewCamera: {
+      position: [120, 170, 195] as const,
+      target: [90, 0, -25] as const,
+    },
+    labelPosition: [-5, 8, -20] as const,
+    recoveryLabelPosition: [173, 8, 39] as const,
+  },
+  "ilustrativo",
+  "PROMPT_CODEX_3D.md — sección 4; docs/propuesta_cali_activa.md — Fase 4 y uso cotidiano",
+  "Animación conceptual de reutilización, no movimiento real de inventario ni ruta logística validada.",
+);

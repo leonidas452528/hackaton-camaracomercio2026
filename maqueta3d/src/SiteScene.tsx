@@ -11,10 +11,12 @@ import {
   storageLayout,
   type StorageSectorId,
 } from "./data/site";
+import { MovingKits, EverydayUse, RecoveryWarehouse } from "./Lifecycle";
+import { lifecycle, type SceneState } from "./data/site";
 import { formatNumber } from "./types";
 const { venues, presentation } = site;
 type View = (typeof presentation.views)[number];
-function CameraView({ view }: { view: View }) {
+function CameraView({ view }: { view: { position: readonly [number, number, number]; target: readonly [number, number, number] } }) {
   const { camera } = useThree();
   useEffect(() => {
     camera.position.set(view.position[0], view.position[1], view.position[2]);
@@ -36,7 +38,13 @@ function Overview({
   showRoute,
   selectedSector,
   onSelectSector,
+  state,
+  reducedMotion,
+  onComplete,
 }: {
+  state: SceneState;
+  reducedMotion: boolean;
+  onComplete: () => void;
   view: View;
   showRoofs: boolean;
   showRoute: boolean;
@@ -103,8 +111,10 @@ function Overview({
           />
           <meshStandardMaterial color="#f6f4e8" />
         </mesh>
-        <FieldRefuge showRoofs={showRoofs} view={view.id} />
-        {view.id === "general" && (
+        {state === "emergency" && (
+          <FieldRefuge showKits={false} showRoofs={showRoofs} view={view.id} />
+        )}
+        {view.id === "general" && state !== "everyday" && (
           <Label
             position={[0, 5, 0]}
             title="Campo de hockey"
@@ -113,8 +123,13 @@ function Overview({
         )}
       </group>
       <group position={[...venues.volleyball.position.value]}>
-        <IndoorRefuge showRoofs={showRoofs} labels={view.id === "volleyball"} />
-        {view.id === "general" && (
+        <IndoorRefuge
+          showKits={false}
+          showTanks={state !== "recovery"}
+          showRoofs={showRoofs}
+          labels={view.id === "volleyball"}
+        />
+        {view.id === "general" && state !== "everyday" && (
           <Label
             position={[0, hall.height + 6, 0]}
             title="Coliseo Francisco Chois"
@@ -133,21 +148,63 @@ function Overview({
           />
           <meshStandardMaterial color="#c8b58e" />
         </mesh>
-        <StorageCenter
-          selected={selectedSector}
-          onSelect={onSelectSector}
-          showLabels={view.id === "baseball"}
-        />
+        {state === "emergency" && (
+          <StorageCenter
+            selected={selectedSector}
+            onSelect={onSelectSector}
+            showLabels={view.id === "baseball"}
+          />
+        )}
         {(view.id === "general" || view.id === "supply-route") && (
           <Label
             position={[0, 5, 0]}
-            title="Diamante de Béisbol · acopio"
+            title={
+              state === "everyday"
+                ? "Diamante de Béisbol · acopio vacío"
+                : "Diamante de Béisbol · acopio"
+            }
             subtitle={`${baseball.length} × ${baseball.width} m ilustrativos · POR MEDIR`}
           />
         )}
       </group>
-      {showRoute && <SupplyRoute labels={view.id === "supply-route"} />}
-      <CameraView view={view} />
+      {state === "emergency" && showRoute && (
+        <SupplyRoute labels={view.id === "supply-route"} />
+      )}
+      {state === "recovery" && <RecoveryWarehouse />}
+      <MovingKits
+        state={state}
+        reducedMotion={reducedMotion}
+        showRoofs={showRoofs}
+        onComplete={onComplete}
+      />
+      {state === "everyday" && (
+        <EverydayUse
+          labels={view.id === "general" || view.id === "volleyball"}
+        />
+      )}
+      {state === "everyday" &&
+        (view.id === "general" || view.id === "hockey") && (
+          <Label
+            position={lifecycle.value.labelPosition}
+            title="Feria · ocho kits reutilizados"
+            subtitle="Stands ilustrativos · no evento programado"
+          />
+        )}
+      {state === "recovery" &&
+        (view.id === "general" || view.id === "baseball") && (
+          <Label
+            position={lifecycle.value.recoveryLabelPosition}
+            title="Kits desmontados en bodega"
+            subtitle="Retorno ilustrativo · inventario por verificar"
+          />
+        )}
+      <CameraView
+        view={
+          view.id === "general" && state !== "emergency"
+            ? { ...view, ...lifecycle.value.overviewCamera }
+            : view
+        }
+      />
     </>
   );
 }
@@ -171,6 +228,17 @@ class SceneBoundary extends Component<
   }
 }
 export default function SiteScene() {
+  const [state, setState] = useState<SceneState>("emergency");
+  const [transitioning, setTransitioning] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
   const [view, setView] = useState<View>(presentation.views[0]);
   const [showRoofs, setShowRoofs] = useState(true);
   const quantities = emergencyCalculation.value;
@@ -190,7 +258,7 @@ export default function SiteScene() {
     <section className="scene-section">
       <div className="scene-intro">
         <div>
-          <p className="eyebrow">PASO 4 · REFUGIO Y CENTRO DE ACOPIO</p>
+          <p className="eyebrow">PASO 5 · CICLO DE USO DEL ESPACIO</p>
           <h2>Unidad Deportiva Jaime Aparicio</h2>
           <p>
             {site.coordinates.legend}. Una unidad de escena equivale a un metro.
@@ -200,9 +268,58 @@ export default function SiteScene() {
           Maqueta ilustrativa, no levantamiento del sitio
         </span>
       </div>
+      <div
+        className="lifecycle-controls"
+        role="group"
+        aria-label="Estado de la maqueta"
+      >
+        {lifecycle.value.states.map((option) => (
+          <button
+            key={option.id}
+            aria-pressed={state === option.id}
+            onClick={() => {
+              if (option.id === state) return;
+              setState(option.id);
+              setTransitioning(!reducedMotion);
+              setView(presentation.views[0]);
+            }}
+          >
+            {option.label}
+          </button>
+        ))}
+        <label>
+          <input
+            type="checkbox"
+            checked={reducedMotion}
+            onChange={(e) => setReducedMotion(e.target.checked)}
+          />{" "}
+          Reducir movimiento
+        </label>
+      </div>
+      <div
+        className="lifecycle-status"
+        data-state={state}
+        data-transitioning={transitioning}
+        aria-live="polite"
+      >
+        <strong>
+          {transitioning
+            ? "Transición visual en curso"
+            : lifecycle.value.states.find((s) => s.id === state)!.label}
+        </strong>
+        <p>{lifecycle.value.states.find((s) => s.id === state)!.description}</p>
+        <small>
+          Vista ilustrativa: no cambia el estado operativo del espacio ni
+          registra movimientos de inventario.
+        </small>
+      </div>
       <div className="scene-toolbar">
         {presentation.views.map((v) => (
           <button
+            disabled={
+              state !== "emergency" &&
+              ["registration", "supply-route", "traceability"].includes(v.id)
+            }
             className={v.id === view.id ? "active" : ""}
             onClick={() => setView(v)}
             key={v.id}
@@ -213,6 +330,7 @@ export default function SiteScene() {
         <label className="roof-toggle">
           <input
             type="checkbox"
+            disabled={state !== "emergency"}
             checked={showRoute}
             onChange={(e) => setShowRoute(e.target.checked)}
           />
@@ -227,31 +345,34 @@ export default function SiteScene() {
           Mostrar cubiertas
         </label>
       </div>
-      <div
-        className="refuge-summary"
-        aria-label="Resumen de la propuesta de refugio"
-      >
-        <span>
-          <strong>{quantities.indoorKits}</strong> kits interiores
-        </span>
-        <span>
-          <strong>{quantities.outdoorKits}</strong> kits con cubierta
-        </span>
-        <span>
-          <strong>{quantities.toiletsRequired}</strong> baños portátiles
-        </span>
-        <span>
-          <strong>{quantities.closedModules}</strong> módulos cerrados
-        </span>
-        <span>
-          <strong>
-            {formatNumber(quantities.nonPotableLitersPerDay)} L/día
-          </strong>{" "}
-          uso no potable · cálculo de referencia
-        </span>
-      </div>
+      {state === "emergency" && (
+        <div
+          className="refuge-summary"
+          aria-label="Resumen de la propuesta de refugio"
+        >
+          <span>
+            <strong>{quantities.indoorKits}</strong> kits interiores
+          </span>
+          <span>
+            <strong>{quantities.outdoorKits}</strong> kits con cubierta
+          </span>
+          <span>
+            <strong>{quantities.toiletsRequired}</strong> baños portátiles
+          </span>
+          <span>
+            <strong>{quantities.closedModules}</strong> módulos cerrados
+          </span>
+          <span>
+            <strong>
+              {formatNumber(quantities.nonPotableLitersPerDay)} L/día
+            </strong>{" "}
+            uso no potable · cálculo de referencia
+          </span>
+        </div>
+      )}
       <p className="small-note">
-        {refugeLayout.value.legend}. La ocupación del registro es SIMULADA.
+        {refugeLayout.value.legend}.{" "}
+        {state === "emergency" && "La ocupación del registro es SIMULADA."}
       </p>
       <div className="scene-canvas">
         <SceneBoundary>
@@ -263,6 +384,9 @@ export default function SiteScene() {
             }}
           >
             <Overview
+              state={state}
+              reducedMotion={reducedMotion}
+              onComplete={() => setTransitioning(false)}
               view={view}
               showRoofs={showRoofs}
               showRoute={showRoute}
@@ -272,8 +396,12 @@ export default function SiteScene() {
           </Canvas>
         </SceneBoundary>
       </div>
-      <p className="route-note">{storageLayout.value.route.note}</p>
-      <StoragePanel selected={selectedSector} onSelect={selectSector} />
+      {state === "emergency" && (
+        <>
+          <p className="route-note">{storageLayout.value.route.note}</p>
+          <StoragePanel selected={selectedSector} onSelect={selectSector} />
+        </>
+      )}
       <div className="scene-notes">
         <div>
           <h3>Fuera del encuadre · Evangelista Mora</h3>

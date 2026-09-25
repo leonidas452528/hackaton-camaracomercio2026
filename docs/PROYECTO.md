@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): paso 4, centro de acopio interactivo y ruta conceptual al refugio.
+**Última actualización:** 25 de septiembre de 2026 (tarde): paso 5, estados de uso y transiciones animadas de la maqueta.
 
 ---
 
@@ -301,6 +301,19 @@ Se construyó el centro de acopio en el volumen ilustrativo del Diamante de Béi
 - **Validación:** compilación de producción y TypeScript estricto aprobados; 11 pruebas de lógica/geometría y 6 de navegador aprobadas. Se verificaron sectores sin solapamiento, descarte separado, ruta sin colisiones con el equipamiento representado, trazabilidad vacía, teclado y móvil. Las pruebas no validan condiciones físicas ni disponibilidad real.
 - **Pendiente:** incorporar lote/inventario real verificado, validar la operación con actores y continuar con estados/transiciones (paso 5) y GLB/revisión final (paso 6).
 
+## 6.7 Estados y transiciones de la maqueta — paso 5 (25 de septiembre)
+
+Se implementó la sección 4 de `PROMPT_CODEX_3D.md`, siguiendo el uso cotidiano y la Fase 4 de `docs/propuesta_cali_activa.md`. No se incorporaron datasets ni cifras externas nuevas.
+
+- **Selector accesible:** Uso cotidiano, Emergencia (sismo) y Recuperación, con estado seleccionado, explicación y aviso de transición. El selector representa una propuesta visual; no modifica el estado operativo ni autoriza activaciones.
+- **Reutilización:** se conservan los mismos ocho kits en la escena. En uso cotidiano forman stands de feria en el campo; en emergencia vuelven a las cinco posiciones interiores y tres exteriores; en recuperación se compactan primero y luego se desplazan a la bodega ilustrativa. Campo y coliseo quedan sin equipamiento temporal. El desplazamiento visual no representa una ruta logística validada ni movimientos reales de inventario.
+- **Uso cotidiano:** tanques con conexión superficial ilustrativa a zona verde para riego de uso no potable. No se inventan caudal, suministro ni evento programado. Acopio vacío; registro y servicios de emergencia ocultos.
+- **Transiciones:** admiten cambios rápidos de destino desde la posición visual actual. Control de movimiento reducido, respetando también la preferencia del sistema. Cámaras y cubiertas continúan disponibles.
+- **Información contextual:** cifras de refugio, registro SIMULADO, panel de acopio y ruta de despacho solo aparecen en emergencia. Recuperación recuerda la revisión, limpieza y acta pendientes, sin certificarlas.
+- **Límites:** geometría y secuencia ilustrativas; sin datos personales, identificación facial, logos ni obra civil. La autoridad conserva la decisión y las evaluaciones estructurales y conceptos de Bomberos corresponden a sus responsables. No hay disponibilidad real confirmada ni trazabilidad inventada.
+- **Validación:** compilación de producción y TypeScript estricto aprobados; 12 pruebas de lógica/geometría y 8 pruebas de navegador aprobadas por bloques. Incluyen conservación/encaje de kits, ciclo completo, interrupciones rápidas, retorno a emergencia, movimiento reducido, teclado, móvil y regresión de mapa/refugio/acopio. Capturas revisadas y etiquetas/encuadre corregidos. No validan operaciones reales.
+- **Archivos:** `maqueta3d/src/Lifecycle.tsx`, `SiteScene.tsx`, `Refuge.tsx`, medidas y cantidades en `src/data/site.ts`, estilos, pruebas y documentación. Capturas de revisión `cotidiano.png` y `recuperacion.png`; la exportación GLB y revisión final pertenecen al paso 6.
+
 ## 7. Pendientes
 - [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
 - [x] Maqueta 3D, paso 2: escena general con controles y mapa de inventarios reales por comuna/barrio, fuentes y cruces verificados.
@@ -309,7 +322,8 @@ Se construyó el centro de acopio en el volumen ilustrativo del Diamante de Béi
 - [x] Maqueta 3D, paso 3: refugio y equipamiento ilustrativo, vista de registro y control de cubiertas.
 - [x] Maqueta 3D, paso 4: centro de acopio, sectores seleccionables, ramal de descarte, ruta conceptual y pantalla de trazabilidad preparada.
 - [ ] Obtener lote e inventario reales verificados para poblar la trazabilidad (cantidad, origen, destino, movimientos y hash); no fabricar datos.
-- [ ] Maqueta 3D, pasos 5 a 6: estados/transiciones, capturas finales y GLB; detenerse y reportar al terminar cada paso según el prompt.
+- [x] Maqueta 3D, paso 5: estados de uso cotidiano, emergencia y recuperación con transiciones y movimiento reducido.
+- [ ] Maqueta 3D, paso 6: capturas finales, exportación GLB y revisión final; detenerse y reportar según el prompt.
 - [ ] Artefacto 2: redactar los 6 campos y el "¿Cómo podríamos…?" con los hallazgos propios (albergues autogestionados y la amenaza cruzada con el Jarillón).
 - [ ] Artefacto 3: generar 6 a 8 ideas y filtrarlas.
 - [ ] Artefacto 4: propuesta de valor, validación con un usuario real (JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo) y plan del prototipo.

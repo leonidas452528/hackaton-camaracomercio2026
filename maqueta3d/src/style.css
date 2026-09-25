@@ -1304,3 +1304,43 @@ footer > span {
   font-size: 11px;
   margin: 4px 0 7px;
 }
+
+.lifecycle-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+.lifecycle-controls button {
+  padding: 0.8rem 1.1rem;
+  border: 1px solid #75968b;
+  border-radius: 0.4rem;
+  background: #fff;
+  color: #204a40;
+  font: inherit;
+  cursor: pointer;
+}
+.lifecycle-controls button[aria-pressed="true"] {
+  background: #245c4e;
+  color: white;
+}
+.lifecycle-controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.lifecycle-status {
+  background: #eaf0e6;
+  border-left: 4px solid #416e5c;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.lifecycle-status p {
+  margin: 0.5rem 0;
+}
+.lifecycle-controls button:focus-visible {
+  outline: 3px solid #b77816;
+  outline-offset: 3px;
+}
+.scene-toolbar button:disabled { opacity: .45; cursor: not-allowed; }
