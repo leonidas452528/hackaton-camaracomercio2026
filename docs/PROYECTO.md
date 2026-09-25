@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): datos reales de Cali.
+**Última actualización:** 25 de septiembre de 2026 (tarde): datos reales de Cali y paso 1 de la maqueta 3D.
 
 ---
 
@@ -244,7 +244,20 @@ Idea que los une: **el espacio público se diseña desde el inicio con dos vidas
 - **Validación de la Defensoría:** los parques de Chiminangos I y II y de Calimio, donde hubo albergues autogestionados, tienen amenaza **alta** de inundación, están en suelo **licuable** y quedan **a entre 72 y 152 m del dique** del río Cauca en Urbanización Calimio.
 - **Vacíos:** el RUD y las evaluaciones por barrio, el nivel del río en Juanchito (la CVC no tiene API), el aforo y los servicios de los escenarios, la población de 2026 por comuna y las redes de EMCALI.
 
+## 6.3 Maqueta 3D — paso 1 (25 de septiembre)
+
+Se inició la estructura de `PROMPT_CODEX_3D.md`, siguiendo su instrucción de detenerse al terminar cada paso. `maqueta3d/src/data/site.ts` centraliza las medidas, las posiciones relativas, el equipamiento, la procedencia y los cálculos. Las dimensiones desconocidas se conservan como `null` con marcador **POR MEDIR**. El detalle pendiente está en `maqueta3d/PENDIENTES.md`.
+
+- Se leyó la ficha RETO-01 del portafolio local y se incorporó en `docs/portafolio_retos_alcaldia_cali.pdf`: confirma **143 personas** en la Cancha de Hockey. Es evidencia del caso descrito por el reto, no un reporte de ocupación actual.
+- Cálculos reproducibles según el prompt: **8 kits, 5 interiores, 3 exteriores, 8 baños y 2.145 L/día de uso no potable**. Los 5 kits interiores se obtienen por división de áreas; **no demuestran encaje físico ni aforo autorizado**.
+- Las medidas deportivas se transcriben de la propuesta; falta verificar sus referencias y medir el sitio. Hockey: https://www.fih.hockey/static-assets/pdf/fih-junior_world-cup-_events_field_specifications-16-01-05.pdf · Voleibol: https://faculty.kfupm.edu.sa/pe/abuhilal/volleyball_rules.html
+- Quedan por verificar la interpretación del parámetro de agua frente a Esfera, cantidad y capacidad útil de tanques, distribución, accesibilidad y evaluaciones estructurales vigentes. No se deduce disponibilidad de suministro del volumen geométrico.
+- Se aplica el filtro de autoridad, estructura, Bomberos, minimización de datos y explicabilidad. No se implementa registro nominal; el eventual código de demostración no puede vincularse a personas. La trazabilidad simulada de lotes prevista en el prompt requiere resolver su diferencia con la restricción de simulación de AGENTS.md antes del paso 4.
+- El paso 1 incluye solo datos TypeScript; todavía no hay escena navegable, capturas ni exportación GLB.
+
 ## 7. Pendientes
+- [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
+- [ ] Maqueta 3D, pasos 2 a 6: escena, refugio, acopio, transiciones, capturas y GLB; detenerse y reportar al terminar cada paso según el prompt.
 - [ ] Artefacto 2: redactar los 6 campos y el "¿Cómo podríamos…?" con los hallazgos propios (albergues autogestionados y la amenaza cruzada con el Jarillón).
 - [ ] Artefacto 3: generar 6 a 8 ideas y filtrarlas.
 - [ ] Artefacto 4: propuesta de valor, validación con un usuario real (JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo) y plan del prototipo.
