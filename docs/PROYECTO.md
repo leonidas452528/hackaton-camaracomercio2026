@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (Sesión 2, referentes internacionales)
+**Última actualización:** 25 de septiembre de 2026 (Sesión 2, integración de las ideas del equipo)
 
 ---
 
@@ -188,6 +188,53 @@ Idea que los une: **el espacio público se diseña desde el inicio con dos vidas
 - Reglas visibles y explicables.
 - Sin reconocimiento facial.
 
+## 6.1 Integración de las ideas del equipo (25 de septiembre)
+
+### Las 4 piezas
+| Pieza | Quién | Qué aporta | Qué hay que ajustar |
+|---|---|---|---|
+| **Cali Activa multiamenaza** | Bitácora del equipo | La aptitud de un espacio depende de la amenaza; matriz de quién responde; albergues autogestionados; retorno | Nada: es la columna vertebral |
+| **Cali Lista** (`docs/cali_lista_contexto.md` y `docs/cali_lista.pdf`) | Pablo (fork) | Formulario de caracterización con 6 categorías; clasificación por **funciones** (albergue, acopio, punto de salud, conectividad); **adecuaciones mínimas permanentes** (por ejemplo, un punto fijo de agua) que sirven en la vida cotidiana y en la emergencia; ciclo que se retroalimenta | 1. Cambiar la palabra **"peritaje"** por "caracterización" o "verificación de aptitud": un peritaje suena a dictamen técnico, y eso cruza la línea roja de la NSR-10. 2. Cruzar las funciones con la amenaza. 3. El "tiempo real" se muestra con datos simulados o IoT |
+| **Refugios modulares de PVC + IoT** | Integrante del equipo (aún no ha subido material) | Cierran rápido las brechas físicas (cubierta, divisiones); se **reutilizan** en eventos, así que están en uso, mantenidos y probados; los sensores alimentan el tablero | Filtro legal fuerte: fuego, estructura, espectro y datos (ver abajo). En el prototipo va como maqueta o ficha técnica, con datos de sensores simulados |
+| **Marco legal** | Tú | Filtro transversal de todas las piezas | — |
+
+### Propuesta integrada en 3 capas
+1. **Capa de decisión (el software que se prototipa el sábado).**
+   - La ficha del espacio usa las variables de Cali Lista más una columna de aptitud por amenaza (sismo, inundación y sequía).
+   - Catálogo único de funciones: albergue, centro de acopio, punto de apoyo a salud (no reemplaza a la Secretaría de Salud), punto de agua, punto de información y conectividad, y zona de amortiguación (sin uso humano).
+   - Regla explicable: **aptitud = f(espacio, amenaza, función)** → los 3 mejores espacios → brechas según Esfera → entidad responsable → seguimiento → retorno.
+2. **Capa de adecuaciones permanentes.** Es una recomendación de salida del sistema, no una obra en el hackathon: toma de agua, puntos para conectar baños, energía solar y anclajes para los módulos. Se priorizan los espacios con mayor probabilidad de uso. Tiene respaldo en los referentes de Tokio (parques de prevención) y Ciudad del Cabo (puntos de agua).
+3. **Capa del kit modular y el IoT.**
+   - Módulos de PVC guardados en bodega. En tiempos normales se usan en eventos (CicloVida, ferias); en una emergencia cierran la brecha de "área cubierta".
+   - Sensores **sin cámaras**: nivel del tanque de agua, conteo agregado de entradas y salidas, temperatura y humedad.
+   - El nivel del río se toma de las fuentes oficiales (CVC o IDEAM); no lo mide un sensor propio.
+
+**Demo integrada:**
+1. Alerta naranja del Cauca.
+2. El sistema recomienda 3 espacios.
+3. Brecha de 9 baños → EMCALI y UAESP; brecha de 200 m² cubiertos → 2 kits de la bodega X.
+4. El tablero muestra "tanque al 40 %" (dato SIMULADO).
+5. Cambio a sismo: la recomendación cambia.
+6. Retorno: los módulos vuelven a la bodega y se firma el acta.
+
+### Filtro legal por capa (a cargo de quien lleva el marco legal)
+| Capa | Riesgo | Norma | Cómo lo resolvemos |
+|---|---|---|---|
+| Decisión | Que la herramienta decida | Ley 1523 de 2012 | Recomienda; decide la Secretaría o el Consejo Municipal |
+| Decisión | Que se confunda con una evaluación estructural | Ley 400 de 1997 y NSR-10 | Evitar la palabra "peritaje"; solo registrar si hay evaluación vigente y su fecha |
+| Decisión | Datos de personas | Leyes 1581 de 2012 y 1098 de 2006 | Solo conteos por ciclo vital |
+| Adecuaciones | Obras en el espacio público | Decreto 1504 de 1998; POT (Acuerdo 0373 de 2014); licencia de intervención y ocupación del espacio público, Decreto 1077 de 2015 (verificar) | Solo se recomiendan; las ejecuta la entidad competente con licencia |
+| Kit PVC | Incendio: el PVC libera cloruro de hidrógeno (gas tóxico) al quemarse | Ley 1575 de 2012 (Bomberos) | Material con retardante de llama y ficha técnica; **se pide concepto a Bomberos**, nosotros no lo emitimos |
+| Kit PVC | Estabilidad frente a viento y réplicas | NSR-10 y su aplicación a estructuras temporales (verificar) | Diseño y firma de un profesional competente; en el prototipo, solo la ficha |
+| Kit PVC | Condiciones dignas y protección | Estándares Esfera (3,5 m² por persona); Ley 1257 de 2008; Ley 1618 de 2013 | Módulos con divisiones, zonas diferenciadas y accesibilidad |
+| Kit PVC | Compra | Ley 80 de 1993, Ley 1150 de 2007; contratación especial en calamidad, Ley 1523 art. 66 (verificar el alcance) | Comprar y guardar **antes** por contratación ordinaria; no depender de la urgencia manifiesta |
+| Kit PVC | Uso en eventos | Marco de aprovechamiento económico del espacio público de Cali (verificar) | El kit es de la Alcaldía; el uso en eventos queda reglado y **tiene prioridad la emergencia** |
+| Kit PVC e IoT | Fin de vida útil | Ley 1672 de 2013 (RAEE, residuos electrónicos) | Plan de devolución y reciclaje de los sensores |
+| IoT | Espectro y equipos | Resolución ANE 105 de 2020 (uso libre en 915–928 MHz, 2,4 GHz y 433 MHz); homologación CRC | Solo equipos homologados en bandas de uso libre |
+| IoT | Rastreo de personas | Ley 1581; líneas rojas del reto | Sin cámaras ni captura de direcciones MAC o Bluetooth; solo conteos anónimos y variables ambientales |
+| IoT | Seguridad y apertura | Decreto 767 de 2022 (MSPI); Ley 1712 de 2014 | Cifrado; datos operativos agregados como datos abiertos |
+| IoT | Alertas oficiales | Ley 1523 (competencias) | Los sensores dan datos operativos; las alertas las emiten el IDEAM, la CVC, el SGC o la autoridad |
+
 ## 7. Pendientes
 - [ ] Artefacto 2: redactar los 6 campos y el "¿Cómo podríamos…?" con los hallazgos propios (albergues autogestionados y la amenaza cruzada con el Jarillón).
 - [ ] Artefacto 3: generar 6 a 8 ideas y filtrarlas.
@@ -195,6 +242,11 @@ Idea que los une: **el espacio público se diseña desde el inicio con dos vidas
 - [ ] Sábado: construir el dataset simulado y el prototipo No-Code, y grabar el video.
 - [ ] Agregar a la ficha de aptitud el campo "papel según la amenaza" (albergue, amortiguador o punto de agua) y los atributos de agua almacenada, baños sin red y energía propia (ver los referentes internacionales).
 - [x] Ruta de aprendizaje y Gema de Gemini para entrenar al equipo: `gema/INSTRUCCIONES_GEMA.md` y `gema/RUTA_APRENDIZAJE.pdf` (incluye el análisis de la competencia del RETO-01).
+- [ ] **Decidir el nombre:** "Cali Activa" (el nombre del reto) o "Cali Lista" (el de Pablo). Opción: usar Cali Lista para el producto y mencionar que responde a Cali Activa.
+- [ ] Pedirle al integrante de los refugios de PVC su material (ficha, bocetos, sensores) y sumarlo a `docs/`.
+- [ ] Unificar el formulario de Cali Lista con las columnas de aptitud por amenaza en el dataset simulado.
+- [ ] Marco legal: verificar las normas marcadas con (verificar) en la sección 6.1.
+- [ ] Actualizar la Gema (`gema/RUTA_APRENDIZAJE`) con la propuesta integrada.
 - [ ] Confirmar las cifras oficiales de muertos en Cali (105 vs. 154) y las normas marcadas con (verificar).
 
 ## 8. Fuentes consultadas
@@ -238,3 +290,6 @@ Idea que los une: **el espacio público se diseña desde el inicio con dos vidas
 - https://siwi.org/news/how-cape-town-saved-itself-from-day-zero
 - https://phys.org/news/2024-02-barcelona-restrictions-drought-emergency-declared.html
 - https://ajuntament.barcelona.cat/urbanisme-accio-climatica-mobilitat-pla-barris-serveis-urbans/en/aigua/la-sequera
+- docs/cali_lista.pdf (propuesta de Pablo, desde su fork)
+- https://normograma.crcom.gov.co/crc/compilacion/docs/resolucion_ane_0105_2020.htm
+- https://www.researchgate.net/publication/45637651_Hydrogen_Chloride_in_Fires
