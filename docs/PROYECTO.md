@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (tarde): datos reales de Cali y paso 1 de la maqueta 3D.
+**Última actualización:** 25 de septiembre de 2026 (tarde): mapa territorial con fuentes IDESC verificadas y paso 2 de la maqueta 3D.
 
 ---
 
@@ -240,7 +240,7 @@ Idea que los une: **el espacio público se diseña desde el inicio con dos vidas
 
 - **Sismo del 10 de agosto:** 1.090 puntos de daño georreferenciados (Copernicus EMSR916, ICube-SERTIT, Microsoft/Airbus y sedes del MEN) cruzados con las comunas. Las más afectadas son la **19** (Nueva Tequendama, Cuarto de Legua, Los Cámbulos), la **20** (Siloé), la **2**, la **13**, la **9** (Barrio Obrero, Sucre) y la **3**. *Sesgo:* la cobertura satelital es parcial, así que hay que pedir el RUD por barrio.
 - **Cifras oficiales:** RUD con corte al 17 de septiembre: 45.138 familias, 879 viviendas destruidas y 16.357 averiadas. Balance del 23 de septiembre: 3.403 edificaciones evaluadas (1.078 rojo, 1.272 amarillo y 1.053 verde) y 333 personas en alojamientos temporales.
-- **Hallazgo multiamenaza con datos:** en el occidente y el sur (comunas 1, 3, 9, 17, 18, 19 y 20) estuvo el daño sísmico, pero sus espacios son aptos como albergue (sin inundación ni licuación). En el oriente, sobre el Jarillón (comunas 6, 7, 13, 14 y 21), entre el 55 y el 92 % de los espacios tiene amenaza alta de inundación y casi todos están en suelo licuable, así que sirven como amortiguación, no como albergue.
+- **Hallazgo multiamenaza con datos:** en el occidente y el sur (comunas 1, 3, 9, 17, 18, 19 y 20) estuvo el daño sísmico, pero la falta de intersección en el cruce puntual original **no acredita aptitud como albergue ni ausencia de amenaza**; requiere evaluación técnica. En el oriente, sobre el Jarillón (comunas 6, 7, 13, 14 y 21), entre el 55 y el 92 % de los espacios tiene amenaza alta de inundación y casi todos están en suelo licuable, lo que exige revisión específica antes de proponer funciones; el cruce no autoriza alojamiento ni amortiguación por sí solo.
 - **Validación de la Defensoría:** los parques de Chiminangos I y II y de Calimio, donde hubo albergues autogestionados, tienen amenaza **alta** de inundación, están en suelo **licuable** y quedan **a entre 72 y 152 m del dique** del río Cauca en Urbanización Calimio.
 - **Vacíos:** el RUD y las evaluaciones por barrio, el nivel del río en Juanchito (la CVC no tiene API), el aforo y los servicios de los escenarios, la población de 2026 por comuna y las redes de EMCALI.
 
@@ -255,9 +255,27 @@ Se inició la estructura de `PROMPT_CODEX_3D.md`, siguiendo su instrucción de d
 - Se aplica el filtro de autoridad, estructura, Bomberos, minimización de datos y explicabilidad. No se implementa registro nominal; el eventual código de demostración no puede vincularse a personas. La trazabilidad simulada de lotes prevista en el prompt requiere resolver su diferencia con la restricción de simulación de AGENTS.md antes del paso 4.
 - El paso 1 incluye solo datos TypeScript; todavía no hay escena navegable, capturas ni exportación GLB.
 
+## 6.4 Mapa por sector y escena general — paso 2 (25 de septiembre)
+
+Por solicitud del equipo, antes de distribuir el refugio se construyó un mapa con datos reales. La aplicación en `maqueta3d/` integra **Vite + React + TypeScript estricto + Leaflet + Fiber/Drei** y se abre con `cd maqueta3d` y `npm run dev` (instalar primero con `npm ci`).
+
+- **Verificación de origen:** nueve capas descargadas completas desde WFS IDESC coinciden en geometrías y atributos con los originales archivados (sin comparar IDs transitorios del servicio). Resultado en `maqueta3d/public/data/source-checks.json`, fuentes/licencias/huellas SHA-256 en `manifest.json`. Se consultaron las fichas primarias https://datos.cali.gov.co/dataset/epou-espacio-publico-efectivo y https://datos.cali.gov.co/dataset/inundacion-fluvial. Descargas: https://ws-idesc.cali.gov.co/geoserver/ows (URL parametrizada de cada capa en el manifiesto y en `prototipo/datos/FUENTES.md`).
+- **Cobertura:** 1.970 polígonos EPOU y 1.021 registros deportivos. No equivalen a 2.991 lugares únicos: las fuentes pueden compartir predios. Se conservan 52 registros sin comuna asignada, consultables mediante filtro.
+- **Sectores:** comuna y barrio/sector de los límites oficiales archivados (22 comunas y 342 barrios/sectores). El resumen agrupa 313 combinaciones observadas, incluidas filas sin asignar; no es un nuevo número oficial de barrios.
+- **Mapa:** filtros por comuna, barrio, inventario y cruce de amenaza; búsqueda; capas de inundación y licuación/corrimiento; fichas; descarga CSV. Los límites y datos funcionan desde archivos locales; las calles opcionales requieren internet.
+- **Método:** toda la huella EPOU frente a polígonos de amenaza, incluido contacto de borde; solo el punto disponible para escenarios deportivos. El cruce da 884 registros con intersección de inundación y 1.369 con licuación/corrimiento. Son resultados derivados del método, no evaluaciones técnicas ni cifras oficiales de riesgo.
+- **Corrección:** “sin cruce detectado” no significa “sin amenaza” ni “apto”. Se corrigieron conclusiones excesivas en `docs/DATASETS.md` y en esta bitácora. El CSV histórico no alimenta la clasificación del mapa.
+- **Disponibilidad:** no hay confirmaciones documentadas de aforo, baños, agua, evaluación estructural vigente, administración/acceso o activación. Todos los espacios se marcan **por confirmar**; no se inventan zonas disponibles. Quedan por consultar las entidades y por incorporar otras amenazas.
+- **Privacidad:** exportación por lista de atributos permitidos; se excluyen visitadores, contactos e identificadores prediales. No hay personas ni registros nominales en la aplicación.
+- **Escena general:** hockey, volumen genérico del coliseo, diamante y recuadro de Evangelista Mora; órbita y vistas predefinidas. Posiciones aproximadas y dimensiones ilustrativas/por medir rotuladas. Las medidas están en `src/data/site.ts`. La escena no está georreferenciada al mapa: falta confirmar los escenarios de nombre genérico del catálogo.
+- **Validación:** compilación de producción y TypeScript estricto sin errores; 3 pruebas de geometrías/integridad y 2 pruebas de navegador (escritorio y móvil) aprobadas. Capturas en `maqueta3d/deliverables/renders/`.
+- **Pendiente del prompt:** distribución de refugio (paso 3), acopio (4), estados (5) y GLB/renders finales (6). Las capturas actuales documentan únicamente el mapa y la escena general.
+
 ## 7. Pendientes
 - [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
-- [ ] Maqueta 3D, pasos 2 a 6: escena, refugio, acopio, transiciones, capturas y GLB; detenerse y reportar al terminar cada paso según el prompt.
+- [x] Maqueta 3D, paso 2: escena general con controles y mapa de inventarios reales por comuna/barrio, fuentes y cruces verificados.
+- [ ] Confirmar disponibilidad real, administración/acceso, evaluaciones técnicas y servicios de los espacios antes de proponer activaciones.
+- [ ] Maqueta 3D, pasos 3 a 6: refugio, acopio, transiciones, capturas finales y GLB; detenerse y reportar al terminar cada paso según el prompt.
 - [ ] Artefacto 2: redactar los 6 campos y el "¿Cómo podríamos…?" con los hallazgos propios (albergues autogestionados y la amenaza cruzada con el Jarillón).
 - [ ] Artefacto 3: generar 6 a 8 ideas y filtrarlas.
 - [ ] Artefacto 4: propuesta de valor, validación con un usuario real (JAC de Chiminangos o Calimio Norte, o la Secretaría de Gestión del Riesgo) y plan del prototipo.

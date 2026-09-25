@@ -335,3 +335,12 @@ Todos los archivos de `raw/` se descargaron el **25 de septiembre de 2026** de l
 - Balance inicial (Infobae): https://www.infobae.com/colombia/2026/08/11/mas-de-130-muertos-570-heridos-viviendas-y-vias-danadas-y-aeropuertos-cerrados-las-dramaticas-cifras-que-deja-hasta-ahora-el-terremoto-en-colombia/
 - Portal hidroclimatológico de la CVC: https://portal-hidroclimatologico.cvc.gov.co/
 - El río Cauca superó su caudal histórico en Juanchito (CVC): https://www.cvc.gov.co/carousel/2781-en-juanchito-el-rio-cauca-supero-su-maximo-caudal-historico
+
+## Derivados del mapa territorial (25 de septiembre de 2026)
+
+- **Ubicación:** `maqueta3d/public/data/`: `spaces.json`, `communes.json`, `neighborhoods.json`, `flood.json`, `seismic.json`, `summary.json` y `sectores.csv`.
+- **Fuentes primarias y descargas:** las nueve capas IDESC registradas arriba: EPOU, escenarios deportivos, comunas, barrios, inundación fluvial, pluvial, no mitigable, susceptibilidad a licuación y efectos sísmicos. Sus URL completas también están en `maqueta3d/public/data/manifest.json` y los derivados principales en `fuentes.csv`. `summary.json` es la versión JSON de `sectores.csv`.
+- **Licencia del derivado:** CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/. Atribución: Alcaldía de Santiago de Cali · DAPM / IDESC y Secretaría del Deporte y la Recreación.
+- **Verificación remota:** descarga completa de cada una de las nueve capas el 25 de septiembre; geometrías y atributos iguales a los archivos archivados, excluidos los IDs transitorios WFS. Evidencia: `maqueta3d/public/data/source-checks.json`. Repetible con `python3 maqueta3d/scripts/check-sources.py`. No equivale a verificar condiciones operativas actuales.
+- **Transformación:** exportación de atributos permitidos, asignación administrativa por punto representativo e intersección con la huella completa de EPOU o el punto deportivo. Se omiten visitadores, contactos e identificadores prediales.
+- **Límite:** inventarios superpuestos y disponibilidad por confirmar; sin cruce de amenaza no implica aptitud. El mapa no usa la interpretación “Sin amenaza” del CSV histórico.

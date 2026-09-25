@@ -36,16 +36,16 @@ python3 prototipo/scripts/resumen_comunas.py         # tabla multiamenaza por co
 
 > **Sesgo de cobertura, hay que decirlo en el pitch:** los satélites solo cubrieron algunas zonas. Copernicus mapeó el norte y el centro (AOI01 y AOI03), SERTIT el sur (AOI07, por eso la comuna 19 pesa tanto) y el modelo de Microsoft y Airbus solo su área válida. Una comuna sin puntos **no significa que no tuvo daño**. Falta el RUD por barrio (ver la sección 4).
 
-## 2. Lo que dicen los datos: Cali tiene dos mapas de riesgo distintos
+## 2. Cruces territoriales preliminares — no certifican aptitud
 
 Cruce de los 1.970 espacios públicos con el POT (`procesados/resumen_comunas_multiamenaza.csv`):
 
-- **Occidente y sur (comunas 1, 3, 9, 17, 18, 19 y 20):** allí se concentró el **daño sísmico real**. Sus espacios **no tienen amenaza de inundación ni son licuables**, así que son **aptos como albergue ante un sismo**. Ejemplos: 31 espacios de más de 5.000 m² en la comuna 19 (La Cascada, 23.094 m²; Nueva Tequendama, 22.532 m²) y 11 en la comuna 3 (loma de San Antonio, 36.782 m²).
-- **Oriente, sobre el Jarillón (comunas 6, 7, 13, 14 y 21):** entre el 55 y el 92 % de los espacios tiene **amenaza alta de inundación** y entre el 92 y el 100 % está en **suelo licuable** (zona sísmica 6). En la comuna 15, el 19 % tiene amenaza alta y el 100 % es licuable. Además, 185 espacios quedan a menos de 500 m del dique del río Cauca. Allí **ningún espacio grande sirve de albergue** ni ante sismo ni ante inundación. Su papel es de **amortiguación**, o de punto de agua durante una sequía.
+- **Occidente y sur (comunas 1, 3, 9, 17, 18, 19 y 20):** allí se concentró el **daño sísmico real**. El cruce puntual original no detectó inundación ni licuación en los espacios analizados; **esto no acredita ausencia de amenaza ni aptitud como albergue**. Se necesitan cruces de huella y evaluación técnica. Ejemplos: 31 espacios de más de 5.000 m² en la comuna 19 (La Cascada, 23.094 m²; Nueva Tequendama, 22.532 m²) y 11 en la comuna 3 (loma de San Antonio, 36.782 m²).
+- **Oriente, sobre el Jarillón (comunas 6, 7, 13, 14 y 21):** entre el 55 y el 92 % de los espacios tiene **amenaza alta de inundación** y entre el 92 y el 100 % está en **suelo licuable** (zona sísmica 6). En la comuna 15, el 19 % tiene amenaza alta y el 100 % es licuable. Además, 185 espacios quedan a menos de 500 m del dique del río Cauca. Estos cruces requieren revisión específica antes de considerar alojamiento. **No permiten asignar por sí solos una función de albergue, amortiguación o punto de agua**; esas funciones necesitan validación técnica y de la autoridad.
 - **Validación del hallazgo de la Defensoría:** los parques de **Chiminangos I y II** y de **Calimio**, donde hay albergues autogestionados, tienen amenaza **alta** de inundación y suelo **licuable**. Los parques de Urbanización Calimio están a **entre 72 y 152 m del dique**. Es decir, la gente huyó del sismo hacia el lugar de mayor riesgo de inundación.
 - **Déficit:** comunas como la 9 (0,71 m² de espacio público por habitante), la 12 (0,88), la 8 (1,01) y la 13 (1,04) tienen muy poco espacio. La comuna 17 tiene 8,89 m² y la 22 tiene 60,16.
 
-**Consecuencia para el producto:** la misma pregunta ("¿dónde alojo a 300 personas?") tiene respuestas opuestas según la amenaza. Esto ya **no es una suposición: lo demuestran los datos oficiales**.
+**Consecuencia para el producto:** las condiciones cartografiadas varían según la amenaza. Las capas permiten detectar cruces para revisión, pero no demuestran disponibilidad, aforo ni autorización para alojar a 300 personas.
 
 ## 3. Catálogo: lo que ya tenemos (todo público)
 
@@ -94,3 +94,13 @@ Los datos intermedios provienen del observatorio [datosdelterremoto.org](https:/
 - **Licencias CC BY-SA** de los datos del DAPM: los derivados (`procesados/`) también deben publicarse con **CC BY-SA 4.0 y atribución** a la Alcaldía de Cali (DAPM/IDESC).
 - **Ley 1523 de 2012:** los datos oficiales del POT y del RUD son la base, pero **el sistema recomienda y la autoridad decide**. El índice de afectación es relativo y no reemplaza la EDAN ni el RUD.
 - **Ley 1712 de 2014 (transparencia):** la información que se pide es pública clasificable. Hay que pedir agregados para no chocar con la reserva de datos personales.
+
+## 6. Mapa construido con verificación de fuentes (25 de septiembre)
+
+La aplicación `maqueta3d/` permite consultar por comuna y barrio/sector los **1.970 polígonos EPOU** y **1.021 registros deportivos**. Las nueve capas utilizadas se contrastaron con descargas completas WFS del IDESC y coincidieron en geometrías y atributos con los archivos archivados. Las fichas públicas EPOU e inundación fluvial se consultaron también en https://datos.cali.gov.co/dataset/epou-espacio-publico-efectivo y https://datos.cali.gov.co/dataset/inundacion-fluvial.
+
+El nuevo cruce usa toda la huella de EPOU, no solo su punto central. Conserva los 52 registros sin comuna asignada y exporta el resumen por comuna/barrio a `maqueta3d/public/data/sectores.csv`. Las dos fuentes pueden compartir un predio; no deben sumarse como lugares únicos. Hay 884 registros con alguna intersección con las capas de inundación y 1.369 con las capas seleccionadas de susceptibilidad a licuación/corrimiento. Son resultados del cruce, no cifras oficiales de riesgo.
+
+**Corrección del análisis anterior:** “sin intersección detectada” sustituye a “sin amenaza” en el mapa. No existe en estas fuentes evidencia de disponibilidad actual, aforo, baños, agua o evaluación estructural vigente. Los términos “aptos” y “ningún espacio sirve” de la interpretación anterior se retiraron: eran conclusiones que excedían lo que demuestra el cruce. El CSV histórico conserva su esquema por compatibilidad; no se usa para clasificar seguridad en la aplicación.
+
+Quedan por pedir a las entidades la disponibilidad/administración del espacio, inspecciones vigentes, servicios y acceso; faltan otras amenazas para una recomendación multiamenaza. No se inventaron zonas disponibles.

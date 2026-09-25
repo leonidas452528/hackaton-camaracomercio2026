@@ -1,10 +1,13 @@
 # Maqueta 3D — avance y pendientes
 
-25 de septiembre de 2026. Ejecutado únicamente el paso 1 de `PROMPT_CODEX_3D.md`, que exige detenerse al terminar cada paso.
+25 de septiembre de 2026. Ejecutados los pasos 1 y 2 de `PROMPT_CODEX_3D.md`, más el mapa con datos reales solicitado por el equipo. El prompt exige detenerse al terminar cada paso.
 
 - [x] Centralizar medidas, procedencia, marcadores y cálculos en `src/data/site.ts`.
 - [x] Leer RETO-01 del portafolio local y copiarlo a la ruta documental indicada. La ficha respalda las 143 personas del caso.
-- [ ] Paso 2: escena general con Vite, React, TypeScript estricto, Fiber y Drei.
+- [x] Paso 2: escena general con Vite, React, TypeScript estricto, Fiber y Drei; órbita y vistas predefinidas.
+- [x] Mapa de inventarios reales por comuna y barrio, amenazas, fichas y resumen descargable.
+- [x] Nueve capas contrastadas con descarga oficial WFS: geometrías y atributos coinciden con los archivos archivados.
+- [x] Distinguir cruce de amenaza de disponibilidad; conservar 52 registros sin comuna asignada.
 - [ ] Paso 3: refugio y equipamiento.
 - [ ] Paso 4: acopio y ruta.
 - [ ] Paso 5: estados y transiciones.
@@ -25,3 +28,17 @@
 ## Revisión del paso 1
 
 Sin datos personales, logos ni obras civiles. Medidas ilustrativas y datos desconocidos etiquetados; ocupación por ciclo vital marcada SIMULADA. Las futuras vistas deben mostrar las advertencias y atribuciones y usar contraste y lenguaje claro.
+
+## Pendientes territoriales
+
+- Confirmar disponibilidad, administración/acceso, aforo, agua, baños, accesibilidad y evaluación vigente con las entidades. No hay lista confirmada de zonas disponibles.
+- Revisar 52 registros sin comuna y posibles duplicados entre inventario deportivo y EPOU. No sumar aforos ni superficies entre fuentes.
+- Verificar identidad de los escenarios del piloto: el catálogo incluye varias canchas de hockey con nombres genéricos. Las coordenadas del mapa no sustituyen la medición del sitio.
+- Incorporar otras amenazas antes de hacer recomendaciones multiamenaza operativas.
+
+## Validación de esta entrega
+
+- `npm run build`: aprobado, TypeScript estricto y producción.
+- `npm test`: 3 pruebas aprobadas (intersecciones de huella, huecos, integridad y atributos permitidos).
+- `npm run test:e2e`: 2 pruebas aprobadas (escritorio con filtros/ficha/3D y móvil sin desbordamiento).
+- Capturas revisadas: `deliverables/renders/mapa_cali.png`, `mapa_movil.png` y `general.png`. Son capturas de interfaz, no los renders finales de emergencia del paso 6.
