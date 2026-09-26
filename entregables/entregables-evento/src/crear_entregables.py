@@ -535,70 +535,169 @@ def viabilidad():
     guardar(doc, "04_Viabilidad_GovTech.docx")
 
 
-# ---------- 5. Elevator pitch ----------
+# ---------- 5. Elevator pitch (artefacto 4.2) ----------
+NOMBRE_EQUIPO = "Territorio Preparado"
 PITCH = [
-    ("0–15 s", "El gancho", "Mapa de la app filtrado por «Inundación» en Calimio",
-     "El 10 de agosto, tras el sismo, 1.046 personas se refugiaron en canchas de Chiminangos y Calimio que la comunidad convirtió en albergues. Esas canchas están a entre 72 y 152 metros del dique del río Cauca: huyeron de un sismo hacia una zona inundable."),
-    ("15–25 s", "El problema", "Cifra grande: «1.970 espacios públicos. ¿Cuál sirve para qué?»",
-     "Cali tiene 1.970 espacios públicos inventariados, pero hoy nadie sabe cuál sirve ante cada amenaza, qué le falta ni quién debe responder."),
-    ("25–48 s", "La solución", "Ficha del espacio y cálculo 20 → 16",
-     "Territorio Preparado cruza datos abiertos del POT, IDESC y Copernicus. Eliges la amenaza y la población; el sistema descarta los espacios expuestos, propone candidatos, calcula cuánto cabe sin sobreocupar, cuánta agua y cuántos baños faltan, y qué entidad responde. Cada criterio queda a la vista."),
-    ("48–60 s", "El cierre", "Logo y lema",
-     "Ya funciona en línea con el mapa real de Cali. Que la próxima vez el parque esté listo antes de la emergencia. Territorio Preparado propone; la autoridad decide."),
+    ("[00:00 - 00:12] LA SOLUCIÓN",
+     "Nuestra solución es Territorio Preparado, una aplicación web que ayuda a la Secretaría de Gestión del Riesgo a preparar los espacios públicos de Cali para cada tipo de emergencia."),
+    ("[00:12 - 00:47] DEMOSTRACIÓN FUNCIONAL (CÓMO OPERA)",
+     "Funciona en tres pasos. Primero, la Secretaría elige la amenaza, por ejemplo una creciente del río Cauca, y cuántas personas hay que atender. Segundo, el sistema cruza 1.970 espacios públicos con las amenazas del POT, descarta los expuestos y propone candidatos con cada criterio a la vista. Tercero, calcula cuánto cabe sin sobreocupar, cuánta agua y cuántos baños faltan y qué entidad responde por cada servicio, y entrega un borrador para que la autoridad decida."),
+    ("[00:47 - 01:00] IMPACTO Y CIERRE",
+     "Tras el sismo, 1.046 personas se refugiaron en canchas a entre 72 y 152 metros del dique del Cauca. Que la próxima vez el parque esté listo antes. Territorio Preparado propone; la autoridad decide."),
 ]
+INDICACION_CAMARA = "Mostrar en pantalla el flujo: mapa filtrado por «Inundación» → ficha del espacio → cálculo 20 → 16 módulos → necesidades y entidad responsable → borrador exportado."
+SEPARADOR = "=" * 62
 
 
 def texto_pitch():
-    return "\n\n".join(b[3] for b in PITCH)
+    return "\n\n".join(f"{t}\n\"{x}\"" for t, x in PITCH)
 
 
 def pitch():
-    doc = nuevo_documento()
-    portada(doc, 5, "Elevator pitch de 1 minuto (4.2)", "Presentación final de pitches · Pitch final y materiales de soporte", "Claridad y capacidad de síntesis del pitch (10 %)")
-    palabras = len(texto_pitch().split())
-
-    h(doc, "1. El texto completo")
-    par(doc, f"{palabras} palabras, para leer a ritmo tranquilo en 60 segundos. Una sola voz. Si sobra tiempo, no se agrega nada: se habla más despacio.", "Duración: ")
-    for tiempo, nombre, _, texto in PITCH:
-        p = doc.add_paragraph()
-        r = p.add_run(f"[{tiempo}] {nombre}. ")
-        r.bold = True
-        r.font.color.rgb = TITULO
-        p.add_run(texto)
-
-    h(doc, "2. Guion con diapositivas")
-    tabla(doc, ["Tiempo", "Diapositiva", "Qué se dice"], [[t, f"{n}: {d}", x] for t, n, d, x in PITCH], anchos=(2.0, 4.6, 10.0))
-
-    h(doc, "3. De dónde sale cada cifra")
-    tabla(doc, ["Cifra", "Fuente"], [
-        ["1.046 personas (336 familias) en 3 albergues autogestionados", "Defensoría del Pueblo"],
-        ["A entre 72 y 152 m del dique; amenaza alta de inundación", "Cruce propio: amenazas del POT (IDESC, Acuerdo 0373 de 2014) + espacio público DAPM/IDESC"],
-        ["1.970 espacios públicos inventariados", "DAPM/IDESC, datos abiertos de Cali"],
-        ["20 → 16 módulos (si se muestra en pantalla)", "Cálculo por área del caso epou-9465 con reservas SIMULADAS"],
-    ], anchos=(7.0, 9.6))
-
-    h(doc, "4. Reglas para no perder puntos")
-    vinetas(doc, [
-        "Decir «candidatos que la autoridad revisa», nunca «los mejores lugares» ni «lugares habilitados» (Ley 1523 de 2012).",
-        "El 20 → 16 es un cálculo por área con datos simulados: no afirmar que «caben 16 familias».",
-        "No mencionar la cifra de fallecidos: las fuentes no coinciden (105 frente a 154).",
-        "Decir «Territorio Preparado», que responde al reto Cali Activa.",
-        "Ensayar con cronómetro al menos tres veces.",
-    ])
-
-    h(doc, "5. Respuestas de 10 segundos para el jurado")
-    tabla(doc, ["Pregunta", "Respuesta"], [
-        ["¿Qué es real y qué es simulado?", "Los espacios, las amenazas y los daños del sismo son reales y públicos. La población del escenario, las reservas de área, el IoT y los SMS están simulados y así se marcan en pantalla."],
-        ["¿Y los datos personales?", "No se usan. Solo conteos agregados, sin datos de menores ni reconocimiento facial (Ley 1581 de 2012 y Ley 1098 de 2006)."],
-        ["¿Reemplaza a los ingenieros o a Bomberos?", "No. Solo registra si existe una evaluación estructural vigente (NSR-10) y no emite conceptos de Bomberos (Ley 1575 de 2012)."],
-        ["¿Lo validaron con usuarios?", "Tenemos evidencia documental de la Defensoría y OCHA. El siguiente paso es validarlo con la Secretaría de Gestión del Riesgo y las JAC de Chiminangos y Calimio."],
-        ["¿Cómo escala?", "Es una aplicación web con datos abiertos. Con una base compartida, cada comuna puede alimentar su inventario."],
-    ], anchos=(5.0, 11.6))
-
-    fuentes(doc, ["defensoria", "epou"])
-    pie(doc, "Territorio Preparado · Entregable 5 · Elevator pitch de 1 minuto (4.2)")
+    doc = Document()
+    base = doc.styles["Normal"]
+    base.font.name = "Arial"
+    base.font.size = Pt(10.5)
+    base.element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
+    base.paragraph_format.space_after = Pt(4)
+    palabras = sum(len(x.split()) for _, x in PITCH)
+    doc.add_paragraph(SEPARADOR)
+    doc.add_paragraph().add_run(f"GUION DE PITCH: FOCO EN SOLUCIÓN (1 MINUTO / ~{palabras} PALABRAS)").bold = True
+    doc.add_paragraph(f"Equipo: {NOMBRE_EQUIPO} | Solución: Territorio Preparado | Reto: RETO-01 Cali Activa")
+    doc.add_paragraph(f"Integrantes: {EQUIPO.replace(' · ', ', ')}")
+    doc.add_paragraph(SEPARADOR)
+    for i, (tiempo, texto) in enumerate(PITCH):
+        doc.add_paragraph().add_run(tiempo).bold = True
+        doc.add_paragraph(f"\"{texto}\"")
+        if i == 1:
+            doc.add_paragraph().add_run(f"*(Indicación de cámara: {INDICACION_CAMARA})*").italic = True
+    doc.add_paragraph(SEPARADOR)
+    doc.add_paragraph("TIEMPO ESTIMADO: 60 SEGUNDOS.")
+    doc.add_paragraph("RECOMENDACIÓN DE ENSAYO: leer a un ritmo de 2,3 palabras por segundo. Decir «candidatos», nunca «los mejores lugares».")
+    doc.add_paragraph("FUENTES: 1.046 personas en albergues autogestionados (Defensoría del Pueblo); 72 a 152 m del dique (cruce propio POT/IDESC); 1.970 espacios públicos (DAPM/IDESC). El 20 → 16 es un cálculo por área con reservas SIMULADAS.")
+    doc.add_paragraph(SEPARADOR)
     guardar(doc, "05_Elevator_pitch_1_minuto.docx")
     return palabras
+
+
+# ---------- Rondas de prueba (SIMULADAS, guía del evento, artefacto 4 paso 3) ----------
+AVISO_SIMULADA = ("Ronda SIMULADA con Claude, como permite la guía de artefactos del evento (artefacto 4, paso 3: «Simular un usuario con Claude»). "
+                  "El personaje se construyó con testimonios públicos reales, sin nombres de personas. No reemplaza la validación con una persona real.")
+RONDAS = [
+    {
+        "con": "Lideresa comunitaria de un albergue autogestionado del nororiente (Chiminangos II / Calimio Norte). SIMULADA, basada en testimonios publicados por El Tiempo (11 de agosto de 2026) y El País, y en el comunicado de la Defensoría del Pueblo.",
+        "mostro": "El mapa filtrado por «Inundación» sobre Chiminangos y Calimio, la ficha de la cancha usada como albergue con sus cruces de amenaza, y el aviso de acopio para la comunidad (sin datos personales).",
+        "funciono": "Ver en el mapa que la cancha tiene amenaza alta de inundación y está a pocos metros del dique le resultó revelador: la comunidad se refugió del sismo sin saber que el lugar tenía otra amenaza. Valoró que el aviso no pida nombres, cédulas ni teléfonos.",
+        "fallo": "El lenguaje técnico de la ficha (EPOU, licuación, huella cartográfica) no se entiende. Su albergue comunitario no aparece como tal en el sistema, así que para la Alcaldía «no existe». Y lo que la comunidad pide primero es censo y evaluación técnica, algo que la herramienta no hace ni debe hacer.",
+        "ajuste": "Definido para la siguiente versión (pendiente de implementar): textos en lenguaje claro en la ficha («zona que se puede inundar», «suelo que puede ceder con un sismo»); priorizar el registro de albergues comunitarios con conteos agregados por ciclo vital (idea 8 del artefacto 3); y que el aviso explique que la evaluación técnica la hace la Secretaría de Gestión del Riesgo.",
+        "fuentes": ["https://www.eltiempo.com/amp/colombia/cali/resistir-con-un-plato-de-sancocho-la-solidaridad-comunitaria-que-sostiene-a-los-damnificados-del-barrio-chiminangos-ii-nororiente-de-cali-3577720",
+                    "https://www.elpais.com.co/cali/personas-en-albergues-de-cali-tras-el-terremoto-piden-no-ser-olvidados-llegada-de-ayudas-ha-disminuido-2305.html",
+                    FUENTES["defensoria"]],
+    },
+    {
+        "con": "Funcionario de la Secretaría de Gestión del Riesgo de Emergencias y Desastres (usuario institucional). SIMULADO, basado en los boletines oficiales de la Alcaldía sobre los albergues habilitados en la Unidad Deportiva Jaime Aparicio y el complejo del Coliseo Miguel Calero, y en el traslado posterior de familias a hoteles.",
+        "mostro": "«Preparar intervención» con amenaza inundación y 300 personas (SIMULADO): descarte de espacios expuestos, candidatos con sus criterios, cálculo de acopio 20 → 16 en el espacio epou-9465, necesidades de agua, baños y área cubierta con su entidad responsable, y exportación del borrador.",
+        "funciono": "Que la herramienta proponga y deje la decisión a la autoridad. Los criterios visibles le permiten justificar ante el Comité por qué se descarta un lugar. El cálculo de agua, baños y área cubierta le ahorra hacer cuentas a mano en las primeras horas.",
+        "fallo": "Los candidatos se ordenan por distancia porque no hay aforos medidos, y eso no le sirve para decidir. La matriz de responsables no está acordada con las entidades. En la emergencia real también se usaron una iglesia y hoteles, que no son espacio público. Y un borrador en JSON no se puede llevar a una reunión del Comité.",
+        "ajuste": "Definido para la siguiente versión (pendiente de implementar): exportar un resumen legible (tabla o PDF) además del JSON; agregar el aforo y los servicios medidos en campo como condición para ordenar candidatos; incluir alojamientos no públicos (iglesias, hoteles) como categoría aparte; y llevar la matriz de responsables a validación con EMCALI, UAESP, Salud e ICBF.",
+        "fuentes": ["https://www.cali.gov.co/boletines/publicaciones/193628/alcaldia-de-cali-refuerza-la-atencion-integral-a-familias-afectadas-por-el-sismo-mediante-la-disposicion-de-albergues-temporales/",
+                    "https://occidente.co/cali/traslado-de-los-damnificados-en-cali-hoteles-alojamiento-sismo/"],
+    },
+]
+
+
+# ---------- Entregable final (formato del artefacto 5) ----------
+def entregable_final():
+    doc = Document()
+    for s in doc.sections:
+        s.left_margin = s.right_margin = Cm(3.0)
+        s.top_margin = s.bottom_margin = Cm(2.5)
+    base = doc.styles["Normal"]
+    base.font.name = "Arial"
+    base.font.size = Pt(10.5)
+    base.element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
+    p = doc.add_paragraph()
+    p.add_run(f"Entregable final — {NOMBRE_EQUIPO}").bold = True
+
+    oscuro, titulo, claro = "012F39", "003D4A", "E6F5F0"
+    t = doc.add_table(rows=0, cols=2)
+    t.autofit = False
+    anchos = (Cm(4.6), Cm(11.0))
+
+    def margen(celda):
+        tcPr = celda._tc.get_or_add_tcPr()
+        mar = OxmlElement("w:tcMar")
+        for lado, v in (("top", 120), ("left", 150), ("bottom", 120), ("right", 150)):
+            e = OxmlElement(f"w:{lado}")
+            e.set(qn("w:w"), str(v))
+            e.set(qn("w:type"), "dxa")
+            mar.append(e)
+        tcPr.append(mar)
+
+    def seccion(texto):
+        c = t.add_row().cells
+        m = c[0].merge(c[1])
+        m.text = ""
+        r = m.paragraphs[0].add_run(texto)
+        r.bold = True
+        r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+        sombrear(m, titulo)
+        margen(m)
+
+    def fila(etiqueta, valor):
+        c = t.add_row().cells
+        c[0].text = ""
+        c[0].paragraphs[0].add_run(etiqueta).bold = True
+        sombrear(c[0], claro)
+        c[1].text = ""
+        partes = valor.split("\n")
+        for i, parte in enumerate(partes):
+            par_ = c[1].paragraphs[0] if i == 0 else c[1].add_paragraph()
+            r = par_.add_run(parte)
+            r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+        sombrear(c[1], oscuro)
+        for x in c:
+            margen(x)
+
+    seccion("Equipo y reto")
+    fila("Nombre del equipo", NOMBRE_EQUIPO)
+    fila("Integrantes", EQUIPO.replace(" · ", ", "))
+    fila("Reto", "RETO-01 Cali Activa: espacios públicos que se transforman para cuidar")
+    fila("Reto acotado", "¿Cómo podríamos ayudar a la Secretaría de Gestión del Riesgo a preparar y activar los espacios públicos del oriente de Cali según el tipo de amenaza, con criterios visibles, necesidades calculadas y responsables claros, para que las familias no terminen refugiándose en zonas expuestas y cada espacio vuelva a su uso cotidiano?")
+    fila("Propuesta de valor", "Para la Secretaría de Gestión del Riesgo de Emergencias y Desastres de Cali, que necesita decidir con criterios qué espacio público activar ante cada amenaza, qué le falta y quién debe responder, nuestra solución Territorio Preparado propone espacios candidatos y dimensiona su preparación mediante el cruce explicable de datos abiertos (inventario DAPM/IDESC, amenazas del POT y daños del sismo) con los estándares Esfera y la matriz de responsables de la UNGRD, a diferencia de hoy, cuando los espacios se habilitan sobre la marcha y la comunidad termina montando albergues por su cuenta en zonas inundables.")
+    fila("Idea elegida", "Territorio Preparado: una aplicación web con datos abiertos que, dada una amenaza y un conteo agregado de población, descarta los espacios expuestos, propone hasta 3 candidatos con criterios visibles, calcula cuánto cabe sin sobreocupar, las necesidades de agua, baños y área cubierta (Esfera) y la entidad responsable de cada servicio, y exporta un borrador para que la autoridad decida. Territorio Preparado propone; la autoridad decide.")
+
+    seccion("Prototipo")
+    fila("Qué muestra", "El recorrido completo con datos reales de Cali: elegir la amenaza (inundación) y un escenario de 300 personas (SIMULADO); ver cómo se descartan los espacios expuestos; revisar un candidato real (epou-9465, Colinas del Sur, 447,21 m²); comprobar el cálculo de acopio (20 módulos exceden el balance, 16 lo cumplen, con reservas SIMULADAS); ver las necesidades de agua, baños y área cubierta con su responsable; exportar el borrador; y cambiar a sismo para ver que la propuesta cambia. Incluye una maqueta 3D del refugio y del centro de acopio, la pestaña «El kit» (cartón, cisterna de lona y panel solar), análisis preventivo y avisos a la comunidad con difusión SMS SIMULADA.")
+    fila("URL pública", URL_DEMO)
+    fila("Datos de prueba", "Datos reales y públicos: 1.970 espacios públicos efectivos y 1.021 registros deportivos (DAPM/IDESC, CC BY-SA 4.0), amenazas del POT (inundación, licuación y remoción, Acuerdo 0373 de 2014) y 1.090 puntos de daño del sismo del 10 de agosto (Copernicus EMSR916 e ICube-SERTIT). Cada fuente guarda su URL, licencia y huella SHA-256. Datos SIMULADOS y rotulados en pantalla: la población del escenario, las reservas de área del acopio, el IoT del kit y la difusión SMS. Sin datos personales.")
+
+    seccion(f"Rondas de prueba ({len(RONDAS)})")
+    for n, r in enumerate(RONDAS, 1):
+        fila(f"Ronda {n} con", r["con"])
+        fila("Mostró", r["mostro"])
+        fila("Funcionó", r["funciono"])
+        fila("Falló", r["fallo"])
+        fila("Ajuste", r["ajuste"])
+    fila("Nota sobre las rondas", AVISO_SIMULADA)
+
+    seccion("Bitácora de evidencia")
+    fila("TRL 3: qué demuestra", "Demuestra la lógica del reto en un entorno controlado: caracteriza espacios reales, descarta los expuestos según la amenaza, propone candidatos con criterios visibles, calcula la ocupación máxima por área y las necesidades (Esfera), asigna responsables (UNGRD), exporta un borrador y representa el ciclo uso cotidiano → emergencia → recuperación. La compilación y 22 pruebas automáticas pasan antes de cada publicación.")
+    fila("IRL 3: evidencia", "1. Evidencia documental de que el problema existe: la Defensoría encontró 336 familias (1.046 personas) en 3 albergues autogestionados y traslados de ayudas con destino desconocido; OCHA reporta vacíos de información; al 31 de agosto, 22 de 43 escenarios esperaban inspección técnica.\n2. Dos rondas SIMULADAS con personajes construidos a partir de testimonios públicos de una lideresa comunitaria del nororiente y de los boletines de la Alcaldía, que mostraron el valor de los criterios visibles y las brechas del prototipo (lenguaje técnico, aforos sin medir, matriz de responsables sin acordar).\n3. Pendiente: validación directa con la Secretaría de Gestión del Riesgo y con una JAC de Chiminangos o Calimio.")
+    fila("Nivel alcanzado", "TRL 3 (prototipo funcional en entorno controlado). IRL 3 en curso: problema validado con evidencia documental y rondas simuladas; falta la validación con actores reales.")
+
+    seccion("Aprendizajes")
+    fila("Aprendizajes clave", "Un espacio no es «apto» en general: su aptitud depende de la amenaza, y un buen refugio para el sismo puede estar en zona inundable.\nUn dato desconocido no vale cero: el sistema debe mostrar lo que falta medir en vez de inventar capacidad.\nProponer no es habilitar: la comunidad solo debe recibir avisos de puntos que la autoridad ya confirmó, y la herramienta debe hablar en lenguaje claro para que la entiendan quienes viven el problema.")
+    fila("Siguiente paso", "Validar el flujo con la Secretaría de Gestión del Riesgo y una JAC del oriente; medir en campo la superficie útil, los accesos y los servicios de los espacios priorizados de las comunas del Jarillón (6, 7, 13, 14 y 21); implementar los ajustes de las rondas (lenguaje claro, resumen exportable, registro agregado de albergues comunitarios); integrar el peritaje del entorno del módulo preventivo (puntaje 60/40) y un canal de avisos real y autorizado.")
+    fila("Líneas rojas", "No reemplaza evaluaciones estructurales (NSR-10) ni la decisión de la autoridad (Ley 1523 de 2012); no invade competencias de Bomberos (Ley 1575 de 2012); solo conteos agregados, sin datos personales ni de menores (Leyes 1581 de 2012 y 1098 de 2006); sin reconocimiento facial; criterios explicables.")
+
+    for i, w in enumerate(anchos):
+        t.columns[i].width = w
+    for fila_ in t.rows:
+        izq, der = fila_.cells
+        if izq._tc is not der._tc:  # las filas de sección están combinadas
+            izq.width, der.width = anchos
+    guardar(doc, f"Entregable final - {NOMBRE_EQUIPO}.docx")
 
 
 # ---------- 6. Bitácora de validación ----------
@@ -611,8 +710,8 @@ def bitacora():
         ["H1. Los espacios se activan sin saber si sirven para la amenaza.", "Evidencia documental y cruce de datos", "Apoyada: albergues autogestionados a 72–152 m del dique, en amenaza alta de inundación"],
         ["H2. Con datos abiertos se puede hacer una primera preselección por amenaza.", "Prototipo con 1.970 espacios y las capas del POT", "Validada técnicamente (TRL 3 como meta)"],
         ["H3. No está claro qué entidad responde por cada servicio.", "Defensoría, OCHA y entrevistas", "Apoyada por evidencia documental; entrevistas pendientes"],
-        ["H4. La Secretaría usaría una recomendación explicable si conserva la decisión.", "Sesión con la Secretaría de Gestión del Riesgo", "Pendiente"],
-        ["H5. Las JAC compartirían conteos agregados de sus albergues.", "Conversación con una JAC de Chiminangos o Calimio", "Pendiente"],
+        ["H4. La Secretaría usaría una recomendación explicable si conserva la decisión.", "Sesión con la Secretaría de Gestión del Riesgo", "Apoyada en ronda SIMULADA; falta la sesión real"],
+        ["H5. Las JAC compartirían conteos agregados de sus albergues.", "Conversación con una JAC de Chiminangos o Calimio", "Pendiente: la ronda SIMULADA mostró que primero piden censo y evaluación técnica"],
     ], anchos=(6.0, 4.8, 5.8))
 
     h(doc, "2. Evidencia de que el problema existe")
@@ -635,17 +734,19 @@ def bitacora():
     par(doc, URL_DEMO, "Prototipo público: ")
     par(doc, "1.970 espacios públicos efectivos y 1.021 registros deportivos (DAPM/IDESC), amenazas del POT (inundación, licuación y remoción) y 1.090 puntos de daño del sismo (Copernicus EMSR916 e ICube-SERTIT). SIMULADOS y rotulados: la población del escenario, las reservas de área del acopio, el IoT del kit y la difusión SMS. Sin datos personales.", "Datos cargados: ")
 
-    h(doc, "4. Rondas de prueba con usuarios")
-    par(doc, "Las rondas con usuarios reales todavía no se han hecho. Se registran aquí cuando ocurran, solo con el rol de la persona, sin nombres ni datos de contacto. No se reemplazan con simulaciones.", "Estado: ")
-    for n, rol in ((1, "Secretaría de Gestión del Riesgo (funcionario del área de preparación)"), (2, "Junta de acción comunal de Chiminangos o Calimio Norte"), (3, "Mentor del hackathon u otro equipo")):
-        h(doc, f"Ronda {n}", 2)
+    h(doc, "4. Rondas de prueba")
+    par(doc, AVISO_SIMULADA, "Importante: ")
+    for n, r in enumerate(RONDAS, 1):
+        h(doc, f"Ronda {n} (SIMULADA)", 2)
         tabla(doc, None, [
-            ["Con quién (rol)", f"PENDIENTE · previsto: {rol}"],
-            ["Qué se mostró", "PENDIENTE"],
-            ["Qué funcionó", "PENDIENTE"],
-            ["Qué confundió o falló", "PENDIENTE"],
-            ["Qué se ajustó", "PENDIENTE"],
+            ["Con quién (rol)", r["con"]],
+            ["Qué se mostró", r["mostro"]],
+            ["Qué funcionó", r["funciono"]],
+            ["Qué confundió o falló", r["fallo"]],
+            ["Qué se ajustó", r["ajuste"]],
+            ["Fuentes del personaje", "\n".join(r["fuentes"])],
         ], anchos=(4.6, 12.0), encabezado=False)
+    par(doc, "validación directa con un funcionario de la Secretaría de Gestión del Riesgo y con una JAC de Chiminangos o Calimio Norte (solo roles, sin nombres).", "Pendiente: ")
 
     h(doc, "5. Ajustes hechos durante el proceso")
     tabla(doc, ["Qué detectamos", "Qué ajustamos"], [
@@ -668,7 +769,7 @@ def bitacora():
 
     h(doc, "7. Siguiente paso")
     par(doc, "Validar el flujo con la Secretaría de Gestión del Riesgo y una JAC del oriente; medir en campo la superficie útil y los servicios de los espacios priorizados; integrar el peritaje del entorno del módulo preventivo (puntaje 60/40) y un canal de avisos real y autorizado.")
-    par(doc, "Con una semana más haríamos las tres rondas de prueba con usuarios y mediríamos cuánto tarda la Secretaría en generar una propuesta de activación con y sin la herramienta.", "Qué haríamos diferente: ")
+    par(doc, "Con una semana más haríamos las rondas de prueba con usuarios reales y mediríamos cuánto tarda la Secretaría en generar una propuesta de activación con y sin la herramienta.", "Qué haríamos diferente: ")
 
     lineas_rojas(doc)
     fuentes(doc, ["defensoria", "ocha", "semana", "epou"], extra=[("Código y bitácora: ", URL_REPO)])
@@ -683,5 +784,6 @@ if __name__ == "__main__":
     viabilidad()
     n = pitch()
     bitacora()
+    entregable_final()
     (SALIDA / "src/pitch_4_2.txt").write_text(texto_pitch() + "\n", encoding="utf-8")
     print("Pitch 4.2:", n, "palabras")
