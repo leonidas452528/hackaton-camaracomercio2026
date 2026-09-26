@@ -1,0 +1,11 @@
+import { chromium } from '../../../maqueta3d/node_modules/playwright-core/index.mjs';
+const browser=await chromium.launch({headless:true,args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1.5});
+await page.goto('http://127.0.0.1:5173');
+await page.getByLabel('Inventario',{exact:true}).selectOption('publicSpaces');
+await page.locator('.territory-map').waitFor();
+await page.locator('.map-wrap').screenshot({path:'entregables/presentacion/assets/mapa-app.png'});
+await page.getByLabel('Buscar espacio o barrio').fill('epou-9465');
+await page.locator('.record').first().click();
+await page.locator('.detail').screenshot({path:'entregables/presentacion/assets/ficha-app.png'});
+await browser.close();

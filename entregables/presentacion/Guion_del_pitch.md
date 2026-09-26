@@ -1,0 +1,51 @@
+# Guion del pitch · Cali Activa
+
+10 diapositivas principales · 4 minutos sugeridos. Las diapositivas 11–12 son anexos.
+
+## Diapositiva 1 · 15 segundos
+
+Cali Activa conecta la información del territorio con la preparación de espacios para emergencias. La pregunta central es cómo pasar de ver un lugar en el mapa a preparar una propuesta de atención que se pueda explicar y revisar.
+
+## Diapositiva 2 · 20 segundos
+
+El inventario dice que un espacio existe. No confirma que esté abierto, que soporte la carga propuesta o que tenga agua y baños. El problema que abordamos es esa distancia entre localizar un espacio y preparar su uso, con variables y vacíos visibles.
+
+## Diapositiva 3 · 20 segundos
+
+El producto une cinco momentos: conocer el lugar, dimensionar una propuesta, coordinar brechas, preparar comunicación y guiar el retorno. La recomendación no activa espacios. Esa decisión sigue en manos de la autoridad.
+
+## Diapositiva 4 · 25 segundos
+
+Trabajamos con 1.970 registros públicos de espacio público efectivo. El mapa representa geometrías reales y permite filtrar por territorio y amenaza. No sumamos los puntos deportivos como lugares únicos, porque puede haber duplicados. Tampoco convertimos inventario en disponibilidad: eso permanece por confirmar.
+
+## Diapositiva 5 · 30 segundos
+
+El flujo tiene tres barreras claras. Primero, restricciones y evidencia por amenaza. Segundo, capacidad teórica por superficie. Tercero, habilitación de la autoridad. Un resultado favorable solo permite seguir con la propuesta. Ante incendios y sequía, sin evidencia suficiente, no habilitamos preselección. Google Maps ubica; no acredita una ruta segura.
+
+## Diapositiva 6 · 35 segundos
+
+Este parque real tiene 447,2149 metros cuadrados cartográficos. Para la demostración reservamos 100 no utilizables, 80 de circulación, 60 de atención y 40 de otros usos: 280 en total. Son supuestos simulados, no mediciones de campo. Quedan 167,21 metros cuadrados. A 10 por módulo, caben 16 módulos completos por balance de área. Veinte requieren 200 y exceden. Reducir a 16 deja 7,21 metros cuadrados. La forma del parque, accesos y carga aún requieren comprobación; no certificamos aforo ni encaje.
+
+## Diapositiva 7 · 25 segundos
+
+Para un escenario simulado de 300 personas, mostramos las necesidades de referencia: 4.500 litros diarios, 15 baños y 1.050 metros cuadrados cubiertos. Son criterios de planificación a contextualizar, no servicios disponibles. Si no conocemos las existencias, la brecha queda por medir. Las entidades mostradas son responsables propuestos, sin validación con ellas en esta etapa.
+
+## Diapositiva 8 · 25 segundos
+
+La prevención es parte del producto: aprender por amenaza y distinguir encuentro, acopio y alojamiento. También preparamos mensajes generales de ubicación, horario y ayudas. En esta etapa el envío es simulado y no usamos teléfonos. Un aviso real que invite a acudir requiere apertura y condiciones confirmadas; el borrador no las inventa.
+
+## Diapositiva 9 · 30 segundos
+
+En la demostración seleccionamos un espacio real, abrimos Preparar este espacio, ingresamos las reservas y la carga de acopio, y observamos cómo se bloquea una propuesta que excede el área. Después revisamos necesidades, descargamos un borrador y mostramos la difusión simulada. No es una idea solo dibujada: este recorrido está implementado en el prototipo.
+
+## Diapositiva 10 · 15 segundos
+
+El valor es hacer explícitas las decisiones: por qué un lugar se revisa, cuánto se propone ocupar y qué falta resolver. El siguiente paso técnico es completar mediciones y servicios. Cali Activa propone y documenta; la autoridad decide. El equipo es William Ortiz, Herlin Echeverry, Pablo Arango y Daniel Celis.
+
+## Diapositiva 11 · Anexo
+
+Anexo para preguntas. No se afirma validación institucional, disponibilidad real, evaluación estructural ni certificación de seguridad contra incendios. La validación con entidades está fuera de esta etapa por decisión del equipo usuario. Los valores desconocidos siguen como desconocidos y los escenarios están marcados como simulados.
+
+## Diapositiva 12 · Anexo
+
+Fuentes de la presentación. Los gráficos cartográficos derivan de los archivos públicos ya archivados en el proyecto; no se agregó un dataset. El caso de acopio usa el polígono de epou-9465 y la misma función de cálculo del frontend. La captura es del prototipo local. Las reservas, el tamaño de módulo y la población del escenario son simulados, marcados como tales.

@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: referencia de personajes incorporada desde la carpeta Imagen Refe del repositorio; video v2 de 80 segundos.
+**Última actualización:** 25 de septiembre de 2026: presentación profesional editable y PDF como nueva entrega de pitch, en reemplazo del video solicitado anteriormente.
 
 ---
 
@@ -446,7 +446,20 @@ El usuario solicita mejorar el video con un diagrama de flujo más específico y
 - **Verificación v2:** 80,000 segundos, 1.920 fotogramas a 24 fps, 1280 × 720, H.264/AAC; decodificación completa sin errores y audio presente en ocho escenas. Los 25 bloques de subtítulos caben en dos líneas y dentro de la duración. Se revisaron storyboard, estados del ejemplo y un fotograma extraído del MP4 final a los 40,5 segundos. Balance aritmético contrastado con la función del frontend. Resultados en `entregables/video/v2/verificacion.json`.
 - **Entregables:** MP4, SRT, guion, storyboard, PNG de personajes, diagrama, reproductor local, código y registro de verificación. El reproductor principal apunta a v2; la primera versión queda disponible.
 
+## 6.19 Presentación profesional en reemplazo del video (25 de septiembre)
+
+El usuario cancela el enfoque de video y solicita una presentación más profesional y llamativa. Se entrega `entregables/presentacion/Cali_Activa_Presentacion.pptx` y su PDF, con **10 diapositivas principales y 2 anexos**, formato panorámico 16:9. Los videos anteriores quedan como historial; no se continúa trabajando en ellos.
+
+- **Diseño:** composición editorial con fondos marfil/azul verdoso, acentos verde lima, titulares grandes, cifras protagonistas y diagramas editables. Cartografía real de Cali y captura real del prototipo. Sin personajes ni fotogramas del video anterior.
+- **Narrativa:** problema → propuesta → base territorial → tres decisiones → caso de acopio → necesidades/responsables → prevención/SMS → demostración → valor público/equipo. Anexos de alcance y fuentes.
+- **Pitch:** 240 segundos sugeridos, distribuidos en notas del presentador y `Guion_del_pitch.md`, alineados con el formato de cuatro minutos del hackathon. El límite de 80 segundos pertenecía al video cancelado y no se aplica automáticamente a esta nueva presentación.
+- **Datos:** 1.970 registros de espacio público, sin sumar puntos deportivos duplicables; caso real epou-9465 con 447,21 m² cartográficos. Reservas y módulos del caso marcados SIMULADOS. Escenario de 300 personas SIMULADO; referencias de 4.500 L/día, 15 baños y 1.050 m² cubiertos, no existencias ni aforo certificado.
+- **Fuentes:** DAPM/IDESC, https://datos.cali.gov.co/dataset/epou-espacio-publico-efectivo y https://www.datos.gov.co/dataset/Comunas-de-Santiago-de-Cali/dx2g-2mhm; adaptaciones cartográficas CC BY-SA 4.0. La captura conserva atribución de calles © OpenStreetMap (https://www.openstreetmap.org/copyright). Referencias Esfera ya usadas por el frontend: https://spherestandards.org/wp-content/uploads/Sphere-Handbook-2018-EN.pdf. No se agrega ningún dataset.
+- **Filtro:** la autoridad decide activación; no sustituye evaluaciones estructurales ni conceptos de Bomberos. Desconocidos y simulaciones explícitos, sin datos personales o reconocimiento facial. Criterios visibles, alto contraste y texto editable. Responsables propuestos; validación con entidades fuera de esta etapa. No se declara integración SMS real ni impacto medido.
+- **Producción y verificación:** PowerPoint nativo con 200 cuadros de texto editables y notas en 12 diapositivas. PDF renderizado con LibreOffice, revisión visual de las 12 páginas y comprobación automática de textos completos, límites del lienzo y relación 16:9. Resultados en `entregables/presentacion/verificacion.json`. Vistas generales y portada exportadas para revisión. Scripts y dependencias de regeneración dentro de `src/`; no se cambian dependencias del frontend.
+
 ## 7. Pendientes
+- [x] Nueva entrega solicitada: presentación profesional PowerPoint/PDF, 10 diapositivas de pitch y 2 anexos, con guion y notas. Sustituye el enfoque de video por decisión del usuario.
 - [x] Segunda versión del video: personajes de referencia y flujo detallado con decisiones y corrección de sobreocupación.
 - [x] Video animado de 80 segundos con voces, música, subtítulos y flujo general del proyecto, solicitado por el usuario. Esta pieza no sustituye automáticamente el video final de 4 minutos previsto por el hackathon.
 - [x] Preparar avisos generales de acopio con ubicación real, horario/información propuesta, copia y descarga, sin identificar damnificados.
