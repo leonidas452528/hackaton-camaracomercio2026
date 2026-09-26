@@ -496,14 +496,25 @@ Las imágenes son referencias aportadas por el equipo para expresar una idea; no
 
 Validación: compilación de producción correcta; revisión en navegador a 1440 y 390 píxeles, tres imágenes cargadas con texto alternativo y sin desborde horizontal. Word con cinco imágenes totales; página de referencias comprobada mediante exportación a PDF. Se respetan las eliminaciones y los demás cambios previos del usuario.
 
+## 6.24 Fork de Herlin, entregables del evento y pitch 4.2 (26 de septiembre)
+
+- **Fork de Herlin integrado** (rama `propuesta-cali-activa`): pestaña **05 El kit** con referencias de cartón, cisterna de lona y panel solar (sección 6.23), y Word vigente `entregables/Territorio_Preparado_Propuesta.docx`, que reemplaza la carpeta `propuesta-completa/`. `AGENTS.md`, `CLAUDE.md`, `README.md` y `PROMPT_CODEX_3D.md` se conservan en la raíz para que GitHub muestre el README y las IA lean sus instrucciones.
+- **Equipo:** el nombre del integrante anterior se retiró de los Markdown, del Word vigente y de los PDF de la guía del 25 de septiembre y de la ruta de aprendizaje. El equipo es William Ortiz, Herlin Echeverry, Pablo Arango y Bryan Martínez Villamarín.
+- **6 entregables del evento** (TDR, sección 3.9, "Entregables de los equipos"), en `entregables/entregables-evento/`, Word y PDF: 1) alineación con el reto (artefactos 1 y 2); 2) arquitectura de la solución (artefacto 3); 3) propuesta de valor (artefacto 4); 4) viabilidad GovTech (artefacto 4); 5) elevator pitch de 1 minuto (4.2), 140 palabras; 6) bitácora de validación (artefacto 5). Cada uno indica el criterio de evaluación de los TDR que evidencia, las líneas rojas y sus fuentes. Se generan con `src/crear_entregables.py`.
+- **Sin inventar:** las rondas de prueba con usuarios quedan PENDIENTES; los costos se presentan como rubros por estimar; TRL 3 e IRL 3 son metas, no certificaciones. No se agregan cifras ni datasets nuevos.
+- **Verificación:** 6 DOCX y 6 PDF (3 a 8 páginas), revisión visual de páginas de muestra, `npm test` y compilación de la app correctos.
+
 ## 7. Pendientes
+- [x] Integrar el fork de Herlin del 26 de septiembre (El kit y Word vigente) y publicar en GitHub Pages.
+- [x] Los 6 entregables del evento y el texto del pitch 4.2 (`entregables/entregables-evento/`).
+- [ ] Hacer las 3 rondas de prueba con usuarios y registrarlas en el entregable 6 (solo roles, sin nombres).
 - [x] Incorporar las referencias de cartón, cisterna de lona y panel solar como partes del kit en el Word vigente y en la página.
 - [x] Integrar los forks de Herlin (maqueta, app, video, presentación y Word) y de Pablo (módulo preventivo) en `main`.
 - [x] Cambio de integrante: **Bryan Martínez Villamarín** se incorpora al equipo (actualizado en los Markdown, el PPTX, el DOCX y sus PDF).
 - [x] Auditoría del 25 de septiembre y guion del pitch de **1 minuto** (tiempo máximo): `entregables/pitch-1min/Guion_1_minuto.md` y `entregables/guia-25-sep/`.
 - [ ] Armar las 4 diapositivas del pitch de 1 minuto y ensayarlo con cronómetro.
 - [ ] Unificar el nombre: el video v2 y la captura `mapa_cali.png` todavía dicen "Cali Activa".
-- [ ] Publicar la demo (GitHub Pages) o preparar un respaldo sin conexión (video y capturas).
+- [x] Publicar la demo en GitHub Pages: https://leonidas452528.github.io/hackaton-camaracomercio2026/ (falta un respaldo sin conexión: video y capturas).
 - [ ] Documentar al menos un contacto de validación real (JAC o Secretaría de Gestión del Riesgo) para el IRL 3.
 - [ ] Integrar en la app el peritaje de entorno del módulo preventivo de Pablo (puntaje 60/40).
 - [ ] Quitar las columnas de correo y teléfono de `prototipo/datos/raw/sismo/men_sedes.csv` (datos mínimos).

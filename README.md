@@ -17,6 +17,7 @@ Un plan de contingencia **multiamenaza** (sismo, inundación y sequía) que orga
 
 ## Documentación
 - **Propuesta completa para presentar:** [Word editable](entregables/Territorio_Preparado_Propuesta.docx).
+- **Los 6 entregables del evento** (alineación, arquitectura, propuesta de valor, viabilidad GovTech, pitch de 1 minuto y bitácora de validación): [entregables/entregables-evento](entregables/entregables-evento/README.md).
 - **Idea principal y alcance real:** [qué hace hoy Territorio Preparado](docs/PROPUESTA_REAL.md).
 - **Publicación:** [comandos para subir las actualizaciones a GitHub](docs/SUBIR_A_GITHUB.md).
 - **Presentación del pitch:** [PowerPoint editable](entregables/presentacion-ampliada/Presentacion_Ampliada.pptx) · [PDF](entregables/presentacion-ampliada/Presentacion_Ampliada.pdf) · [Guion](entregables/presentacion-ampliada/Guion_del_pitch.md)
