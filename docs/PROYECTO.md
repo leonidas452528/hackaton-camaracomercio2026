@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: Territorio Preparado elegido como nombre del producto; identidad del frontend y presentación ampliada de 16 diapositivas.
+**Última actualización:** 25 de septiembre de 2026: alcance real de Territorio Preparado documentado y guía de subida al fork/GitHub, sin publicación remota en este avance.
 
 ---
 
@@ -470,7 +470,16 @@ El usuario elige **Territorio Preparado** como nombre del sistema. Descriptor ed
 
 - **Verificación de esta entrega:** compilación de producción, 22 pruebas unitarias y tres pruebas de navegador de avisos/SMS/prevención móvil. Presentación con 16 páginas y notas, 288 cuadros de texto editables, sin textos perdidos ni elementos fuera del lienzo en la exportación PDF; revisión visual de portada y láminas. Resultados en `entregables/presentacion-ampliada/verificacion.json`.
 
+## 6.21 Idea principal, alcance real y publicación (25 de septiembre)
+
+A petición del usuario se crea `docs/PROPUESTA_REAL.md`: el núcleo es preparar una propuesta revisable de uso temporal de espacios públicos, con restricciones por amenaza, balance de superficie y necesidades pendientes. Se distingue la visión de coordinación completa del comportamiento implementado: preselección por distancia, sin capacidades operativas confirmadas; huella 3D adaptada, sin distribución automática; seguimiento local; SMS simulado; recuperación conceptual. Se conserva la validación con entidades fuera de esta etapa. No se agregan datos, normas o métricas de impacto.
+
+También se crea `docs/SUBIR_A_GITHUB.md`, con la configuración comprobada: `origin` apunta a https://github.com/helynecheverry/hackaton-camaracomercio2026 y `upstream` a https://github.com/leonidas452528/hackaton-camaracomercio2026. Rama local `propuesta-cali-activa`; rama principal remota de upstream `main`, comprobada mediante `git ls-remote --symref upstream HEAD`. La guía explica push al fork y pull request, y la alternativa de push directo de la rama si se dispone de permisos. No se ejecuta push: el usuario solicita instrucciones para hacerlo.
+
+Validación: contraste documental con el código y la bitácora, revisión de remotos/rama y enlaces locales. Cambio exclusivamente documental; se regenera este PDF sin repetir pruebas del frontend.
+
 ## 7. Pendientes
+- [x] Explicar la idea principal y el alcance realmente implementado en un Markdown independiente; guiar la publicación en GitHub.
 - [x] Nombre elegido por el usuario: **Territorio Preparado**. Aplicado al frontend y a la presentación; Cali Activa permanece como reto oficial.
 - [x] Enriquecer la presentación con matriz multiamenaza, flujo de decisiones, organización conceptual del espacio, capturas del cálculo de acopio, prevención, SMS simulado y anexos de alcance/fuentes.
 - [x] Nueva entrega solicitada: presentación profesional PowerPoint/PDF, 10 diapositivas de pitch y 2 anexos, con guion y notas. Sustituye el enfoque de video por decisión del usuario.

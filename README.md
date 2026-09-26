@@ -16,6 +16,8 @@ Un plan de contingencia **multiamenaza** (sismo, inundación y sequía) que orga
 - **Después:** checklist de retorno y acta de entrega del espacio a su uso normal.
 
 ## Documentación
+- **Idea principal y alcance real:** [qué hace hoy Territorio Preparado](docs/PROPUESTA_REAL.md).
+- **Publicación:** [comandos para subir las actualizaciones a GitHub](docs/SUBIR_A_GITHUB.md).
 - **Presentación del pitch:** [PowerPoint editable](entregables/presentacion-ampliada/Presentacion_Ampliada.pptx) · [PDF](entregables/presentacion-ampliada/Presentacion_Ampliada.pdf) · [Guion](entregables/presentacion-ampliada/Guion_del_pitch.md)
 - [Bitácora completa (MD)](docs/PROYECTO.md) · [PDF](docs/PROYECTO.pdf)
 - [Instrucciones para asistentes de IA](AGENTS.md)
