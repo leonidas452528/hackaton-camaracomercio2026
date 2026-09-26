@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: video animado de demostración de 1 minuto y 20 segundos, con voces, música y subtítulos.
+**Última actualización:** 25 de septiembre de 2026: segunda versión del video de 80 segundos, con personajes de referencia y diagrama de flujo con decisiones.
 
 ---
 
@@ -433,7 +433,20 @@ A petición del usuario se produce una pieza tipo caricatura de **80 segundos**,
 - **Producción:** ilustraciones y música originales por código Python; tipografía DejaVu Sans; montaje con [FFmpeg](https://ffmpeg.org/); voces sintéticas Salome/Gonzalo mediante [edge-tts](https://github.com/rany2/edge-tts). Únicamente el guion público se procesa para síntesis, sin datos personales ni imitación de voces del equipo. Herramientas instaladas en rutas temporales, sin modificar dependencias del frontend.
 - **Filtro del proyecto:** la pieza explica que la autoridad decide y no sustituye evaluaciones estructurales ni conceptos de Bomberos. Datos desconocidos por verificar, ocupación/medidas propuestas y SMS marcados SIMULADOS. No se envían SMS ni se presenta el parque como abierto. No es una alerta, grabación literal de la interfaz ni evidencia de validación con entidades. La devolución del espacio se presenta como parte del flujo previsto, no como un acto realizado.
 
+## 6.18 Video v2: personajes de referencia y decisiones explícitas (25 de septiembre)
+
+El usuario solicita mejorar el video con un diagrama de flujo más específico y los personajes que aporta en la carpeta **Imagen Refe**. Se genera una segunda versión en `entregables/video/v2/cali-activa-80s.mp4`, conservando el primer video y los 80 segundos de duración.
+
+- **Personajes:** narrador de cabello castaño y bufanda; narradora pelirroja con gafas redondas. PNG transparentes adaptados con la herramienta integrada image_gen y la skill imagegen; fuentes del usuario identificadas y prompts completos en `entregables/video/v2/src/prompts-personajes.json`. Ilustraciones con movimiento suave e indicador de voz; no se imitan voces del equipo.
+- **Diagrama animado:** definir amenaza/sector/población; filtro de evidencia y restricciones; existencia de polígono; reservas de superficie; comparación carga/capacidad teórica; necesidades y brechas; responsables; decisión de la autoridad; revisión del aviso; SMS simulado; recuperación. Rombos Sí/No, flechas de avance y retorno para corregir sobreocupación. Versión Mermaid completa en `entregables/video/v2/flujo.md`.
+- **Ejemplo reproducible:** área real de `epou-9465` = 447,2149007228903 m². Reservas SIMULADAS: 100 m² no utilizables + 80 m² circulación + 60 m² atención + 40 m² otros usos. Restan 167,2149007228903 m². Con módulos SIMULADOS de 10 m², máximo teórico de 16; proponer 20 excede, reducir a 16 cumple el balance. Se usan los resultados de `acopioCapacity` del frontend, no cifras inventadas como datos medidos. Exportación en `src/ejemplo-acopio.json` de la carpeta del video. El cambio visual de 20 a 16 se vincula al tramo correspondiente de narración.
+- **Datos:** polígono DAPM/IDESC ya archivado; atribución y CC BY-SA 4.0 en video/créditos. Fuente primaria: https://datos.cali.gov.co/dataset/epou-espacio-publico-efectivo. Sin nuevos datasets. No se atribuye disponibilidad, aforo certificado, encaje físico o apertura al parque.
+- **Filtro:** el sistema propone y la autoridad decide. No sustituye evaluaciones estructurales o conceptos de Bomberos; sin datos personales o reconocimiento facial. El diagrama de habilitación es proceso previsto, no evidencia de una autorización ni nueva integración con entidades. La validación con entidades sigue fuera de esta etapa. El SMS continúa SIMULADO y sin envío real.
+- **Verificación v2:** 80,000 segundos, 1.920 fotogramas a 24 fps, 1280 × 720, H.264/AAC; decodificación completa sin errores y audio presente en ocho escenas. Los 25 bloques de subtítulos caben en dos líneas y dentro de la duración. Se revisaron storyboard, estados del ejemplo y un fotograma extraído del MP4 final a los 40,5 segundos. Balance aritmético contrastado con la función del frontend. Resultados en `entregables/video/v2/verificacion.json`.
+- **Entregables:** MP4, SRT, guion, storyboard, PNG de personajes, diagrama, reproductor local, código y registro de verificación. El reproductor principal apunta a v2; la primera versión queda disponible.
+
 ## 7. Pendientes
+- [x] Segunda versión del video: personajes de referencia y flujo detallado con decisiones y corrección de sobreocupación.
 - [x] Video animado de 80 segundos con voces, música, subtítulos y flujo general del proyecto, solicitado por el usuario. Esta pieza no sustituye automáticamente el video final de 4 minutos previsto por el hackathon.
 - [x] Preparar avisos generales de acopio con ubicación real, horario/información propuesta, copia y descarga, sin identificar damnificados.
 - [x] Canal SMS SIMULADO y sección de análisis preventivo/cultura ciudadana, por solicitud del usuario.

@@ -1,0 +1,99 @@
+1
+00:00:00,400 --> 00:00:03,061
+Cali Activa conecta prevención, espacios y ayuda.
+
+2
+00:00:03,061 --> 00:00:06,916
+Sigamos las decisiones para preparar una respuesta y evitar sobreocupar
+
+3
+00:00:06,916 --> 00:00:07,567
+los lugares.
+
+4
+00:00:08,400 --> 00:00:10,747
+Elegimos amenaza, sector y población simulada.
+
+5
+00:00:10,747 --> 00:00:12,789
+Revisamos datos reales. ¿Pasa el filtro?
+
+6
+00:00:12,789 --> 00:00:16,055
+Con restricciones o evidencia insuficiente, no preseleccionamos.
+
+7
+00:00:16,055 --> 00:00:18,555
+De lo contrario, queda un candidato condicionado.
+
+8
+00:00:19,400 --> 00:00:23,296
+¿Hay polígono del lugar? Sin él, no calculamos capacidad.
+
+9
+00:00:23,296 --> 00:00:25,962
+Con él, obtenemos el área cartográfica:
+
+10
+00:00:25,962 --> 00:00:28,560
+todavía no equivale a superficie útil.
+
+11
+00:00:29,400 --> 00:00:32,402
+Restamos restricciones, circulación, atención y otros usos.
+
+12
+00:00:32,402 --> 00:00:35,913
+Con estas reservas simuladas, el máximo teórico es dieciséis módulos.
+
+13
+00:00:35,913 --> 00:00:39,730
+Proponer veinte bloquea la inclusión. Reducimos a dieciséis y recalculamos:
+
+14
+00:00:39,730 --> 00:00:41,562
+cabe por área, sin certificar aforo.
+
+15
+00:00:42,400 --> 00:00:46,365
+Calculamos agua, baños y refugio. ¿Conocemos los servicios existentes?
+
+16
+00:00:46,365 --> 00:00:48,404
+Si no, las brechas quedan por medir.
+
+17
+00:00:48,404 --> 00:00:50,557
+Proponemos responsables y seguimiento.
+
+18
+00:00:51,400 --> 00:00:55,468
+¿La autoridad confirmó la habilitación? Si no, conservamos el borrador:
+
+19
+00:00:55,468 --> 00:00:59,650
+no acudir. Si confirma, verificamos horario y acceso antes de preparar el
+
+20
+00:00:59,650 --> 00:01:00,567
+aviso operativo.
+
+21
+00:01:01,400 --> 00:01:05,001
+Revisamos ubicación, horario y mensaje para toda la población.
+
+22
+00:01:05,001 --> 00:01:08,893
+Pulsamos simular envío masivo. Entregas y pendientes son ficticios:
+
+23
+00:01:08,893 --> 00:01:11,565
+cero mensajes reales, sin apertura confirmada.
+
+24
+00:01:12,400 --> 00:01:16,356
+Tras la atención, el flujo previsto continúa con revisión, acta y retorno
+
+25
+00:01:16,356 --> 00:01:19,554
+al uso cotidiano. Cali Activa propone; la autoridad decide.

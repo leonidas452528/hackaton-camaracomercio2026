@@ -1,0 +1,48 @@
+{
+  "spaceId": "epou-9465",
+  "areaSource": "Polígono público DAPM/IDESC; área calculada con Turf",
+  "proposed": {
+    "cartographicAreaM2": 447.2149007228903,
+    "simulation": true,
+    "inputs": {
+      "excluded": "100",
+      "circulation": "80",
+      "attention": "60",
+      "otherUses": "40",
+      "unitArea": "10",
+      "units": "20"
+    },
+    "operationalCapacity": null,
+    "reservedM2": 280,
+    "requestedM2": 200,
+    "availableM2": 167.21490072289032,
+    "maxUnits": 16,
+    "shortageM2": 32.78509927710968,
+    "remainingM2": 0,
+    "excessUnits": 4,
+    "status": "overflow",
+    "reason": "La propuesta supera la superficie disponible. Reduce la carga o revisa otro espacio."
+  },
+  "adjusted": {
+    "cartographicAreaM2": 447.2149007228903,
+    "simulation": true,
+    "inputs": {
+      "excluded": "100",
+      "circulation": "80",
+      "attention": "60",
+      "otherUses": "40",
+      "unitArea": "10",
+      "units": "16"
+    },
+    "operationalCapacity": null,
+    "reservedM2": 280,
+    "requestedM2": 160,
+    "availableM2": 167.21490072289032,
+    "maxUnits": 16,
+    "shortageM2": 0,
+    "remainingM2": 7.21490072289032,
+    "excessUnits": 0,
+    "status": "fits",
+    "reason": "La propuesta cumple el balance de áreas supuesto; falta comprobar distribución, accesos y condiciones en campo."
+  }
+}

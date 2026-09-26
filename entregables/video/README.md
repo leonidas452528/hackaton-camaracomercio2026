@@ -1,5 +1,7 @@
 # Cali Activa · demostración animada de 80 segundos
 
+**Versión actualizada:** [video v2 con tus personajes y diagrama de flujo detallado](v2/cali-activa-80s.mp4), [créditos y fuentes](v2/README.md). Los archivos descritos abajo corresponden a la primera versión, que se conserva para comparación.
+
 **Archivo principal:** [cali-activa-80s.mp4](cali-activa-80s.mp4). Horizontal 1280 × 720, 24 fps, H.264 y AAC estéreo. Subtítulos incrustados y archivo [SRT](cali-activa-80s.srt). [Storyboard](storyboard.jpg).
 
 La animación resume el proyecto; no es una grabación literal de la interfaz ni una alerta vigente. Personajes ficticios, ilustraciones y música instrumental creadas por código para esta pieza. Dos voces sintéticas en español de Colombia, sin imitación de personas del equipo. El servicio de síntesis recibe exclusivamente el texto público del guion, nunca datos personales.

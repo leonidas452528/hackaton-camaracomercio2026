@@ -1,0 +1,127 @@
+[
+  {
+    "start": 0.4,
+    "end": 3.060616477272727,
+    "text": "Cali Activa conecta prevención, espacios y ayuda."
+  },
+  {
+    "start": 3.060616477272727,
+    "end": 6.915795454545455,
+    "text": "Sigamos las decisiones para preparar una respuesta y evitar sobreocupar"
+  },
+  {
+    "start": 6.915795454545455,
+    "end": 7.567375,
+    "text": "los lugares."
+  },
+  {
+    "start": 8.4,
+    "end": 10.74739175041876,
+    "text": "Elegimos amenaza, sector y población simulada."
+  },
+  {
+    "start": 10.74739175041876,
+    "end": 12.788601968174204,
+    "text": "Revisamos datos reales. ¿Pasa el filtro?"
+  },
+  {
+    "start": 12.788601968174204,
+    "end": 16.054538316582914,
+    "text": "Con restricciones o evidencia insuficiente, no preseleccionamos."
+  },
+  {
+    "start": 16.054538316582914,
+    "end": 18.555020833333334,
+    "text": "De lo contrario, queda un candidato condicionado."
+  },
+  {
+    "start": 19.4,
+    "end": 23.296453358208954,
+    "text": "¿Hay polígono del lugar? Sin él, no calculamos capacidad."
+  },
+  {
+    "start": 23.296453358208954,
+    "end": 25.962447761194028,
+    "text": "Con él, obtenemos el área cartográfica:"
+  },
+  {
+    "start": 25.962447761194028,
+    "end": 28.56008333333333,
+    "text": "todavía no equivale a superficie útil."
+  },
+  {
+    "start": 29.4,
+    "end": 32.40223701185495,
+    "text": "Restamos restricciones, circulación, atención y otros usos."
+  },
+  {
+    "start": 32.40223701185495,
+    "end": 35.91332775453277,
+    "text": "Con estas reservas simuladas, el máximo teórico es dieciséis módulos."
+  },
+  {
+    "start": 35.91332775453277,
+    "end": 39.72973073570432,
+    "text": "Proponer veinte bloquea la inclusión. Reducimos a dieciséis y recalculamos:"
+  },
+  {
+    "start": 39.72973073570432,
+    "end": 41.56160416666667,
+    "text": "cabe por área, sin certificar aforo."
+  },
+  {
+    "start": 42.4,
+    "end": 46.36503616898148,
+    "text": "Calculamos agua, baños y refugio. ¿Conocemos los servicios existentes?"
+  },
+  {
+    "start": 46.36503616898148,
+    "end": 48.404197627314815,
+    "text": "Si no, las brechas quedan por medir."
+  },
+  {
+    "start": 48.404197627314815,
+    "end": 50.556645833333334,
+    "text": "Proponemos responsables y seguimiento."
+  },
+  {
+    "start": 51.4,
+    "end": 55.467828515625,
+    "text": "¿La autoridad confirmó la habilitación? Si no, conservamos el borrador:"
+  },
+  {
+    "start": 55.467828515625,
+    "end": 59.65024375,
+    "text": "no acudir. Si confirma, verificamos horario y acceso antes de preparar el"
+  },
+  {
+    "start": 59.65024375,
+    "end": 60.5669375,
+    "text": "aviso operativo."
+  },
+  {
+    "start": 61.4,
+    "end": 65.00143976190476,
+    "text": "Revisamos ubicación, horario y mensaje para toda la población."
+  },
+  {
+    "start": 65.00143976190476,
+    "end": 68.89331821428571,
+    "text": "Pulsamos simular envío masivo. Entregas y pendientes son ficticios:"
+  },
+  {
+    "start": 68.89331821428571,
+    "end": 71.56535416666667,
+    "text": "cero mensajes reales, sin apertura confirmada."
+  },
+  {
+    "start": 72.4,
+    "end": 76.3562059659091,
+    "text": "Tras la atención, el flujo previsto continúa con revisión, acta y retorno"
+  },
+  {
+    "start": 76.3562059659091,
+    "end": 79.55368750000001,
+    "text": "al uso cotidiano. Cali Activa propone; la autoridad decide."
+  }
+]

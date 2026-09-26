@@ -1,0 +1,58 @@
+[
+  {
+    "start": 0,
+    "end": 8,
+    "title": "Del riesgo al cuidado: sigue el flujo",
+    "voice": "es-CO-SalomeNeural",
+    "text": "Cali Activa conecta prevención, espacios y ayuda. Sigamos las decisiones para preparar una respuesta y evitar sobreocupar los lugares."
+  },
+  {
+    "start": 8,
+    "end": 19,
+    "title": "1 · Definir el escenario y filtrar",
+    "voice": "es-CO-GonzaloNeural",
+    "text": "Elegimos amenaza, sector y población simulada. Revisamos datos reales. ¿Pasa el filtro? Con restricciones o evidencia insuficiente, no preseleccionamos. De lo contrario, queda un candidato condicionado."
+  },
+  {
+    "start": 19,
+    "end": 29,
+    "title": "2 · Comprobar la base del cálculo",
+    "voice": "es-CO-SalomeNeural",
+    "text": "¿Hay polígono del lugar? Sin él, no calculamos capacidad. Con él, obtenemos el área cartográfica: todavía no equivale a superficie útil."
+  },
+  {
+    "start": 29,
+    "end": 42,
+    "title": "3 · Calcular, comparar y ajustar el acopio",
+    "voice": "es-CO-GonzaloNeural",
+    "text": "Restamos restricciones, circulación, atención y otros usos. Con estas reservas simuladas, el máximo teórico es dieciséis módulos. Proponer veinte bloquea la inclusión. Reducimos a dieciséis y recalculamos: cabe por área, sin certificar aforo."
+  },
+  {
+    "start": 42,
+    "end": 51,
+    "title": "4 · Organizar necesidades y responsables",
+    "voice": "es-CO-SalomeNeural",
+    "text": "Calculamos agua, baños y refugio. ¿Conocemos los servicios existentes? Si no, las brechas quedan por medir. Proponemos responsables y seguimiento."
+  },
+  {
+    "start": 51,
+    "end": 61,
+    "title": "5 · Separar propuesta de habilitación",
+    "voice": "es-CO-GonzaloNeural",
+    "text": "¿La autoridad confirmó la habilitación? Si no, conservamos el borrador: no acudir. Si confirma, verificamos horario y acceso antes de preparar el aviso operativo."
+  },
+  {
+    "start": 61,
+    "end": 72,
+    "title": "6 · Revisar el aviso y demostrar la difusión",
+    "voice": "es-CO-SalomeNeural",
+    "text": "Revisamos ubicación, horario y mensaje para toda la población. Pulsamos simular envío masivo. Entregas y pendientes son ficticios: cero mensajes reales, sin apertura confirmada."
+  },
+  {
+    "start": 72,
+    "end": 80,
+    "title": "7 · Cerrar el ciclo y recuperar el espacio",
+    "voice": "es-CO-GonzaloNeural",
+    "text": "Tras la atención, el flujo previsto continúa con revisión, acta y retorno al uso cotidiano. Cali Activa propone; la autoridad decide."
+  }
+]
