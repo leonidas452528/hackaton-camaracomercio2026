@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Bryan Martínez Villamarín
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 26 de septiembre de 2026: fork de Herlin integrado (pestaña El kit y Word vigente), revisión de nombres del equipo, 6 entregables del evento y pitch.
+**Última actualización:** 26 de septiembre de 2026: informe de preparación legible e imprimible (fork de Herlin) integrado en la app; 6 entregables del evento y pitch 4.2.
 
 ---
 
@@ -506,7 +506,18 @@ Validación: compilación de producción correcta; revisión en navegador a 1440
 - **Sin inventar:** la validación con actores reales queda PENDIENTE; los costos se presentan como rubros por estimar; TRL 3 e IRL 3 son metas, no certificaciones. No se agregan cifras ni datasets nuevos.
 - **Verificación:** 6 DOCX y 6 PDF (3 a 8 páginas), revisión visual de páginas de muestra, `npm test` y compilación de la app correctos.
 
+## 6.25 Informe de preparación legible (fork de Herlin) (26 de septiembre)
+
+La descarga principal de **Preparar intervención** pasa de JSON a un documento HTML autónomo en español, que se abre sin conexión en el navegador e incluye **Imprimir / guardar como PDF**. Presenta espacio y ubicación, amenaza, población SIMULADA, necesidades de agua/baños/superficie, existencia y brecha, responsables propuestos y seguimiento local. Añade estimación conceptual de kits (redondeo superior de personas/20, según la configuración existente), componentes de descanso/privacidad, cisterna de lona, panel solar, saneamiento, salud/protección y logística, con dimensionamientos pendientes explícitos. El número de kits no demuestra encaje ni equivale a los módulos del acopio.
+
+Incluye todas las entradas y resultados disponibles del balance de acopio, su inclusión o exclusión del borrador, candidatos, criterio de comparación, tareas específicas de incendio cuando corresponden, próximos pasos, fuentes y límites. Los datos desconocidos se muestran como **Por confirmar**; no se inventan existencias, potencias, capacidades de cisternas ni cantidades de equipos. El JSON se conserva como opción técnica secundaria. Se mantienen decisiones de autoridad, revisiones técnicas y competencias de Bomberos; sin información personal ni comunicaciones reales.
+
+Validación: compilación de producción; siete pruebas de navegador de planificación, acopio, incendios e informe; prueba de escape de texto externo y bloqueo de enlaces ejecutables. Verificación de exportación para 301 personas (16 baños, 4.515 L/día, 1.053,5 m², 16 kits conceptuales), seguimiento, datos incompletos, sobreocupación, incendio y opción de impresión. Revisión visual de PDF A4 y prueba móvil de 390 píxeles. Sin dependencias nuevas ni datasets adicionales.
+
+Con esto queda resuelto el ajuste «resumen exportable legible» que salió de las rondas de prueba SIMULADAS (sección 6.24).
+
 ## 7. Pendientes
+- [x] Sustituir la descarga técnica principal por un informe de preparación legible, con todas las necesidades y opción de guardar como PDF.
 - [x] Integrar el fork de Herlin del 26 de septiembre (El kit y Word vigente) y publicar en GitHub Pages.
 - [x] Los 6 entregables del evento y el texto del pitch 4.2 (`entregables/entregables-evento/`).
 - [ ] Reemplazar las 2 rondas SIMULADAS por rondas con actores reales (Secretaría y JAC) y registrarlas en el entregable 6 y el final (solo roles, sin nombres).

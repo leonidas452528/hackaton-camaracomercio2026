@@ -34,9 +34,10 @@ test("incendios separados, tareas sin aprobación y exportación honesta", async
   ).toHaveValue("Por medir");
   await page.getByLabel("Personas del escenario SIMULADO").fill("300");
   await expect(page.locator(".gap-table")).toContainText("4.500 L/día");
+  await page.getByText("Datos para integración técnica", { exact: true }).click();
   const pending = page.waitForEvent("download");
   await page
-    .getByRole("button", { name: "Descargar borrador de preparación" })
+    .getByRole("button", { name: "Descargar datos técnicos (JSON)" })
     .click();
   const download = await pending,
     stream = await download.createReadStream(),
