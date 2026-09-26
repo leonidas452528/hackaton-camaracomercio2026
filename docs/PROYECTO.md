@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: propuesta integral en Word editable y PDF, con todas las fases, soluciones, alcance real y demostración para presentar.
+**Última actualización:** 26 de septiembre de 2026: referencias visuales del kit integradas en la página y en el Word Territorio_Preparado_Propuesta.docx.
 
 ---
 
@@ -488,7 +488,16 @@ Fuentes primarias y licencias reutilizadas del catálogo: https://datos.cali.gov
 
 Verificación: DOCX editable y PDF de 13 páginas; texto completo de párrafos y tablas conservado al exportar; 11 tablas y dos imágenes con descripción alternativa; revisión visual de las 13 páginas, sin páginas de desborde. Scripts, dependencias, vistas generales y `verificacion.json` dentro de la carpeta de entrega. No se modifica código del frontend ni se repiten sus pruebas. Se regenera el PDF de esta bitácora.
 
+## 6.23 Referencias visuales del kit (26 de septiembre)
+
+Por solicitud del usuario, se incorporan las tres imágenes de `Imagen Refe/` al documento vigente `entregables/Territorio_Preparado_Propuesta.docx` y a la pestaña **El kit** del frontend: camas y divisiones de cartón (descanso y privacidad en interiores secos), cisterna flexible de lona (almacenamiento de agua) y panel solar portátil plegable (apoyo a iluminación y comunicaciones). El Word incluye una página visual dentro del apartado 5 y actualiza las filas de refugio, agua y energía de su tabla de componentes.
+
+Las imágenes son referencias aportadas por el equipo para expresar una idea; no acreditan instalaciones en Cali, prestaciones o disponibilidad. Se conserva el crédito visible @MECATRÓNICA de la referencia de cartón. Capacidades, materiales, batería y autonomía quedan por definir. No se añaden datasets ni cifras técnicas. Se mantiene el filtro del proyecto: activación por la autoridad, sin sustituir evaluaciones estructurales ni conceptos de Bomberos, sin identificación personal en el frontend y con criterios y límites visibles.
+
+Validación: compilación de producción correcta; revisión en navegador a 1440 y 390 píxeles, tres imágenes cargadas con texto alternativo y sin desborde horizontal. Word con cinco imágenes totales; página de referencias comprobada mediante exportación a PDF. Se respetan las eliminaciones y los demás cambios previos del usuario.
+
 ## 7. Pendientes
+- [x] Incorporar las referencias de cartón, cisterna de lona y panel solar como partes del kit en el Word vigente y en la página.
 - [x] Crear el documento Word integral con fases, soluciones, alcance actual y material para presentar; PDF complementario verificado.
 - [x] Explicar la idea principal y el alcance realmente implementado en un Markdown independiente; guiar la publicación en GitHub.
 - [x] Nombre elegido por el usuario: **Territorio Preparado**. Aplicado al frontend y a la presentación; Cali Activa permanece como reto oficial.

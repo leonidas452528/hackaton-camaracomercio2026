@@ -2,6 +2,7 @@ import { brand } from "./brand";
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import TerritoryMap from "./TerritoryMap";
 import GoogleMapsLinks from "./GoogleMapsLinks";
+import Kit from "./Kit";
 import {
   formatNumber as fmt,
   type Space,
@@ -196,11 +197,19 @@ export default function App() {
           >
             04 <span>Análisis preventivo</span>
           </button>
+          <button
+            className={tab === "kit" ? "active" : ""}
+            onClick={() => setTab("kit")}
+          >
+            05 <span>El kit</span>
+          </button>
           <a href={`${import.meta.env.BASE_URL}data/sectores.csv`} download>
             ↓ Resumen por sector
           </a>
         </nav>
-        {error ? (
+        {tab === "kit" ? (
+          <Kit />
+        ) : error ? (
           <p role="alert" className="notice">
             {error}
           </p>
