@@ -83,7 +83,7 @@ Luego abre http://localhost:5173. Recorrido: **Mapa de espacios** → **Preparar
 - Resolver la identidad de la cancha de hockey (Miguel Calero figura como coliseo).
 
 ## 5. El pitch de 1 minuto (para memorizar)
-**[0–12 s] El gancho.** "El 10 de agosto, tras el sismo de 7,4, 1.046 personas se refugiaron en canchas de Chiminangos y Calimio que la propia comunidad convirtió en albergues. Esas canchas están a menos de 150 metros del jarillón del río Cauca: amenaza alta de inundación y suelo licuable."
+**[0–12 s] El gancho.** "El 10 de agosto, tras el sismo de 7,4, 1.046 personas se refugiaron en canchas de Chiminangos y Calimio que la propia comunidad convirtió en albergues. Esas canchas están a entre 72 y 152 metros del jarillón del río Cauca: amenaza alta de inundación y suelo licuable."
 
 **[12–22 s] El problema.** "Cali tiene 1.970 espacios públicos inventariados, pero hoy nadie sabe cuál sirve ante qué amenaza, qué le falta ni quién debe responder."
 
