@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Bryan Martínez Villamarín
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026 (noche): forks de Herlin y Pablo integrados, cambio de integrante (Bryan Martínez Villamarín reemplaza a Daniel Celis), auditoría y pitch de 1 minuto.
+**Última actualización:** 26 de septiembre de 2026: fork de Herlin integrado (pestaña El kit y Word vigente), revisión de nombres del equipo, 6 entregables del evento y pitch.
 
 ---
 
@@ -488,7 +488,16 @@ Fuentes primarias y licencias reutilizadas del catálogo: https://datos.cali.gov
 
 Verificación: DOCX editable y PDF de 13 páginas; texto completo de párrafos y tablas conservado al exportar; 11 tablas y dos imágenes con descripción alternativa; revisión visual de las 13 páginas, sin páginas de desborde. Scripts, dependencias, vistas generales y `verificacion.json` dentro de la carpeta de entrega. No se modifica código del frontend ni se repiten sus pruebas. Se regenera el PDF de esta bitácora.
 
+## 6.23 Referencias visuales del kit (26 de septiembre)
+
+Por solicitud del usuario, se incorporan las tres imágenes de `Imagen Refe/` al documento vigente `entregables/Territorio_Preparado_Propuesta.docx` y a la pestaña **El kit** del frontend: camas y divisiones de cartón (descanso y privacidad en interiores secos), cisterna flexible de lona (almacenamiento de agua) y panel solar portátil plegable (apoyo a iluminación y comunicaciones). El Word incluye una página visual dentro del apartado 5 y actualiza las filas de refugio, agua y energía de su tabla de componentes.
+
+Las imágenes son referencias aportadas por el equipo para expresar una idea; no acreditan instalaciones en Cali, prestaciones o disponibilidad. Se conserva el crédito visible @MECATRÓNICA de la referencia de cartón. Capacidades, materiales, batería y autonomía quedan por definir. No se añaden datasets ni cifras técnicas. Se mantiene el filtro del proyecto: activación por la autoridad, sin sustituir evaluaciones estructurales ni conceptos de Bomberos, sin identificación personal en el frontend y con criterios y límites visibles.
+
+Validación: compilación de producción correcta; revisión en navegador a 1440 y 390 píxeles, tres imágenes cargadas con texto alternativo y sin desborde horizontal. Word con cinco imágenes totales; página de referencias comprobada mediante exportación a PDF. Se respetan las eliminaciones y los demás cambios previos del usuario.
+
 ## 7. Pendientes
+- [x] Incorporar las referencias de cartón, cisterna de lona y panel solar como partes del kit en el Word vigente y en la página.
 - [x] Integrar los forks de Herlin (maqueta, app, video, presentación y Word) y de Pablo (módulo preventivo) en `main`.
 - [x] Cambio de integrante: **Bryan Martínez Villamarín** reemplaza a Daniel Celis (actualizado en los Markdown, el PPTX, el DOCX y sus PDF).
 - [x] Auditoría del 25 de septiembre y guion del pitch de **1 minuto** (tiempo máximo): `entregables/pitch-1min/Guion_1_minuto.md` y `entregables/guia-25-sep/`.

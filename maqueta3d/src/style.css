@@ -1,4 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+.kit-panel { padding: 32px 0; }
+.kit-panel h2 { font: 700 clamp(24px, 3vw, 36px) Manrope, sans-serif; max-width: 850px; }
+.kit-intro { max-width: 850px; line-height: 1.7; }
+.kit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin: 28px 0; }
+.kit-card { margin: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 16px; background: #fff; }
+.kit-card a { display: block; background: #eef1eb; }
+.kit-card img { display: block; width: 100%; height: 360px; object-fit: contain; }
+.kit-card figcaption { padding: 24px; }
+.kit-card h3 { font: 700 22px Manrope, sans-serif; margin: 10px 0; }
+.kit-card p { line-height: 1.65; }
+.kit-detail, .kit-source { font-size: 13px; color: var(--muted); line-height: 1.6; }
+@media (max-width: 850px) { .kit-grid { grid-template-columns: 1fr; } .kit-card img { height: 340px; } }
 :root {
   font-family: "DM Sans", sans-serif;
   color: #193e3b;
