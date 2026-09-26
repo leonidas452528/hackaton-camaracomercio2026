@@ -1,6 +1,6 @@
 # Ruta de aprendizaje rápido: RETO-01 Cali Activa
 
-**Para:** el equipo William Ortiz, Herlin Echeverry, Pablo Arango y Daniel Celis
+**Para:** el equipo William Ortiz, Herlin Echeverry, Pablo Arango y Bryan Martínez Villamarín
 **Objetivo:** en unas 4 horas, que cualquier integrante pueda explicar el problema, defender la propuesta ante el jurado y responder preguntas difíciles sin inventar datos.
 **Documento complementario:** `PROYECTO.pdf` (la bitácora completa, con todas las fuentes). Si una cifra no aparece ni aquí ni allá, se dice "(verificar)".
 **Fecha:** 25 de septiembre de 2026. El prototipo y el video se hacen el sábado 26.

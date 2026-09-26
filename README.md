@@ -4,7 +4,7 @@
 
 Proyecto para la **Hackathon Smart City Expo Cali 2026**, **RETO-01 Cali Activa: espacios públicos que se transforman para cuidar** (Alcaldía de Santiago de Cali).
 
-**Equipo:** William Ortiz · Herlin Echeverry · Pablo Arango · Daniel Celis
+**Equipo:** William Ortiz · Herlin Echeverry · Pablo Arango · Bryan Martínez Villamarín
 
 ## El problema
 Tras el sismo de magnitud 7,4 del 10 de agosto de 2026, Cali tuvo que convertir canchas y coliseos en albergues sin saber si estaban preparados ni qué entidad respondía por cada servicio. Además, aparecieron albergues **autogestionados** por la comunidad, y uno de ellos está en la zona inundable del Jarillón del río Cauca. Con El Niño alcanzando su pico en noviembre, el agua también se vuelve una restricción.

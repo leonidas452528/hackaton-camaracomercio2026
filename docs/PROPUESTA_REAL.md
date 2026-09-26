@@ -3,7 +3,7 @@
 **Versión:** 25 de septiembre de 2026.  
 **Producto:** Territorio Preparado.  
 **Reto oficial:** RETO-01 Cali Activa.  
-**Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango y Daniel Celis.
+**Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango y Bryan Martínez Villamarín.
 
 ## 1. La idea principal
 

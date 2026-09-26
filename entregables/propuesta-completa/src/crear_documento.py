@@ -69,7 +69,7 @@ image(ASSETS/'espacio-conceptual.png',6.55,'Ilustración conceptual generada con
 h('La propuesta en una frase')
 p('Ayudar a preparar dónde y cómo prestar apoyo a la población ante una emergencia, convirtiendo datos territoriales y supuestos explícitos en una propuesta revisable. La autoridad decide la activación.')
 p('Hackathon Smart City Expo Cali 2026\nRETO-01 Cali Activa · Cámara de Comercio de Cali y Alcaldía de Santiago de Cali')
-p('William Ortiz · Herlin Echeverry\nPablo Arango · Daniel Celis')
+p('William Ortiz · Herlin Echeverry\nPablo Arango · Bryan Martínez Villamarín')
 p('Corte de esta entrega: 25 de septiembre de 2026.\nPrototipo demostrable; no acredita operación ni validación con entidades.','Caption')
 
 page('1. Resumen ejecutivo','Propósito y problema')
@@ -297,7 +297,7 @@ for i,shape in enumerate(doc.inline_shapes):
  shape._inline.docPr.set('descr', ['Ilustración conceptual de acopio, atención, accesos y servicios; no parque real.','Captura de la maqueta: circuito conceptual de agua no potable.'][i])
 doc.core_properties.title='Territorio Preparado — Propuesta completa'
 doc.core_properties.subject='Fases, soluciones, prototipo demostrable y alcance pendiente'
-doc.core_properties.author='William Ortiz, Herlin Echeverry, Pablo Arango y Daniel Celis'
+doc.core_properties.author='William Ortiz, Herlin Echeverry, Pablo Arango y Bryan Martínez Villamarín'
 doc.core_properties.keywords='Cali, espacios públicos, preparación, acopio, emergencias, prototipo'
 doc.save(OUT/'Territorio_Preparado_Propuesta_Completa.docx')
 (OUT/'src/secciones.json').write_text(json.dumps(PAGES,ensure_ascii=False,indent=2)+'\n')

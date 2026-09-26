@@ -197,8 +197,8 @@ text(s,.64,1.5,11.9,1.94,'Un espacio preparado.\nUna comunidad informada.',40,WH
 for j,(a,b) in enumerate([('EXPLICABLE','Cada propuesta muestra sus criterios.'),('COORDINADO','Necesidad, tarea y responsable propuesto.'),('REVERSIBLE','Revisión y retorno al uso cotidiano.')]):
     x=.65+j*4.17;rule(s,x,4.04,3.65,'527A70');text(s,x,4.33,3.8,.32,a,13,MINT,True);text(s,x,4.9,3.65,.85,b,18,WHITE)
 text(s,.65,6.11,11.7,.43,'Siguiente paso: medir área útil, accesos y servicios de los espacios.',18,MINT,True)
-small(s,.65,6.68,'Equipo: William Ortiz · Herlin Echeverry · Pablo Arango · Daniel Celis',True,w=12)
-notes(s,'El valor es hacer explícitas las decisiones: por qué un lugar se revisa, cuánto se propone ocupar y qué falta resolver. El siguiente paso técnico es completar mediciones y servicios. Cali Activa propone y documenta; la autoridad decide. El equipo es William Ortiz, Herlin Echeverry, Pablo Arango y Daniel Celis.',15)
+small(s,.65,6.68,'Equipo: William Ortiz · Herlin Echeverry · Pablo Arango · Bryan Martínez Villamarín',True,w=12)
+notes(s,'El valor es hacer explícitas las decisiones: por qué un lugar se revisa, cuánto se propone ocupar y qué falta resolver. El siguiente paso técnico es completar mediciones y servicios. Cali Activa propone y documenta; la autoridad decide. El equipo es William Ortiz, Herlin Echeverry, Pablo Arango y Bryan Martínez Villamarín.',15)
 
 # 11: backup / honest readiness.
 s=new('Anexo · alcance','Qué demuestra hoy\ny qué sigue por verificar.')

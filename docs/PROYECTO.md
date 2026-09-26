@@ -1,9 +1,9 @@
 # Hackathon Smart City Expo Cali 2026 — Bitácora del proyecto
 
-**Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
+**Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Bryan Martínez Villamarín
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: propuesta integral en Word editable y PDF, con todas las fases, soluciones, alcance real y demostración para presentar.
+**Última actualización:** 25 de septiembre de 2026 (noche): forks de Herlin y Pablo integrados, cambio de integrante (Bryan Martínez Villamarín reemplaza a Daniel Celis), auditoría y pitch de 1 minuto.
 
 ---
 
@@ -489,6 +489,15 @@ Fuentes primarias y licencias reutilizadas del catálogo: https://datos.cali.gov
 Verificación: DOCX editable y PDF de 13 páginas; texto completo de párrafos y tablas conservado al exportar; 11 tablas y dos imágenes con descripción alternativa; revisión visual de las 13 páginas, sin páginas de desborde. Scripts, dependencias, vistas generales y `verificacion.json` dentro de la carpeta de entrega. No se modifica código del frontend ni se repiten sus pruebas. Se regenera el PDF de esta bitácora.
 
 ## 7. Pendientes
+- [x] Integrar los forks de Herlin (maqueta, app, video, presentación y Word) y de Pablo (módulo preventivo) en `main`.
+- [x] Cambio de integrante: **Bryan Martínez Villamarín** reemplaza a Daniel Celis (actualizado en los Markdown, el PPTX, el DOCX y sus PDF).
+- [x] Auditoría del 25 de septiembre y guion del pitch de **1 minuto** (tiempo máximo): `entregables/pitch-1min/Guion_1_minuto.md` y `entregables/guia-25-sep/`.
+- [ ] Armar las 4 diapositivas del pitch de 1 minuto y ensayarlo con cronómetro.
+- [ ] Unificar el nombre: el video v2 y la captura `mapa_cali.png` todavía dicen "Cali Activa".
+- [ ] Publicar la demo (GitHub Pages) o preparar un respaldo sin conexión (video y capturas).
+- [ ] Documentar al menos un contacto de validación real (JAC o Secretaría de Gestión del Riesgo) para el IRL 3.
+- [ ] Integrar en la app el peritaje de entorno del módulo preventivo de Pablo (puntaje 60/40).
+- [ ] Quitar las columnas de correo y teléfono de `prototipo/datos/raw/sismo/men_sedes.csv` (datos mínimos).
 - [x] Crear el documento Word integral con fases, soluciones, alcance actual y material para presentar; PDF complementario verificado.
 - [x] Explicar la idea principal y el alcance realmente implementado en un Markdown independiente; guiar la publicación en GitHub.
 - [x] Nombre elegido por el usuario: **Territorio Preparado**. Aplicado al frontend y a la presentación; Cali Activa permanece como reto oficial.

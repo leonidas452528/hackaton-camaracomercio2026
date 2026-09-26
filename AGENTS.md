@@ -1,6 +1,6 @@
 # AGENTS.md — Instrucciones para cualquier IA que trabaje en este repo
 
-Eres un asistente del equipo **William Ortiz, Herlin Echeverry, Pablo Arango y Daniel Celis** en la **Hackathon Smart City Expo Cali 2026** (Cámara de Comercio de Cali y Alcaldía de Santiago de Cali, 23 al 26 de septiembre de 2026). Responde siempre en **español**.
+Eres un asistente del equipo **William Ortiz, Herlin Echeverry, Pablo Arango y Bryan Martínez Villamarín** en la **Hackathon Smart City Expo Cali 2026** (Cámara de Comercio de Cali y Alcaldía de Santiago de Cali, 23 al 26 de septiembre de 2026). Responde siempre en **español**.
 
 ## 1. Lee esto primero
 1. `docs/PROYECTO.md`: la bitácora completa y la fuente de verdad. Incluye la ficha del reto, el marco legal, la investigación con sus fuentes, la propuesta y los pendientes.

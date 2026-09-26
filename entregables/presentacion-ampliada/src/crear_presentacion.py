@@ -232,7 +232,7 @@ text(s,.64,1.35,11.95,1.56,'Preparar el espacio.\nHacer visible lo que falta.',4
 for j,(a,b) in enumerate([('CRITERIOS VISIBLES','Entender por qué se revisa un lugar.'),('OCUPACIÓN CONTROLADA','Detectar propuestas que exceden el área.'),('COMUNICACIÓN CLARA','Distinguir borrador de apertura confirmada.')]):
     x=.66+j*4.15;rule(s,x,3.75,3.71,'355965');text(s,x,4.1,3.73,.63,a,16,MINT,True);text(s,x,4.93,3.68,.82,b,18,WHITE)
 text(s,.66,6.12,12,.35,BRAND['name']+' propone. La autoridad decide.',25,MINT,True)
-small(s,.67,6.67,'William Ortiz · Herlin Echeverry · Pablo Arango · Daniel Celis',True,w=12)
+small(s,.67,6.67,'William Ortiz · Herlin Echeverry · Pablo Arango · Bryan Martínez Villamarín',True,w=12)
 notes(s,'La propuesta es hacer explicable la preparación: criterios visibles, ocupación controlada y comunicación clara. Son capacidades demostradas en un prototipo, no impacto medido en una emergencia. '+BRAND['name']+' propone; la autoridad decide.',15)
 
 # 13 — evidence and technical architecture, concrete current scope.

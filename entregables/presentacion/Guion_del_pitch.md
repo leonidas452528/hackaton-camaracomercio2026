@@ -40,7 +40,7 @@ En la demostración seleccionamos un espacio real, abrimos Preparar este espacio
 
 ## Diapositiva 10 · 15 segundos
 
-El valor es hacer explícitas las decisiones: por qué un lugar se revisa, cuánto se propone ocupar y qué falta resolver. El siguiente paso técnico es completar mediciones y servicios. Cali Activa propone y documenta; la autoridad decide. El equipo es William Ortiz, Herlin Echeverry, Pablo Arango y Daniel Celis.
+El valor es hacer explícitas las decisiones: por qué un lugar se revisa, cuánto se propone ocupar y qué falta resolver. El siguiente paso técnico es completar mediciones y servicios. Cali Activa propone y documenta; la autoridad decide. El equipo es William Ortiz, Herlin Echeverry, Pablo Arango y Bryan Martínez Villamarín.
 
 ## Diapositiva 11 · Anexo
 
