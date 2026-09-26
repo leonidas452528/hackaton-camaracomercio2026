@@ -1,7 +1,7 @@
 # Territorio Preparado: guía de todo lo que se hizo el 25 de septiembre
 
 **Hackathon Smart City Expo Cali 2026 · RETO-01 Cali Activa**
-**Equipo:** William Ortiz · Herlin Echeverry · Pablo Arango · Bryan Martínez Villamarín (reemplaza a Daniel Celis desde el 25 de septiembre)
+**Equipo:** William Ortiz · Herlin Echeverry · Pablo Arango · Bryan Martínez Villamarín
 **Corte:** 25 de septiembre de 2026, 23:00. Presentación: sábado 26 de septiembre. **Pitch máximo: 1 minuto.**
 
 ---
@@ -33,7 +33,7 @@
 |---|---|
 | **El pitch de 1 minuto** | `entregables/pitch-1min/Guion_1_minuto.md` |
 | La presentación para proyectar | `entregables/presentacion-ampliada/Presentacion_Ampliada.pptx` y `.pdf` |
-| El documento completo para el jurado | `entregables/propuesta-completa/Territorio_Preparado_Propuesta_Completa.docx` y `.pdf` |
+| El documento completo para el jurado | `entregables/Territorio_Preparado_Propuesta.docx` |
 | Qué hace de verdad el prototipo | `docs/PROPUESTA_REAL.md` |
 | El video (80 s) | `entregables/video/v2/cali-activa-80s.mp4` |
 | Las capturas y los renders 3D | `maqueta3d/deliverables/renders/` |

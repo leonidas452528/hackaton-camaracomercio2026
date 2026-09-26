@@ -118,7 +118,7 @@ En la ficha de **Preparar intervención**, abre **Preparar aviso SMS de acopio**
 
 **Canal SMS SIMULADO:** pulsa **Simular envío masivo** para recorrer una entrega ficticia completa o con pendientes. No usa un proveedor ni envía mensajes reales; las cifras de audiencia y entrega están marcadas como simuladas. No pide ni guarda teléfonos. Como no hay puntos habilitados confirmados, el borrador indica que no se debe acudir todavía; no es un aviso oficial de apertura.
 
-La pestaña **04 Análisis preventivo** ofrece orientación educativa por amenaza, una lista personal sin persistencia y una pregunta interactiva sobre la apertura de los puntos. Incluye fuentes UNGRD y acceso al mapa. El guion de demostración está en `../entregables/guion_prevencion_difusion.md`.
+La pestaña **04 Análisis preventivo** ofrece orientación educativa por amenaza, una lista personal sin persistencia y una pregunta interactiva sobre la apertura de los puntos. Incluye fuentes UNGRD y acceso al mapa.
 
 ### Balance de superficie para acopio
 

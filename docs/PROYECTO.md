@@ -499,7 +499,7 @@ Validación: compilación de producción correcta; revisión en navegador a 1440
 ## 7. Pendientes
 - [x] Incorporar las referencias de cartón, cisterna de lona y panel solar como partes del kit en el Word vigente y en la página.
 - [x] Integrar los forks de Herlin (maqueta, app, video, presentación y Word) y de Pablo (módulo preventivo) en `main`.
-- [x] Cambio de integrante: **Bryan Martínez Villamarín** reemplaza a Daniel Celis (actualizado en los Markdown, el PPTX, el DOCX y sus PDF).
+- [x] Cambio de integrante: **Bryan Martínez Villamarín** se incorpora al equipo (actualizado en los Markdown, el PPTX, el DOCX y sus PDF).
 - [x] Auditoría del 25 de septiembre y guion del pitch de **1 minuto** (tiempo máximo): `entregables/pitch-1min/Guion_1_minuto.md` y `entregables/guia-25-sep/`.
 - [ ] Armar las 4 diapositivas del pitch de 1 minuto y ensayarlo con cronómetro.
 - [ ] Unificar el nombre: el video v2 y la captura `mapa_cali.png` todavía dicen "Cali Activa".
