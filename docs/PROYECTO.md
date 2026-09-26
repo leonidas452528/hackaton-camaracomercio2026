@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: alcance real de Territorio Preparado documentado y guía de subida al fork/GitHub, sin publicación remota en este avance.
+**Última actualización:** 25 de septiembre de 2026: propuesta integral en Word editable y PDF, con todas las fases, soluciones, alcance real y demostración para presentar.
 
 ---
 
@@ -478,7 +478,18 @@ También se crea `docs/SUBIR_A_GITHUB.md`, con la configuración comprobada: `or
 
 Validación: contraste documental con el código y la bitácora, revisión de remotos/rama y enlaces locales. Cambio exclusivamente documental; se regenera este PDF sin repetir pruebas del frontend.
 
+## 6.22 Propuesta integral en Word para presentar (25 de septiembre)
+
+Se entrega `entregables/propuesta-completa/Territorio_Preparado_Propuesta_Completa.docx`, con PDF complementario. Trece páginas: portada; resumen ejecutivo; solución y actores; cinco fases (conocer/prevenir, dimensionar, coordinar/decidir, informar/acompañar y recuperar/aprender); arquitectura y maqueta; caso reproducible; evidencia y entregables; hoja de ruta; fuentes. Once tablas editables y dos imágenes conceptuales identificadas. Se incluye el caso `epou-9465` y los supuestos de superficie ya documentados, sin nuevas cifras de emergencias ni datasets.
+
+El texto distingue consulta y cálculos implementados, escenarios SIMULADOS, coordinación local, SMS sin envío real y fases operativas pendientes. La huella se adapta al polígono; no hay distribución automática ni aforo certificado. Recuperación, validación institucional, trazabilidad de lotes y operación real no se presentan como realizadas. La validación con entidades continúa fuera de la etapa actual; TRL 3 / IRL 3 son metas, no certificaciones obtenidas. Se conservan decisiones de autoridad, límites técnicos, privacidad y criterios explicables.
+
+Fuentes primarias y licencias reutilizadas del catálogo: https://datos.cali.gov.co/dataset/epou-espacio-publico-efectivo · https://www.datos.gov.co/dataset/Comunas-de-Santiago-de-Cali/dx2g-2mhm · https://www.openstreetmap.org/copyright · https://spherestandards.org/wp-content/uploads/Sphere-Handbook-2018-EN.pdf · fuentes educativas UNGRD de la sección 6.15. Ilustración de portada reutilizada de la presentación ampliada y captura del circuito de agua de la maqueta, ambas conceptuales.
+
+Verificación: DOCX editable y PDF de 13 páginas; texto completo de párrafos y tablas conservado al exportar; 11 tablas y dos imágenes con descripción alternativa; revisión visual de las 13 páginas, sin páginas de desborde. Scripts, dependencias, vistas generales y `verificacion.json` dentro de la carpeta de entrega. No se modifica código del frontend ni se repiten sus pruebas. Se regenera el PDF de esta bitácora.
+
 ## 7. Pendientes
+- [x] Crear el documento Word integral con fases, soluciones, alcance actual y material para presentar; PDF complementario verificado.
 - [x] Explicar la idea principal y el alcance realmente implementado en un Markdown independiente; guiar la publicación en GitHub.
 - [x] Nombre elegido por el usuario: **Territorio Preparado**. Aplicado al frontend y a la presentación; Cali Activa permanece como reto oficial.
 - [x] Enriquecer la presentación con matriz multiamenaza, flujo de decisiones, organización conceptual del espacio, capturas del cálculo de acopio, prevención, SMS simulado y anexos de alcance/fuentes.
