@@ -28,9 +28,10 @@ test("selección real adapta huella, compara y exporta brechas desconocidas", as
   await expect(page.locator(".gap-table")).toContainText("4.500 L/día");
   await expect(page.locator(".gap-table")).toContainText("No calculable");
   await page.getByLabel("Seguimiento de Baños").selectOption("En revisión");
+  await page.getByText("Datos para integración técnica", { exact: true }).click();
   const downloadPromise = page.waitForEvent("download");
   await page
-    .getByRole("button", { name: "Descargar borrador de preparación" })
+    .getByRole("button", { name: "Descargar datos técnicos (JSON)" })
     .click();
   const download = await downloadPromise;
   const stream = await download.createReadStream();
@@ -67,7 +68,7 @@ test("selección real adapta huella, compara y exporta brechas desconocidas", as
   await expect(page.locator(".candidate-grid article")).toHaveCount(0);
   await page.getByLabel("Personas del escenario SIMULADO").fill("-1");
   await expect(
-    page.getByRole("button", { name: "Descargar borrador de preparación" }),
+    page.getByRole("button", { name: "Descargar informe de preparación" }),
   ).toBeDisabled();
   await page.getByLabel("Personas del escenario SIMULADO").fill("300");
   await page.getByLabel("Amenaza del escenario").selectOption("flood");

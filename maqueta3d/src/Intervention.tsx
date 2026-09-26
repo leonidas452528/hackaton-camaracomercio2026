@@ -14,6 +14,7 @@ import { site, planningView } from "./data/site";
 import GoogleMapsLinks from "./GoogleMapsLinks";
 import AcopioNotice from "./AcopioNotice";
 import AcopioCapacity from "./AcopioCapacity";
+import { preparationReport } from "./preparationReport";
 import {
   acopioCapacity,
   emptyAcopioInputs,
@@ -127,7 +128,8 @@ export default function Intervention({
     ...r,
     followup: followup[`${p.id}:${threat}-${r.id}`] ?? "Por medir",
   }));
-  const exportPlan = () => {
+  const exportPlan = (technical = false) => {
+    if (problem) return;
     const payload = {
       kind: "Borrador de preparación; no autorización",
       scenario: { threat, people: count, status: "SIMULADO" },
@@ -175,14 +177,30 @@ export default function Intervention({
       warning:
         "No se conoce disponibilidad, aforo, superficie útil ni evaluación estructural. Responsables propuestos, sin validación con entidades.",
     };
+    const report = preparationReport({
+      generatedAt: new Date().toISOString(),
+      origin: origin.properties,
+      target: p,
+      scope: scopeLabel,
+      threat,
+      people: count,
+      decision,
+      comparison: result,
+      gaps: payload.gaps,
+      acopio: payload.acopio,
+      fire: fireReview,
+      fireLimitations: isFire(threat) ? fireLimitations : [],
+      fireSources: isFire(threat) ? fireSources : [],
+      manifest: data.manifest,
+    });
     const url = URL.createObjectURL(
-      new Blob([JSON.stringify(payload, null, 2)], {
-        type: "application/json",
+      new Blob([technical ? JSON.stringify(payload, null, 2) : report], {
+        type: technical ? "application/json" : "text/html;charset=utf-8",
       }),
     );
     const a = document.createElement("a");
     a.href = url;
-    a.download = `preparacion-${p.id}.json`;
+    a.download = `preparacion-${p.id}.${technical ? "json" : "html"}`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
@@ -460,9 +478,19 @@ export default function Intervention({
         </a>
         . Datos archivados el {data.manifest.snapshotDate}.
       </p>
-      <button disabled={!!problem} onClick={exportPlan}>
-        Descargar borrador de preparación
+      <button disabled={!!problem} onClick={() => exportPlan()}>
+        Descargar informe de preparación
       </button>
+      <p className="small-note">
+        Documento legible con necesidades, kit, responsables y pendientes.
+        Abre el archivo descargado en tu navegador y usa «Imprimir / guardar como PDF».
+      </p>
+      <details>
+        <summary>Datos para integración técnica</summary>
+        <button disabled={!!problem} onClick={() => exportPlan(true)}>
+          Descargar datos técnicos (JSON)
+        </button>
+      </details>
       <p className="small-note">
         {savedLocally
           ? "Seguimiento guardado localmente en este navegador."

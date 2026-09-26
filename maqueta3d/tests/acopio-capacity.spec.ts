@@ -20,9 +20,10 @@ test("balance limita acopio, exporta supuestos e invalida al editar o cambiar es
   await fields.nth(5).fill("1");
   await expect(panel).toContainText("Balance de área suficiente");
   await include.click();
+  await page.getByText("Datos para integración técnica", { exact: true }).click();
   const pending = page.waitForEvent("download");
   await page
-    .getByRole("button", { name: "Descargar borrador de preparación" })
+    .getByRole("button", { name: "Descargar datos técnicos (JSON)" })
     .click();
   const stream = await (await pending).createReadStream();
   const chunks = [];

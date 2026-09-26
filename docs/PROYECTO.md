@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 26 de septiembre de 2026: referencias visuales del kit integradas en la página y en el Word Territorio_Preparado_Propuesta.docx.
+**Última actualización:** 26 de septiembre de 2026: descarga de preparación en informe legible, imprimible y con necesidades, kit y pendientes completos.
 
 ---
 
@@ -496,7 +496,16 @@ Las imágenes son referencias aportadas por el equipo para expresar una idea; no
 
 Validación: compilación de producción correcta; revisión en navegador a 1440 y 390 píxeles, tres imágenes cargadas con texto alternativo y sin desborde horizontal. Word con cinco imágenes totales; página de referencias comprobada mediante exportación a PDF. Se respetan las eliminaciones y los demás cambios previos del usuario.
 
+## 6.24 Informe de preparación legible (26 de septiembre)
+
+La descarga principal de **Preparar intervención** pasa de JSON a un documento HTML autónomo en español, que se abre sin conexión en el navegador e incluye **Imprimir / guardar como PDF**. Presenta espacio y ubicación, amenaza, población SIMULADA, necesidades de agua/baños/superficie, existencia y brecha, responsables propuestos y seguimiento local. Añade estimación conceptual de kits (redondeo superior de personas/20, según la configuración existente), componentes de descanso/privacidad, cisterna de lona, panel solar, saneamiento, salud/protección y logística, con dimensionamientos pendientes explícitos. El número de kits no demuestra encaje ni equivale a los módulos del acopio.
+
+Incluye todas las entradas y resultados disponibles del balance de acopio, su inclusión o exclusión del borrador, candidatos, criterio de comparación, tareas específicas de incendio cuando corresponden, próximos pasos, fuentes y límites. Los datos desconocidos se muestran como **Por confirmar**; no se inventan existencias, potencias, capacidades de cisternas ni cantidades de equipos. El JSON se conserva como opción técnica secundaria. Se mantienen decisiones de autoridad, revisiones técnicas y competencias de Bomberos; sin información personal ni comunicaciones reales.
+
+Validación: compilación de producción; siete pruebas de navegador de planificación, acopio, incendios e informe; prueba de escape de texto externo y bloqueo de enlaces ejecutables. Verificación de exportación para 301 personas (16 baños, 4.515 L/día, 1.053,5 m², 16 kits conceptuales), seguimiento, datos incompletos, sobreocupación, incendio y opción de impresión. Revisión visual de PDF A4 y prueba móvil de 390 píxeles. Sin dependencias nuevas ni datasets adicionales.
+
 ## 7. Pendientes
+- [x] Sustituir la descarga técnica principal por un informe de preparación legible, con todas las necesidades y opción de guardar como PDF.
 - [x] Incorporar las referencias de cartón, cisterna de lona y panel solar como partes del kit en el Word vigente y en la página.
 - [x] Crear el documento Word integral con fases, soluciones, alcance actual y material para presentar; PDF complementario verificado.
 - [x] Explicar la idea principal y el alcance realmente implementado en un Markdown independiente; guiar la publicación en GitHub.
