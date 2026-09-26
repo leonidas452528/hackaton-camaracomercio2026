@@ -17,7 +17,7 @@ Esta segunda versión conserva la duración exacta de **1 minuto y 20 segundos**
 
 ## Personajes y generación
 
-Referencia suministrada por el usuario: `Imagen Refe/d91e7ea3-5b16-4aea-986f-cf69824be45e.jpeg`. Se conservaron los rasgos del narrador de cabello castaño, bufanda y saco beige, y de la narradora pelirroja con gafas redondas, pañoleta y cardigan estampado.
+Referencia suministrada por el usuario, ahora dentro del repositorio: [lámina original de personajes](../../../Imagen%20Refe/d91e7ea3-5b16-4aea-986f-cf69824be45e.jpeg). Es la misma lámina utilizada para las adaptaciones de la versión 2. Se conservaron los rasgos del narrador de cabello castaño, bufanda y saco beige, y de la narradora pelirroja con gafas redondas, pañoleta y cardigan estampado.
 
 Assets guardados en [assets/narrador.png](assets/narrador.png) y [assets/narradora.png](assets/narradora.png), con transparencia. Generados con la herramienta integrada **image_gen** siguiendo la skill **imagegen**; no se usó el fallback CLI. Prompts completos y referencia en [src/prompts-personajes.json](src/prompts-personajes.json). Las fuentes generadas se mantienen intactas; se escalan y componen como capas del video. No se imitan voces de personas reales.
 

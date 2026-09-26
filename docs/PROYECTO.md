@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: segunda versión del video de 80 segundos, con personajes de referencia y diagrama de flujo con decisiones.
+**Última actualización:** 25 de septiembre de 2026: referencia de personajes incorporada desde la carpeta Imagen Refe del repositorio; video v2 de 80 segundos.
 
 ---
 
@@ -437,6 +437,7 @@ A petición del usuario se produce una pieza tipo caricatura de **80 segundos**,
 
 El usuario solicita mejorar el video con un diagrama de flujo más específico y los personajes que aporta en la carpeta **Imagen Refe**. Se genera una segunda versión en `entregables/video/v2/cali-activa-80s.mp4`, conservando el primer video y los 80 segundos de duración.
 
+- **Referencia local confirmada:** el usuario trasladó la lámina a `Imagen Refe/d91e7ea3-5b16-4aea-986f-cf69824be45e.jpeg` dentro del repositorio. Se revisó visualmente: es la misma referencia utilizada para v2. Se actualizan procedencia y enlace; no se regenera el video ni se cambia su duración.
 - **Personajes:** narrador de cabello castaño y bufanda; narradora pelirroja con gafas redondas. PNG transparentes adaptados con la herramienta integrada image_gen y la skill imagegen; fuentes del usuario identificadas y prompts completos en `entregables/video/v2/src/prompts-personajes.json`. Ilustraciones con movimiento suave e indicador de voz; no se imitan voces del equipo.
 - **Diagrama animado:** definir amenaza/sector/población; filtro de evidencia y restricciones; existencia de polígono; reservas de superficie; comparación carga/capacidad teórica; necesidades y brechas; responsables; decisión de la autoridad; revisión del aviso; SMS simulado; recuperación. Rombos Sí/No, flechas de avance y retorno para corregir sobreocupación. Versión Mermaid completa en `entregables/video/v2/flujo.md`.
 - **Ejemplo reproducible:** área real de `epou-9465` = 447,2149007228903 m². Reservas SIMULADAS: 100 m² no utilizables + 80 m² circulación + 60 m² atención + 40 m² otros usos. Restan 167,2149007228903 m². Con módulos SIMULADOS de 10 m², máximo teórico de 16; proponer 20 excede, reducir a 16 cumple el balance. Se usan los resultados de `acopioCapacity` del frontend, no cifras inventadas como datos medidos. Exportación en `src/ejemplo-acopio.json` de la carpeta del video. El cambio visual de 20 a 16 se vincula al tramo correspondiente de narración.
