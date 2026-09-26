@@ -1,4 +1,6 @@
-# Cali Activa: espacios listos para cualquier amenaza
+# Territorio Preparado
+
+**Espacios y ayudas coordinados ante emergencias.**
 
 Proyecto para la **Hackathon Smart City Expo Cali 2026**, **RETO-01 Cali Activa: espacios públicos que se transforman para cuidar** (Alcaldía de Santiago de Cali).
 
@@ -14,7 +16,7 @@ Un plan de contingencia **multiamenaza** (sismo, inundación y sequía) que orga
 - **Después:** checklist de retorno y acta de entrega del espacio a su uso normal.
 
 ## Documentación
-- **Presentación del pitch:** [PowerPoint editable](entregables/presentacion/Cali_Activa_Presentacion.pptx) · [PDF](entregables/presentacion/Cali_Activa_Presentacion.pdf) · [Guion](entregables/presentacion/Guion_del_pitch.md)
+- **Presentación del pitch:** [PowerPoint editable](entregables/presentacion-ampliada/Presentacion_Ampliada.pptx) · [PDF](entregables/presentacion-ampliada/Presentacion_Ampliada.pdf) · [Guion](entregables/presentacion-ampliada/Guion_del_pitch.md)
 - [Bitácora completa (MD)](docs/PROYECTO.md) · [PDF](docs/PROYECTO.pdf)
 - [Instrucciones para asistentes de IA](AGENTS.md)
 

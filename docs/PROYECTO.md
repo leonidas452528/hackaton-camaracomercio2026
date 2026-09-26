@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: presentación profesional editable y PDF como nueva entrega de pitch, en reemplazo del video solicitado anteriormente.
+**Última actualización:** 25 de septiembre de 2026: Territorio Preparado elegido como nombre del producto; identidad del frontend y presentación ampliada de 16 diapositivas.
 
 ---
 
@@ -458,7 +458,21 @@ El usuario cancela el enfoque de video y solicita una presentación más profesi
 - **Filtro:** la autoridad decide activación; no sustituye evaluaciones estructurales ni conceptos de Bomberos. Desconocidos y simulaciones explícitos, sin datos personales o reconocimiento facial. Criterios visibles, alto contraste y texto editable. Responsables propuestos; validación con entidades fuera de esta etapa. No se declara integración SMS real ni impacto medido.
 - **Producción y verificación:** PowerPoint nativo con 200 cuadros de texto editables y notas en 12 diapositivas. PDF renderizado con LibreOffice, revisión visual de las 12 páginas y comprobación automática de textos completos, límites del lienzo y relación 16:9. Resultados en `entregables/presentacion/verificacion.json`. Vistas generales y portada exportadas para revisión. Scripts y dependencias de regeneración dentro de `src/`; no se cambian dependencias del frontend.
 
+## 6.20 Territorio Preparado: identidad y presentación ampliada (25 de septiembre)
+
+El usuario elige **Territorio Preparado** como nombre del sistema. Descriptor editorial: **Espacios y ayudas coordinados ante emergencias**. **Cali Activa** se conserva como nombre oficial del RETO-01; las menciones históricas a propuestas anteriores no se reescriben.
+
+- **Frontend:** identidad centralizada en `maqueta3d/src/brand.ts`, cabecera, pie, prevención, mensajes de acopio y metadatos de exportación. Se conserva la información guardada del prototipo.
+- **Presentación principal:** `entregables/presentacion-ampliada/Presentacion_Ampliada.pptx` y PDF. Doce diapositivas principales, con 240 segundos de guion sugerido, y cuatro anexos. Incluye actores, matriz multiamenaza, flujo detallado de decisiones, cartografía real, desglose de áreas, exceso/ajuste del acopio, necesidades y responsables propuestos, prevención, SMS simulado, arquitectura, límites, hoja de ruta y fuentes.
+- **Diseño:** texto y diagramas nativos editables, capturas reales del frontend e ilustración arquitectónica conceptual mediante image_gen/skill imagegen. Prompt y procedencia en `entregables/presentacion-ampliada/src/prompt-ilustracion.json`. No es fotografía de Cali ni implantación automática de un parque; no acredita obras ni servicios existentes.
+- **Datos:** se mantienen el inventario local y el caso `epou-9465`, con área cartográfica real y reservas/módulos SIMULADOS. Los cálculos no son aforo certificado ni prueba de encaje geométrico. SMS con destinatarios y resultados ficticios, cero envíos reales. No se incorpora ningún dataset nuevo. Fuentes primarias: https://datos.cali.gov.co/dataset/epou-espacio-publico-efectivo · https://www.datos.gov.co/dataset/Comunas-de-Santiago-de-Cali/dx2g-2mhm · https://www.openstreetmap.org/copyright · https://spherestandards.org/wp-content/uploads/Sphere-Handbook-2018-EN.pdf. Adaptaciones cartográficas CC BY-SA 4.0.
+- **Filtro:** criterios explicables y vacíos visibles; la autoridad decide activación. No sustituye evaluaciones estructurales ni competencias de Bomberos, sin datos personales ni reconocimiento facial. Validación con entidades fuera de esta etapa. Recuperación como proceso previsto, sin declarar integración real o impacto medido.
+
+- **Verificación de esta entrega:** compilación de producción, 22 pruebas unitarias y tres pruebas de navegador de avisos/SMS/prevención móvil. Presentación con 16 páginas y notas, 288 cuadros de texto editables, sin textos perdidos ni elementos fuera del lienzo en la exportación PDF; revisión visual de portada y láminas. Resultados en `entregables/presentacion-ampliada/verificacion.json`.
+
 ## 7. Pendientes
+- [x] Nombre elegido por el usuario: **Territorio Preparado**. Aplicado al frontend y a la presentación; Cali Activa permanece como reto oficial.
+- [x] Enriquecer la presentación con matriz multiamenaza, flujo de decisiones, organización conceptual del espacio, capturas del cálculo de acopio, prevención, SMS simulado y anexos de alcance/fuentes.
 - [x] Nueva entrega solicitada: presentación profesional PowerPoint/PDF, 10 diapositivas de pitch y 2 anexos, con guion y notas. Sustituye el enfoque de video por decisión del usuario.
 - [x] Segunda versión del video: personajes de referencia y flujo detallado con decisiones y corrección de sobreocupación.
 - [x] Video animado de 80 segundos con voces, música, subtítulos y flujo general del proyecto, solicitado por el usuario. Esta pieza no sustituye automáticamente el video final de 4 minutos previsto por el hackathon.
@@ -493,7 +507,7 @@ El usuario cancela el enfoque de video y solicita una presentación más profesi
 - [ ] Sábado: subir `inventario_espacios_cali.csv` a Sheets, construir el prototipo No-Code y grabar el video.
 - [ ] Agregar a la ficha de aptitud el campo "papel según la amenaza" (albergue, amortiguador o punto de agua) y los atributos de agua almacenada, baños sin red y energía propia (ver los referentes internacionales).
 - [x] Ruta de aprendizaje y Gema de Gemini para entrenar al equipo: `gema/INSTRUCCIONES_GEMA.md` y `gema/RUTA_APRENDIZAJE.pdf` (incluye el análisis de la competencia del RETO-01).
-- [ ] **Decidir el nombre:** "Cali Activa" (el nombre del reto) o "Cali Lista" (el de Pablo). Opción: usar Cali Lista para el producto y mencionar que responde a Cali Activa.
+- [x] **Decidir el nombre:** Territorio Preparado, elegido por el usuario; Cali Activa es el nombre del reto.
 - [ ] Pedirle al integrante de los refugios de PVC su material (ficha, bocetos, sensores) y sumarlo a `docs/`.
 - [ ] Unificar el formulario de Cali Lista con las columnas de `inventario_espacios_cali.csv`.
 - [ ] Marco legal: verificar las normas marcadas con (verificar) en la sección 6.1.
