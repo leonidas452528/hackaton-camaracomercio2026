@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: balance de superficies para evitar sobreocupación propuesta de acopios.
+**Última actualización:** 25 de septiembre de 2026: video animado de demostración de 1 minuto y 20 segundos, con voces, música y subtítulos.
 
 ---
 
@@ -422,7 +422,19 @@ El usuario solicita considerar el tamaño del parque o zona al asignar acopio pa
 - **Límites:** el máximo es un techo aritmético por área, no demuestra encaje de módulos en polígonos irregulares, ni aforo de personas, capacidad de carga o toneladas almacenables. La población del escenario no equivale a asistentes simultáneos. Área útil, distribución, acceso, suelo, protección de ayudas y evaluación operacional siguen por verificar. La preselección por cercanía no acredita capacidad.
 - **Filtro del proyecto:** recomendación sin activar, sin evaluación estructural ni concepto de Bomberos; solo áreas y conteos agregados, sin datos personales ni reconocimiento facial; criterios visibles y controles etiquetados. La validación con entidades continúa fuera de esta etapa por decisión del usuario.
 
+## 6.17 Video animado del proyecto: 1 minuto y 20 segundos (25 de septiembre)
+
+A petición del usuario se produce una pieza tipo caricatura de **80 segundos**, con dos voces sintéticas en español de Colombia, música instrumental original, efectos suaves y subtítulos. Entregable: `entregables/video/cali-activa-80s.mp4`; guion, SRT, storyboard, créditos y código de regeneración en la misma carpeta.
+
+- **Ocho escenas:** problema/propuesta; prevención; territorio real y criterios por amenaza; balance de área para acopio; necesidades y responsables propuestos; decisión de la autoridad; SMS simulado; retorno al uso cotidiano con revisión y acta como objetivo del proyecto.
+- **Formato:** horizontal 1280 × 720, 24 fotogramas por segundo, 1.920 fotogramas, H.264 y AAC estéreo. Narración ajustada por escena sin cortar frases. Subtítulos incrustados y SRT separado; personajes con gestos y movimientos de boca, mapa con marcador animado y acopio con límite visual.
+- **Datos y atribución:** comunas reales y polígono del parque `epou-9465` (Colinas del Sur, EPE_1064) desde los archivos públicos del repositorio. Fuente visible: Alcaldía de Santiago de Cali, DAPM/IDESC; adaptaciones cartográficas CC BY-SA 4.0. [Espacio público efectivo](https://datos.cali.gov.co/dataset/epou-espacio-publico-efectivo) y [comunas](https://www.datos.gov.co/dataset/Comunas-de-Santiago-de-Cali/dx2g-2mhm). No se incorpora ningún dataset nuevo.
+- **Verificación final:** MP4 de 80,000 segundos y 1.920 fotogramas; video H.264 1280 × 720 a 24 fps y audio AAC de dos canales. Decodificación completa sin errores, señal de audio en las ocho escenas, sin recorte digital detectado y 22 bloques de subtítulos dentro de la duración y el recuadro. Storyboard y escenas revisados visualmente. Resultados reproducibles en `entregables/video/verificacion.json`.
+- **Producción:** ilustraciones y música originales por código Python; tipografía DejaVu Sans; montaje con [FFmpeg](https://ffmpeg.org/); voces sintéticas Salome/Gonzalo mediante [edge-tts](https://github.com/rany2/edge-tts). Únicamente el guion público se procesa para síntesis, sin datos personales ni imitación de voces del equipo. Herramientas instaladas en rutas temporales, sin modificar dependencias del frontend.
+- **Filtro del proyecto:** la pieza explica que la autoridad decide y no sustituye evaluaciones estructurales ni conceptos de Bomberos. Datos desconocidos por verificar, ocupación/medidas propuestas y SMS marcados SIMULADOS. No se envían SMS ni se presenta el parque como abierto. No es una alerta, grabación literal de la interfaz ni evidencia de validación con entidades. La devolución del espacio se presenta como parte del flujo previsto, no como un acto realizado.
+
 ## 7. Pendientes
+- [x] Video animado de 80 segundos con voces, música, subtítulos y flujo general del proyecto, solicitado por el usuario. Esta pieza no sustituye automáticamente el video final de 4 minutos previsto por el hackathon.
 - [x] Preparar avisos generales de acopio con ubicación real, horario/información propuesta, copia y descarga, sin identificar damnificados.
 - [x] Canal SMS SIMULADO y sección de análisis preventivo/cultura ciudadana, por solicitud del usuario.
 - [ ] **Fuera del alcance de esta demo:** envío SMS real, proveedor, cobertura, autorización de avisos y seguimiento de entrega.

@@ -1,0 +1,24 @@
+{
+  "durationSeconds": 80,
+  "frames": 1920,
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "videoCodec": "h264",
+  "audioCodec": "aac",
+  "channels": 2,
+  "subtitleCues": 22,
+  "audioPeak": 0.9319,
+  "audioRmsPerScene": [
+    0.1396,
+    0.1155,
+    0.1346,
+    0.093,
+    0.1567,
+    0.091,
+    0.1359,
+    0.0834
+  ],
+  "fullDecode": "passed",
+  "personalData": false
+}
