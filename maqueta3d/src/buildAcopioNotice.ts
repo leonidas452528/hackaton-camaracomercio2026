@@ -1,10 +1,11 @@
+import { brand } from "./brand";
 import type { Space } from "./types";
 import { googleMapsLinks } from "./googleMaps.ts";
 export function acopioNotice(space: Space, hours: string, items: string) {
   const location = googleMapsLinks(space.properties.coordinates).place;
   const text = [
     "BORRADOR — punto de acopio propuesto, apertura no confirmada.",
-    `Cali Activa: ${space.properties.name} (${space.properties.id}).`,
+    `${brand.name}: ${space.properties.name} (${space.properties.id}).`,
     `Ubicación: ${location}`,
     `Horario propuesto: ${hours.trim() || "por definir"}.`,
     `Información propuesta sobre ayudas: ${items.trim() || "por definir"}.`,

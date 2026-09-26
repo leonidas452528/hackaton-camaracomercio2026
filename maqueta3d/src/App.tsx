@@ -1,3 +1,4 @@
+import { brand } from "./brand";
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import TerritoryMap from "./TerritoryMap";
 import GoogleMapsLinks from "./GoogleMapsLinks";
@@ -130,10 +131,10 @@ export default function App() {
       <header className="topbar">
         <a className="brand" href="./">
           <span className="brand-mark">
-            CA<span>↗</span>
+            {brand.initials}<span>↗</span>
           </span>
           <span>
-            Cali Activa<small>ESPACIOS QUE CUIDAN</small>
+            {brand.name}<small>{brand.tagline.toUpperCase()}</small>
           </span>
         </a>
         <span className="project-tag">
@@ -702,7 +703,7 @@ export default function App() {
             estructural ni seguridad contra incendios. Solo información pública
             sobre espacios; sin identificación personal.
           </p>
-          <span>CALI ACTIVA / HACKATHON SMART CITY EXPO CALI 2026</span>
+          <span>{brand.name.toUpperCase()} / {brand.challenge} / HACKATHON SMART CITY EXPO CALI 2026</span>
         </footer>
       </main>
     </>

@@ -1,3 +1,4 @@
+import { brand } from "./brand";
 import type { Scene } from "three";
 import {
   site,
@@ -11,7 +12,7 @@ import {
 /** Copia independiente: no modifica la escena interactiva ni exporta DOM/datos del mapa. */
 export async function exportEmergencyScene(scene: Scene): Promise<ArrayBuffer> {
   const snapshot = scene.clone(true);
-  snapshot.name = "Cali Activa — emergencia ilustrativa";
+  snapshot.name = `${brand.name} — emergencia ilustrativa`;
   snapshot.userData = {
     state: "emergency",
     units: "meters",

@@ -1,3 +1,4 @@
+import { brand } from "./brand";
 import { useState } from "react";
 
 const guides = [
@@ -178,7 +179,7 @@ export default function Prevention({ onMap }: { onMap: () => void }) {
         </section>
       </div>
       <p className="small-note">
-        Cali Activa orienta y muestra criterios; la activación corresponde a la
+        {brand.name} orienta y muestra criterios; la activación corresponde a la
         autoridad. No sustituye evaluaciones estructurales ni las competencias
         de Bomberos. Para incendios en edificaciones y otras amenazas, consulta
         las instrucciones específicas de los organismos de respuesta.

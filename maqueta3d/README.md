@@ -1,4 +1,4 @@
-# Cali Activa · mapa territorial y maqueta 3D
+# Territorio Preparado · mapa territorial y maqueta 3D
 
 Aplicación local con Vite, React, TypeScript estricto, Leaflet y React Three Fiber/Drei. Mapa con archivos reales de IDESC y escena del refugio y centro de acopio del sitio piloto (seis pasos del prompt completados). No hay disponibilidad operativa confirmada en los datos.
 

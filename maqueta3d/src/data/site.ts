@@ -1,3 +1,5 @@
+import { brand } from "../brand.ts";
+
 /** Única fuente de medidas y cantidades. Una unidad de escena equivale a un metro.
  * No acredita aforo, aptitud estructural ni disponibilidad real de servicios.
  */
@@ -36,7 +38,7 @@ export const sources = {
 } as const;
 
 export const site = {
-  name: "Unidad Deportiva Jaime Aparicio · Cali Activa",
+  name: `Unidad Deportiva Jaime Aparicio · ${brand.name}`,
   coordinates: {
     metersPerUnit: 1,
     eastAxis: "+X",

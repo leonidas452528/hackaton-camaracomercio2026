@@ -1525,3 +1525,8 @@ footer > span {
 .acopio-capacity .capacity-overflow { border-left: 5px solid #a52c23; background: #fff0ed; color: #701e17; }
 .acopio-capacity button { padding: 12px; border-radius: 8px; border: 1px solid #24634f; background: #e1eee7; color: #173c2c; font: inherit; cursor: pointer; }
 .acopio-capacity button:disabled { opacity: .6; cursor: default; }
+
+/* El descriptor de la marca debe poder envolver en pantallas pequeñas. */
+.brand { min-width: 0; }
+.brand > span:last-child { min-width: 0; }
+.brand small { max-width: 230px; letter-spacing: 1px; line-height: 1.4; }
