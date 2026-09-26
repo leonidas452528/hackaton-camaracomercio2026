@@ -3,7 +3,7 @@
 **Equipo:** William Ortiz, Herlin Echeverry, Pablo Arango, Daniel Celis
 **Reto:** RETO-01 Cali Activa: espacios públicos que se transforman para cuidar
 **Enfoque:** plan de contingencia multiamenaza (sismo, inundación y sequía/El Niño) para espacios públicos, con organismos y mecanismos para el antes, el durante y el después.
-**Última actualización:** 25 de septiembre de 2026: canal SMS simulado y análisis preventivo con cultura ciudadana.
+**Última actualización:** 25 de septiembre de 2026: balance de superficies para evitar sobreocupación propuesta de acopios.
 
 ---
 
@@ -410,6 +410,18 @@ Por instrucción expresa del usuario, el canal SMS se implementa **como simulaci
 - **Pitch:** segmento listo para narrar en `entregables/guion_prevencion_difusion.md`. Explica la conexión entre preparación, territorio y comunicación, sin atribuir resultados reales a la simulación.
 - **Fuentes primarias educativas consultadas el 25 de septiembre de 2026:** [UNGRD, boletín de inundaciones](https://repositorio.gestiondelriesgo.gov.co/bitstream/handle/20.500.11762/32902/BoletinInundaciones.pdf?isAllowed=y&sequence=33), [UNGRD, recordatorios frente a sismo](https://portal.gestiondelriesgo.gov.co/paginas/old_noticias/2122.aspx), [UNGRD, prevención de incendios forestales](https://portal.gestiondelriesgo.gov.co/Paginas/recomendaciones-incendios-forestales.aspx) y [Gestión del Riesgo de Cali](https://www.cali.gov.co/gestiondelriesgo/). Las publicaciones son material de orientación, no evidencia de un incidente actual. No se añade ningún dataset.
 
+## 6.16 Acopio limitado por superficie del espacio (25 de septiembre)
+
+El usuario solicita considerar el tamaño del parque o zona al asignar acopio para evitar sobrellenarlo. La ficha de preparación incorpora un balance de superficies asociado al espacio seleccionado.
+
+- **Base real:** área geodésica calculada por Turf sobre el Polygon/MultiPolygon público seleccionado, conservando huecos. Los registros puntuales, sin polígono, quedan sin capacidad calculable. Procedencia del inventario: DAPM/IDESC, documentada con descarga, licencia y atribución en `prototipo/datos/FUENTES.md`; fuente primaria https://idesc.cali.gov.co/. No se añade un dataset ni se altera el área original.
+- **Entradas SIMULADAS / por verificar:** área no utilizable; circulación, accesos y evacuación; atención, entrega y espera; otros usos u ocupación existente; huella por módulo de almacenamiento y cantidad propuesta. Sin valores prellenados ni porcentajes normativos inventados. Los campos vacíos no equivalen a cero y se exige reservar circulación y atención.
+- **Regla explicable:** superficie para almacenamiento = huella menos las cuatro reservas/exclusiones; máximo teórico de módulos = parte entera de superficie restante / huella por módulo. Las reservas no deben superponerse entre sí. Se muestran superficie pedida, restante, déficit y módulos excedentes. Las reservas que por sí solas exceden el parque también producen sobreocupación.
+- **Verificación:** 22 pruebas de lógica, compilación TypeScript/Vite y cinco pruebas de navegador aprobadas; incluyen exceso, límite exacto, falta de datos, exportación de supuestos, invalidación al editar/cambiar espacio y regresiones de preparación, SMS simulado y prevención móvil.
+- **Control del borrador:** solo permite “Incluir distribución de acopio en el borrador” si los datos están completos, el balance no excede la superficie y las reglas de amenaza no excluyen el espacio ni lo dejan pendiente de evidencia. Cambios de medidas, espacio o amenaza invalidan la inclusión. La exportación general incorpora entradas, resultados, regla, procedencia y `includedInDraft`; no autoriza activación.
+- **Límites:** el máximo es un techo aritmético por área, no demuestra encaje de módulos en polígonos irregulares, ni aforo de personas, capacidad de carga o toneladas almacenables. La población del escenario no equivale a asistentes simultáneos. Área útil, distribución, acceso, suelo, protección de ayudas y evaluación operacional siguen por verificar. La preselección por cercanía no acredita capacidad.
+- **Filtro del proyecto:** recomendación sin activar, sin evaluación estructural ni concepto de Bomberos; solo áreas y conteos agregados, sin datos personales ni reconocimiento facial; criterios visibles y controles etiquetados. La validación con entidades continúa fuera de esta etapa por decisión del usuario.
+
 ## 7. Pendientes
 - [x] Preparar avisos generales de acopio con ubicación real, horario/información propuesta, copia y descarga, sin identificar damnificados.
 - [x] Canal SMS SIMULADO y sección de análisis preventivo/cultura ciudadana, por solicitud del usuario.
@@ -420,7 +432,8 @@ Por instrucción expresa del usuario, el canal SMS se implementa **como simulaci
 - [x] Instalar skills Three.js y revisar cubiertas, apoyos, vista de corte y funcionamiento conceptual del agua.
 - [ ] Dimensionamiento profesional de estructuras, anclajes y sistema de agua; capacidad, primeras aguas, suministro y descarga por verificar.
 - [x] Frontend: preparar espacio seleccionado, adaptar huella pública, preseleccionar candidatos con criterios, calcular necesidades y seguir brechas desconocidas; exportar borrador.
-- [ ] Distribuir kits por superficie útil y accesos medidos; completar aforos/servicios para calcular faltantes reales y aptitud operacional.
+- [x] Balance de superficie del acopio sobre huella pública, con reservas explícitas SIMULADAS y bloqueo de inclusión por sobreocupación.
+- [ ] Comprobar encaje geométrico y distribuir kits por superficie útil y accesos medidos; completar aforos/servicios para calcular faltantes reales y aptitud operacional.
 - [x] Maqueta 3D, paso 1: medidas y cálculos centralizados con procedencia.
 - [x] Maqueta 3D, paso 2: escena general con controles y mapa de inventarios reales por comuna/barrio, fuentes y cruces verificados.
 - [ ] **Fuera de la etapa actual por decisión del usuario:** validación con entidades de disponibilidad, administración/acceso, evaluaciones y servicios; no se marca como realizada.

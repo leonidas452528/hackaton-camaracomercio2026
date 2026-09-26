@@ -119,3 +119,7 @@ En la ficha de **Preparar intervención**, abre **Preparar aviso SMS de acopio**
 **Canal SMS SIMULADO:** pulsa **Simular envío masivo** para recorrer una entrega ficticia completa o con pendientes. No usa un proveedor ni envía mensajes reales; las cifras de audiencia y entrega están marcadas como simuladas. No pide ni guarda teléfonos. Como no hay puntos habilitados confirmados, el borrador indica que no se debe acudir todavía; no es un aviso oficial de apertura.
 
 La pestaña **04 Análisis preventivo** ofrece orientación educativa por amenaza, una lista personal sin persistencia y una pregunta interactiva sobre la apertura de los puntos. Incluye fuentes UNGRD y acceso al mapa. El guion de demostración está en `../entregables/guion_prevencion_difusion.md`.
+
+### Balance de superficie para acopio
+
+En **Preparar intervención**, “¿Cuánto acopio cabe en este espacio?” toma la huella pública del lugar. Introduce superficies por verificar para exclusiones, circulación, atención y otros usos, más la huella y cantidad de módulos de almacenamiento. Calcula el máximo teórico por área y bloquea la inclusión en el borrador si hay exceso, datos incompletos o restricción por amenaza. Cambiar medidas, espacio o amenaza invalida la inclusión. El JSON conserva supuestos y resultados; no es aforo, encaje geométrico ni autorización de apertura.

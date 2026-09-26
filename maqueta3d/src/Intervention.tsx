@@ -13,6 +13,12 @@ import {
 import { site, planningView } from "./data/site";
 import GoogleMapsLinks from "./GoogleMapsLinks";
 import AcopioNotice from "./AcopioNotice";
+import AcopioCapacity from "./AcopioCapacity";
+import {
+  acopioCapacity,
+  emptyAcopioInputs,
+  type AcopioInputs,
+} from "./calculateAcopioCapacity";
 import { isFire, firePreparation, fireSources, fireLimitations } from "./fire";
 const SelectedSpaceScene = lazy(() => import("./SelectedSpaceScene"));
 type Followup = "Por medir" | "En revisión";
@@ -32,6 +38,14 @@ export default function Intervention({
   const [threat, setThreat] = useState<ScenarioThreat>("flood");
   const [people, setPeople] = useState(String(site.scenario.people.value));
   const [targetId, setTargetId] = useState(origin?.properties.id ?? "");
+  const [acopio, setAcopio] = useState<{
+    key: string;
+    inputs: AcopioInputs;
+    included: boolean;
+  }>({ key: "", inputs: emptyAcopioInputs, included: false });
+  useEffect(() => {
+    setAcopio({ key: "", inputs: emptyAcopioInputs, included: false });
+  }, [targetId, threat]);
   const targetHeading = useRef<HTMLHeadingElement>(null);
   const [reviewRequest, setReviewRequest] = useState(0);
   const reviewSpace = (id: string) => {
@@ -99,6 +113,15 @@ export default function Intervention({
     decision = eligibility(target, threat),
     rows = problem ? [] : gaps(target, count),
     area = geometryArea(target);
+  const acopioKey = p.id + ":" + threat;
+  const acopioInputs =
+    acopio.key === acopioKey ? acopio.inputs : emptyAcopioInputs;
+  const acopioResult = acopioCapacity(area, acopioInputs);
+  const acopioIncluded =
+    acopio.key === acopioKey &&
+    acopio.included &&
+    acopioResult.status === "fits" &&
+    !decision.excluded;
   const fireRows = isFire(threat) ? firePreparation(threat) : [];
   const fireReview = fireRows.map((r) => ({
     ...r,
@@ -117,6 +140,16 @@ export default function Intervention({
         reason: c.reason,
       })),
       decision,
+      acopio: {
+        ...acopioResult,
+        includedInDraft: acopioIncluded,
+        activationAuthorized: false,
+        areaSource:
+          "Polígono público del espacio seleccionado; cálculo Turf en m²",
+        rule: "Huella menos exclusiones, circulación, atención y otros usos; módulos enteros según huella por unidad",
+        limitation:
+          "Balance de área SIMULADO, no aforo ni encaje geométrico ni capacidad operacional verificada",
+      },
       screening: {
         considered: result.considered,
         excludedByIntersection: result.excluded,
@@ -328,6 +361,19 @@ export default function Intervention({
           <SelectedSpaceScene space={target} />
         </Suspense>
       </section>
+      <AcopioCapacity
+        area={area}
+        inputs={acopioInputs}
+        included={acopioIncluded}
+        blocked={decision.excluded}
+        onChange={(inputs) =>
+          setAcopio({ key: acopioKey, inputs, included: false })
+        }
+        onInclude={() => {
+          if (acopioResult.status === "fits" && !decision.excluded)
+            setAcopio({ key: acopioKey, inputs: acopioInputs, included: true });
+        }}
+      />
       <AcopioNotice key={p.id} space={target} />
       <h3>Necesidades y brechas por medir</h3>
       <p>
